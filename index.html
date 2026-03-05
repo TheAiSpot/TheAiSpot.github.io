@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheAiSpot — Your Daily AI Intelligence Feed</title>
+  <meta name="description" content="The most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts — clear, fast, and without hype." />
+  <meta property="og:title" content="TheAiSpot — Your Daily AI Intelligence Feed" />
+  <meta property="og:description" content="The most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts — clear, fast, and without hype." />
+  <meta property="og:url" content="https://theaispot.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TheAiSpot — Your Daily AI Intelligence Feed" />
+  <meta name="twitter:description" content="The most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts — clear, fast, and without hype." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --bg:          #0d1117;
+      --card-bg:     #161b22;
+      --border:      #21262d;
+      --text-primary:#e6edf3;
+      --text-muted:  #8b949e;
+      --text-faint:  #484f58;
+      --blue:        #00d4ff;
+      --blue-dim:    rgba(0, 212, 255, 0.12);
+      --blue-glow:   rgba(0, 212, 255, 0.25);
+      --purple:      #7c3aed;
+      --purple-dim:  rgba(124, 58, 237, 0.15);
+      --header-bg:   rgba(13, 17, 23, 0.92);
+      --ticker-bg:   #0a0e13;
+      --footer-bg:   #0a0e13;
+      --transition:  0.25s ease;
+    }
+
+    [data-theme="light"] {
+      --bg:          #f6f8fa;
+      --card-bg:     #ffffff;
+      --border:      #d0d7de;
+      --text-primary:#1c2128;
+      --text-muted:  #57606a;
+      --text-faint:  #afb8c1;
+      --blue-dim:    rgba(0, 180, 220, 0.08);
+      --blue-glow:   rgba(0, 180, 220, 0.2);
+      --purple-dim:  rgba(124, 58, 237, 0.08);
+      --header-bg:   rgba(246, 248, 250, 0.95);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+
+    a { color: var(--blue); text-decoration: none; transition: opacity var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: inherit; }
+
+    /* ============================================================
+       READING PROGRESS BAR
+    ============================================================ */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      z-index: 9999;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px var(--blue);
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      box-shadow: 0 1px 0 var(--border), 0 2px 16px rgba(0,212,255,0.08);
+      transition: background var(--transition);
+    }
+
+    /* Glowing bottom border */
+    #site-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      opacity: 0.6;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      font-size: 22px;
+      filter: drop-shadow(0 0 6px var(--blue));
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .logo-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .logo-name span { color: var(--blue); }
+
+    .logo-tagline {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Nav */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-nav a {
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color var(--transition), background var(--transition);
+    }
+
+    .header-nav a:hover,
+    .header-nav a.active {
+      color: var(--text-primary);
+      background: var(--blue-dim);
+    }
+
+    /* Header right */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Theme toggle */
+    #theme-toggle {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background var(--transition), border-color var(--transition), transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    #theme-toggle:hover {
+      background: var(--blue-dim);
+      border-color: var(--blue);
+      transform: rotate(15deg);
+    }
+
+    /* Hamburger */
+    #hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 22px;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    /* Mobile nav */
+    #mobile-nav {
+      display: none;
+      position: absolute;
+      top: 64px; left: 0; right: 0;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      flex-direction: column;
+      gap: 4px;
+      animation: slideDown 0.2s ease;
+    }
+
+    #mobile-nav.open { display: flex; }
+
+    #mobile-nav a {
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px 12px;
+      border-radius: 6px;
+      transition: color var(--transition), background var(--transition);
+    }
+
+    #mobile-nav a:hover {
+      color: var(--text-primary);
+      background: var(--blue-dim);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       BREAKING NEWS TICKER
+    ============================================================ */
+    #ticker {
+      background: var(--ticker-bg);
+      border-bottom: 1px solid var(--border);
+      height: 38px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    [data-theme="light"] #ticker {
+      background: #1c2128;
+    }
+
+    .ticker-label {
+      background: #e3000b;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      flex-shrink: 0;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-label::after {
+      content: '';
+      position: absolute;
+      left: 56px;
+      top: 0; bottom: 0;
+      width: 32px;
+      background: linear-gradient(90deg, var(--ticker-bg), transparent);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    [data-theme="light"] .ticker-label::after {
+      background: linear-gradient(90deg, #1c2128, transparent);
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: tickerScroll 42s linear infinite;
+      white-space: nowrap;
+      padding-left: 16px;
+    }
+
+    .ticker-track:hover { animation-play-state: paused; }
+
+    .ticker-item {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #c9d1d9;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ticker-item::before {
+      content: '◆';
+      font-size: 8px;
+      color: var(--blue);
+      opacity: 0.8;
+    }
+
+    @keyframes tickerScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       LAYOUT WRAPPER
+    ============================================================ */
+    .page-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============================================================
+       CATEGORIES BAR
+    ============================================================ */
+    #categories-bar {
+      padding: 20px 0 0;
+      overflow: hidden;
+    }
+
+    .categories-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 20px;
+    }
+
+    .categories-scroll::-webkit-scrollbar { display: none; }
+
+    .cat-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+
+    .cat-pill:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-dim);
+    }
+
+    .cat-pill.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #0d1117;
+      font-weight: 600;
+      box-shadow: 0 0 12px var(--blue-glow);
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      padding: 24px 0 32px;
+    }
+
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: 420px;
+      transition: box-shadow var(--transition);
+    }
+
+    .hero-card:hover {
+      box-shadow: 0 8px 40px var(--blue-glow);
+    }
+
+    .hero-image {
+      position: relative;
+      background: linear-gradient(135deg, #0a1628 0%, #1a0a3e 35%, #0a2040 60%, #001a2e 100%);
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(0,212,255,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(124,58,237,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 20%, rgba(0,100,200,0.15) 0%, transparent 50%);
+    }
+
+    /* Neural network SVG illustration */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='420'%3E%3Cdefs%3E%3CradialGradient id='ng' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%2300d4ff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%2300d4ff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='120' cy='100' r='5' fill='%2300d4ff' opacity='0.7'/%3E%3Ccircle cx='280' cy='80' r='4' fill='%237c3aed' opacity='0.8'/%3E%3Ccircle cx='450' cy='120' r='6' fill='%2300d4ff' opacity='0.6'/%3E%3Ccircle cx='180' cy='220' r='5' fill='%237c3aed' opacity='0.7'/%3E%3Ccircle cx='350' cy='200' r='7' fill='%2300d4ff' opacity='0.5'/%3E%3Ccircle cx='500' cy='250' r='4' fill='%237c3aed' opacity='0.8'/%3E%3Ccircle cx='80' cy='320' r='5' fill='%2300d4ff' opacity='0.6'/%3E%3Ccircle cx='250' cy='340' r='4' fill='%237c3aed' opacity='0.7'/%3E%3Ccircle cx='420' cy='360' r='6' fill='%2300d4ff' opacity='0.5'/%3E%3Ccircle cx='300' cy='420' r='4' fill='%237c3aed' opacity='0.6'/%3E%3Ccircle cx='550' cy='180' r='5' fill='%2300d4ff' opacity='0.7'/%3E%3Ccircle cx='60' cy='200' r='4' fill='%237c3aed' opacity='0.5'/%3E%3Cline x1='120' y1='100' x2='280' y2='80' stroke='%2300d4ff' stroke-width='1' opacity='0.25'/%3E%3Cline x1='280' y1='80' x2='450' y2='120' stroke='%237c3aed' stroke-width='1' opacity='0.2'/%3E%3Cline x1='120' y1='100' x2='180' y2='220' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='280' y1='80' x2='350' y2='200' stroke='%237c3aed' stroke-width='1' opacity='0.25'/%3E%3Cline x1='450' y1='120' x2='350' y2='200' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='450' y1='120' x2='500' y2='250' stroke='%237c3aed' stroke-width='1' opacity='0.2'/%3E%3Cline x1='180' y1='220' x2='350' y2='200' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='350' y1='200' x2='500' y2='250' stroke='%237c3aed' stroke-width='1' opacity='0.15'/%3E%3Cline x1='180' y1='220' x2='80' y2='320' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='350' y1='200' x2='250' y2='340' stroke='%237c3aed' stroke-width='1' opacity='0.2'/%3E%3Cline x1='500' y1='250' x2='420' y2='360' stroke='%2300d4ff' stroke-width='1' opacity='0.15'/%3E%3Cline x1='80' y1='320' x2='250' y2='340' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='250' y1='340' x2='420' y2='360' stroke='%237c3aed' stroke-width='1' opacity='0.2'/%3E%3Cline x1='550' y1='180' x2='450' y2='120' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='550' y1='180' x2='500' y2='250' stroke='%237c3aed' stroke-width='1' opacity='0.2'/%3E%3Cline x1='60' y1='200' x2='120' y2='100' stroke='%2300d4ff' stroke-width='1' opacity='0.2'/%3E%3Cline x1='60' y1='200' x2='180' y2='220' stroke='%237c3aed' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E");
+      background-size: cover;
+      opacity: 0.9;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 16px; left: 16px;
+      background: linear-gradient(135deg, var(--blue), #0099cc);
+      color: #0d1117;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 4px;
+      z-index: 2;
+      box-shadow: 0 0 16px var(--blue-glow);
+    }
+
+    .hero-content {
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .cat-tag {
+      background: var(--purple-dim);
+      color: #a78bfa;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(124,58,237,0.3);
+    }
+
+    .hero-source {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .dot-sep {
+      color: var(--text-faint);
+      font-size: 10px;
+    }
+
+    .hero-time {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-headline {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .hero-summary {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .btn-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #0d1117;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 11px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: box-shadow var(--transition), transform var(--transition), filter var(--transition);
+      box-shadow: 0 0 16px var(--blue-glow);
+      text-decoration: none;
+    }
+
+    .btn-read:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 28px var(--blue-glow), 0 4px 16px rgba(0,212,255,0.35);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    .btn-read svg {
+      transition: transform 0.2s;
+    }
+
+    .btn-read:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ============================================================
+       MAIN CONTENT LAYOUT
+    ============================================================ */
+    #main-content {
+      padding: 8px 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ============================================================
+       ARTICLE GRID SECTION
+    ============================================================ */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+      box-shadow: 0 0 8px var(--blue);
+    }
+
+    .section-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Article grid */
+    #articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* Article card */
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px var(--blue-glow), 0 4px 16px rgba(0,0,0,0.3);
+      border-color: rgba(0,212,255,0.3);
+    }
+
+    .card-image {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Varied gradient themes for cards */
+    .grad-1 { background: linear-gradient(135deg, #0d1f3c 0%, #1a0a3e 50%, #001a2e 100%); }
+    .grad-1::before { background: radial-gradient(ellipse at 30% 50%, rgba(0,212,255,0.25) 0%, transparent 70%), radial-gradient(ellipse at 70% 30%, rgba(124,58,237,0.2) 0%, transparent 60%); }
+
+    .grad-2 { background: linear-gradient(135deg, #1a0d2e 0%, #0d1f3c 50%, #0a1a2e 100%); }
+    .grad-2::before { background: radial-gradient(ellipse at 60% 40%, rgba(124,58,237,0.3) 0%, transparent 60%), radial-gradient(ellipse at 20% 70%, rgba(0,212,255,0.15) 0%, transparent 50%); }
+
+    .grad-3 { background: linear-gradient(135deg, #001a20 0%, #0d2a1f 50%, #001030 100%); }
+    .grad-3::before { background: radial-gradient(ellipse at 50% 50%, rgba(0,212,255,0.22) 0%, transparent 65%), radial-gradient(ellipse at 80% 20%, rgba(0,180,180,0.18) 0%, transparent 55%); }
+
+    .grad-4 { background: linear-gradient(135deg, #1a0a0a 0%, #2a0d3e 50%, #0a0a1a 100%); }
+    .grad-4::before { background: radial-gradient(ellipse at 40% 60%, rgba(200,80,255,0.2) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(124,58,237,0.25) 0%, transparent 50%); }
+
+    .grad-5 { background: linear-gradient(135deg, #0a1a0a 0%, #001a2e 50%, #0d1f1a 100%); }
+    .grad-5::before { background: radial-gradient(ellipse at 35% 45%, rgba(0,200,150,0.2) 0%, transparent 60%), radial-gradient(ellipse at 65% 65%, rgba(0,212,255,0.18) 0%, transparent 55%); }
+
+    .grad-6 { background: linear-gradient(135deg, #1a1a0a 0%, #2a1a00 50%, #0d1020 100%); }
+    .grad-6::before { background: radial-gradient(ellipse at 55% 35%, rgba(255,160,0,0.15) 0%, transparent 55%), radial-gradient(ellipse at 25% 65%, rgba(124,58,237,0.2) 0%, transparent 60%); }
+
+    /* Card icon */
+    .card-image-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      opacity: 0.12;
+      z-index: 1;
+    }
+
+    .card-cat-tag {
+      position: absolute;
+      top: 12px; left: 12px;
+      z-index: 2;
+    }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card-headline {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card-source { font-weight: 600; }
+
+    .card-summary {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-read-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap var(--transition);
+    }
+
+    .article-card:hover .card-read-link { gap: 8px; }
+
+    /* ============================================================
+       SIDEBAR
+    ============================================================ */
+    #sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: sticky;
+      top: 88px;
+    }
+
+    .sidebar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .sidebar-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Trending */
+    .trending-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trending-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .trending-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .trending-item:first-child { padding-top: 0; }
+
+    .trending-item:hover .trending-headline { color: var(--blue); }
+
+    .trending-rank {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--blue);
+      opacity: 0.35;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 24px;
+      text-align: center;
+      padding-top: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .trending-info { flex: 1; }
+
+    .trending-headline {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      transition: color var(--transition);
+    }
+
+    .trending-source {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Quick stats */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       NEWSLETTER STRIP
+    ============================================================ */
+    #newsletter {
+      background: linear-gradient(135deg, #0d1f3c 0%, #1a0a3e 50%, #0a1628 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="light"] #newsletter {
+      background: linear-gradient(135deg, #1c2128 0%, #2d1b69 50%, #0d1117 100%);
+    }
+
+    #newsletter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(124,58,237,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .newsletter-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .newsletter-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .newsletter-headline {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #e6edf3;
+      margin-bottom: 8px;
+    }
+
+    .newsletter-sub {
+      font-size: 15px;
+      color: #8b949e;
+      margin-bottom: 28px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e6edf3;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .newsletter-input::placeholder { color: #484f58; }
+
+    .newsletter-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-dim);
+    }
+
+    .btn-subscribe {
+      background: var(--blue);
+      color: #0d1117;
+      border: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: filter var(--transition), box-shadow var(--transition), transform var(--transition);
+      box-shadow: 0 0 16px var(--blue-glow);
+    }
+
+    .btn-subscribe:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 24px var(--blue-glow);
+      transform: translateY(-1px);
+    }
+
+    .newsletter-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #484f58;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #site-footer {
+      background: #0a0e13;
+      border-top: 1px solid transparent;
+      box-shadow: 0 -1px 0 rgba(0,212,255,0.2), 0 -2px 16px rgba(0,212,255,0.04);
+      padding: 56px 0 0;
+      color: #8b949e;
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: #e6edf3;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-logo span { color: var(--blue); }
+
+    .footer-about {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #8b949e;
+      margin-bottom: 16px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      background: #161b22;
+      border: 1px solid #21262d;
+      color: #8b949e;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .social-btn:hover {
+      background: var(--blue-dim);
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .footer-col-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #e6edf3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: #8b949e;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+      opacity: 1;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #21262d;
+      padding: 20px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #484f58;
+    }
+
+    .footer-powered {
+      font-size: 12px;
+      color: #484f58;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-powered::before {
+      content: '⚡';
+      color: var(--blue);
+      font-size: 11px;
+    }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--blue);
+      color: #0d1117;
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, box-shadow 0.2s;
+      z-index: 800;
+      box-shadow: 0 4px 16px var(--blue-glow);
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    #back-to-top:hover {
+      box-shadow: 0 6px 24px var(--blue-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       TOAST NOTIFICATION
+    ============================================================ */
+    #toast {
+      position: fixed;
+      bottom: 84px;
+      right: 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(12px);
+      transition: opacity 0.3s, transform 0.3s;
+      max-width: 260px;
+    }
+
+    #toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    /* ============================================================
+       HIDDEN ARTICLE TOGGLE
+    ============================================================ */
+    .article-card.hidden { display: none; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      #main-content {
+        grid-template-columns: 1fr;
+      }
+
+      #sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid > :first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-nav { display: none; }
+      #hamburger { display: flex; }
+
+      .hero-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image { min-height: 200px; }
+
+      .hero-content {
+        padding: 24px 20px;
+      }
+
+      #articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-wrap { padding: 0 16px; }
+      .header-inner { padding: 0 16px; }
+      .hero-content { padding: 20px 16px; }
+    }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Reading progress bar -->
+<div id="progress-bar" role="progressbar" aria-label="Reading progress"></div>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header id="site-header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="#" class="logo" aria-label="TheAiSpot Home">
+      <span class="logo-icon">⚡</span>
+      <div class="logo-text">
+        <span class="logo-name">The<span>Ai</span>Spot</span>
+        <span class="logo-tagline">Your Daily AI Intelligence Feed</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="#" class="active">Home</a>
+      <a href="#trending-section">Trending</a>
+      <a href="#categories-bar">Topics</a>
+      <a href="#newsletter">About</a>
+    </nav>
+
+    <!-- Right side -->
+    <div class="header-right">
+      <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <span id="theme-icon">☀️</span>
+      </button>
+      <button id="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+
+  <!-- Mobile nav (hidden by default) -->
+  <nav id="mobile-nav" aria-label="Mobile navigation">
+    <a href="#">Home</a>
+    <a href="#trending-section">Trending</a>
+    <a href="#categories-bar">Topics</a>
+    <a href="#newsletter">About</a>
+  </nav>
+</header>
+
+<!-- ============================================================
+     BREAKING NEWS TICKER
+============================================================ -->
+<div id="ticker" aria-label="Breaking news ticker">
+  <div class="ticker-label">LIVE</div>
+  <div class="ticker-track" id="ticker-track">
+    <!-- Items duplicated in JS for seamless loop -->
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN PAGE CONTENT
+============================================================ -->
+<main>
+
+  <div class="page-wrap">
+
+    <!-- Categories Bar -->
+    <div id="categories-bar">
+      <div class="categories-scroll" role="list" aria-label="Filter by category">
+        <button class="cat-pill active" data-cat="all" role="listitem">All</button>
+        <button class="cat-pill" data-cat="generative-ai" role="listitem">Generative AI</button>
+        <button class="cat-pill" data-cat="industry" role="listitem">Industry</button>
+        <button class="cat-pill" data-cat="robotics" role="listitem">Robotics</button>
+        <button class="cat-pill" data-cat="ai-tools" role="listitem">AI Tools</button>
+        <button class="cat-pill" data-cat="ethics" role="listitem">Ethics</button>
+        <button class="cat-pill" data-cat="machine-learning" role="listitem">Machine Learning</button>
+        <button class="cat-pill" data-cat="research" role="listitem">Research</button>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" aria-label="Featured article">
+      <article class="hero-card" onclick="if(!event.target.closest('.btn-read')){window.location='apple-siri-google-gemini.html';}" style="cursor:pointer;">
+        <div class="hero-image">
+          <span class="featured-badge">FEATURED</span>
+        </div>
+        <div class="hero-content">
+          <div class="hero-meta">
+            <span class="cat-tag">Generative AI</span>
+            <span class="hero-source">9to5Mac</span>
+            <span class="dot-sep">•</span>
+            <span class="hero-time">March 4, 2026</span>
+          </div>
+          <h1 class="hero-headline">Apple Is Rebuilding Siri From Scratch — And Google's Gemini 1.2 Trillion Parameter Model Is Doing the Heavy Lifting</h1>
+          <p class="hero-summary">Apple has quietly partnered with Google to retire the original Siri architecture and replace its core intelligence with Gemini's 1.2T model, launching with iOS 26.4 in late March 2026. The rebuilt Siri adds genuine on-screen awareness and cross-app reasoning — features the 2011 Siri stack was structurally incapable of — while routing complex queries through Google's servers in the most significant philosophical reversal in Apple's history.</p>
+          <a href="apple-siri-google-gemini.html" class="btn-read" aria-label="Read full featured article">
+            Read Full Story
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Main Content + Sidebar -->
+    <div id="main-content">
+
+      <!-- Article Grid -->
+      <section aria-label="Latest AI articles">
+        <div class="section-header">
+          <h2 class="section-title">Latest in AI</h2>
+          <span class="section-count" id="article-count">6 stories</span>
+        </div>
+
+        <div id="articles-grid">
+
+          <!-- Card 1 -->
+          <article class="article-card" data-cat="industry">
+            <div class="card-image grad-1">
+              <div class="card-image-icon">🔬</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">Industry</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">NVIDIA Bets $4 Billion on Photonics — Because the GPU Is No Longer Your AI Bottleneck</h3>
+              <div class="card-meta">
+                <span class="card-source">Bloomberg</span>
+                <span class="dot-sep">•</span>
+                <span>March 3, 2026</span>
+              </div>
+              <p class="card-summary">NVIDIA invested $2B each into Lumentum and Coherent to lock in optical networking components, signaling that interconnect bandwidth — not compute — is now the binding constraint in AI infrastructure.</p>
+              <div class="card-footer">
+                <a href="nvidia-optical-networking-investment.html" class="card-read-link" aria-label="Read more about NVIDIA photonics investment">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="article-card" data-cat="generative-ai">
+            <div class="card-image grad-2">
+              <div class="card-image-icon">📢</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">Generative AI</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">Four Major Ad Agencies Are Now Using Anthropic's Claude Daily — And the Industry Is Watching</h3>
+              <div class="card-meta">
+                <span class="card-source">Advertising Age</span>
+                <span class="dot-sep">•</span>
+                <span>March 3, 2026</span>
+              </div>
+              <p class="card-summary">WPP, Publicis, Omnicom, and Interpublic have integrated Claude into daily SEO audit and creative brief workflows, with agencies reporting 73% time savings — marking AI's arrival as core creative infrastructure.</p>
+              <div class="card-footer">
+                <a href="ai-advertising-agencies-claude.html" class="card-read-link" aria-label="Read more about ad agencies using Claude">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="article-card" data-cat="robotics">
+            <div class="card-image grad-3">
+              <div class="card-image-icon">🚀</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">Robotics</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">For the First Time in History, a Robot Drove Itself Across Another Planet Without Human Input</h3>
+              <div class="card-meta">
+                <span class="card-source">NASA JPL</span>
+                <span class="dot-sep">•</span>
+                <span>February 28, 2026</span>
+              </div>
+              <p class="card-summary">NASA's Perseverance rover completed a 114-meter fully AI-planned drive in Jezero Crater — no human route commands uplinked — as a vision AI analyzed terrain in real time, a milestone 60 years of planetary science has never seen.</p>
+              <div class="card-footer">
+                <a href="mars-rover-ai-navigation.html" class="card-read-link" aria-label="Read more about NASA Mars AI drive">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="article-card" data-cat="ai-tools">
+            <div class="card-image grad-4">
+              <div class="card-image-icon">💬</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">AI Tools</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">Millions Are Using ChatGPT for Therapy. Brown University Researchers Say It's Actively Dangerous.</h3>
+              <div class="card-meta">
+                <span class="card-source">Brown University / JAMA</span>
+                <span class="dot-sep">•</span>
+                <span>March 2, 2026</span>
+              </div>
+              <p class="card-summary">A study of 7 AI chatbots across 1,200 therapy scenarios found every model broke established ethical standards in every test — with a 68% failure rate on suicide crisis protocols even when instructed to act as therapists.</p>
+              <div class="card-footer">
+                <a href="chatgpt-therapy-dangers.html" class="card-read-link" aria-label="Read more about ChatGPT therapy ethics study">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="article-card" data-cat="industry">
+            <div class="card-image grad-5">
+              <div class="card-image-icon">📱</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">Industry</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">Samsung Is Putting Google's Most Powerful AI on 800 Million Phones — Including $179 Budget Models</h3>
+              <div class="card-meta">
+                <span class="card-source">The Information</span>
+                <span class="dot-sep">•</span>
+                <span>March 1, 2026</span>
+              </div>
+              <p class="card-summary">Samsung's 2026 roadmap targets 800 million active devices running Gemini-powered AI by year-end, in a deal worth an estimated $3.4B annually to Google — the largest AI distribution agreement in history.</p>
+              <div class="card-footer">
+                <a href="samsung-gemini-budget-phones.html" class="card-read-link" aria-label="Read more about Samsung Gemini rollout">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="article-card" data-cat="ethics">
+            <div class="card-image grad-6">
+              <div class="card-image-icon">🏛️</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">Ethics</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">OpenAI Is No Longer Just Your Chatbot — It's Now U.S. National Security Infrastructure</h3>
+              <div class="card-meta">
+                <span class="card-source">The Intercept</span>
+                <span class="dot-sep">•</span>
+                <span>March 4, 2026</span>
+              </div>
+              <p class="card-summary">A $900M DoD contract covering intelligence analysis, logistics automation, and classified "decision support" has triggered a 31% spike in Claude subscriptions — and hard questions about privacy when your AI is also the Pentagon's AI.</p>
+              <div class="card-footer">
+                <a href="openai-pentagon-defense-contract.html" class="card-read-link" aria-label="Read more about OpenAI DoD contract">
+                  Read more
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /articles-grid -->
+      </section>
+
+      <!-- Sidebar -->
+      <aside id="sidebar" aria-label="Sidebar">
+
+        <!-- Trending -->
+        <div class="sidebar-card" id="trending-section">
+          <h2 class="sidebar-title">Trending Now 🔥</h2>
+          <div class="trending-list">
+
+            <a href="openai-pentagon-defense-contract.html" style="text-decoration:none;color:inherit;">
+            <div class="trending-item">
+              <span class="trending-rank">1</span>
+              <div class="trending-info">
+                <div class="trending-headline">OpenAI's $900M DoD Contract Makes It U.S. Defense Infrastructure</div>
+                <div class="trending-source">The Intercept · 1h ago</div>
+              </div>
+            </div>
+            </a>
+
+            <a href="apple-siri-google-gemini.html" style="text-decoration:none;color:inherit;">
+            <div class="trending-item">
+              <span class="trending-rank">2</span>
+              <div class="trending-info">
+                <div class="trending-headline">Apple Replacing Siri With Google Gemini 1.2T in iOS 26.4</div>
+                <div class="trending-source">9to5Mac · 2h ago</div>
+              </div>
+            </div>
+            </a>
+
+            <a href="nvidia-optical-networking-investment.html" style="text-decoration:none;color:inherit;">
+            <div class="trending-item">
+              <span class="trending-rank">3</span>
+              <div class="trending-info">
+                <div class="trending-headline">NVIDIA Invests $4B in Photonics Suppliers Lumentum and Coherent</div>
+                <div class="trending-source">Bloomberg · 4h ago</div>
+              </div>
+            </div>
+            </a>
+
+            <a href="chatgpt-therapy-dangers.html" style="text-decoration:none;color:inherit;">
+            <div class="trending-item">
+              <span class="trending-rank">4</span>
+              <div class="trending-info">
+                <div class="trending-headline">ChatGPT Fails Suicide Crisis Protocol in 68% of Test Conversations</div>
+                <div class="trending-source">Brown University · 6h ago</div>
+              </div>
+            </div>
+            </a>
+
+            <a href="samsung-gemini-budget-phones.html" style="text-decoration:none;color:inherit;">
+            <div class="trending-item">
+              <span class="trending-rank">5</span>
+              <div class="trending-info">
+                <div class="trending-headline">Samsung Targets 800 Million Gemini-Powered Devices by Year-End</div>
+                <div class="trending-source">The Information · 8h ago</div>
+              </div>
+            </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="sidebar-card">
+          <h2 class="sidebar-title">AI by the Numbers</h2>
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-number">312</div>
+              <div class="stat-label">Papers Today</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">$94B</div>
+              <div class="stat-label">2024 AI Funding</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">1.8T</div>
+              <div class="stat-label">Params in GPT-5</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">47K</div>
+              <div class="stat-label">Active AI Startups</div>
+            </div>
+          </div>
+        </div>
+
+      </aside><!-- /sidebar -->
+
+    </div><!-- /main-content -->
+
+  </div><!-- /page-wrap -->
+
+  <!-- Newsletter Strip -->
+  <section id="newsletter" aria-label="Newsletter signup">
+    <div class="newsletter-inner">
+      <div class="newsletter-label">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M6 1l1.5 3 3.5.5-2.5 2.5.6 3.5L6 9l-3.1 1.5.6-3.5L1 4.5l3.5-.5L6 1z" fill="currentColor"/>
+        </svg>
+        FREE NEWSLETTER
+      </div>
+      <h2 class="newsletter-headline">Stay Ahead of AI</h2>
+      <p class="newsletter-sub">Get the top AI stories delivered twice daily — no noise, only signal.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <label for="email-input" class="sr-only">Your email address</label>
+        <input
+          type="email"
+          id="email-input"
+          class="newsletter-input"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        />
+        <button type="submit" class="btn-subscribe">Subscribe →</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime. Join 84,000+ readers.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="site-footer">
+  <div class="footer-grid">
+
+    <!-- About column -->
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">
+        TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.
+      </p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+            <circle cx="2.5" cy="11.5" r="1.5"/>
+            <path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Topics column -->
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+
+    <!-- Stay Connected column -->
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<!-- Toast notification -->
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ----------------------------------------------------------
+     THEME TOGGLE
+  ---------------------------------------------------------- */
+  const html       = document.documentElement;
+  const themeBtn   = document.getElementById('theme-toggle');
+  const themeIcon  = document.getElementById('theme-icon');
+
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
+  // Init from localStorage or default dark
+  const saved = localStorage.getItem('aispot-theme') || 'dark';
+  applyTheme(saved);
+
+  themeBtn.addEventListener('click', function () {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('aispot-theme', next);
+  });
+
+  /* ----------------------------------------------------------
+     HAMBURGER MENU
+  ---------------------------------------------------------- */
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  hamburger.addEventListener('click', function () {
+    const open = mobileNav.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    hamburger.textContent = open ? '✕' : '☰';
+  });
+
+  // Close on nav link click
+  mobileNav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.textContent = '☰';
+    });
+  });
+
+  /* ----------------------------------------------------------
+     READING PROGRESS BAR
+  ---------------------------------------------------------- */
+  const progressBar = document.getElementById('progress-bar');
+
+  function updateProgress() {
+    const scrollTop  = window.scrollY || document.documentElement.scrollTop;
+    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+    const pct        = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = Math.min(pct, 100) + '%';
+  }
+
+  /* ----------------------------------------------------------
+     BACK TO TOP
+  ---------------------------------------------------------- */
+  const backToTop = document.getElementById('back-to-top');
+
+  function updateScroll() {
+    updateProgress();
+    if (window.scrollY > 400) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', updateScroll, { passive: true });
+
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ----------------------------------------------------------
+     BREAKING NEWS TICKER
+  ---------------------------------------------------------- */
+  const tickerHeadlines = [
+    "Apple rebuilds Siri with Google Gemini 1.2T — launching with iOS 26.4 in late March 2026",
+    "NVIDIA invests $4 billion in photonics suppliers Lumentum and Coherent for AI data center interconnects",
+    "Four major ad holding companies confirm daily Claude usage for briefs and SEO audits",
+    "NASA Perseverance completes first fully AI-planned Mars drive — 114 meters, zero human commands",
+    "Brown University: ChatGPT fails suicide crisis protocol in 68% of simulated therapy conversations",
+    "Samsung targets 800 million Gemini-powered devices by end of 2026 — including $179 budget phones",
+    "OpenAI's $900M DoD contract confirmed — 31% spike in Claude signups follows the announcement",
+    "Anthropic raises $4B Series E at $61B valuation as Claude enterprise adoption accelerates",
+    "EU AI Act enforcement begins with 14 companies already under formal investigation",
+    "Google DeepMind's AlphaFold 3 predicts novel protein-drug interactions at 97% accuracy"
+  ];
+
+  const track = document.getElementById('ticker-track');
+
+  // Build items — double them for seamless loop
+  const allItems = [...tickerHeadlines, ...tickerHeadlines];
+  allItems.forEach(function (text) {
+    const el = document.createElement('span');
+    el.className = 'ticker-item';
+    el.textContent = text;
+    track.appendChild(el);
+  });
+
+  /* ----------------------------------------------------------
+     CATEGORY FILTER
+  ---------------------------------------------------------- */
+  const catPills   = document.querySelectorAll('.cat-pill');
+  const cards      = document.querySelectorAll('#articles-grid .article-card');
+  const countEl    = document.getElementById('article-count');
+
+  catPills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      // Update active pill
+      catPills.forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+
+      const selected = pill.getAttribute('data-cat');
+      let visible = 0;
+
+      cards.forEach(function (card) {
+        const cardCat = card.getAttribute('data-cat');
+        if (selected === 'all' || cardCat === selected) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      countEl.textContent = visible + (visible === 1 ? ' story' : ' stories');
+    });
+  });
+
+  /* ----------------------------------------------------------
+     NEWSLETTER FORM
+  ---------------------------------------------------------- */
+  const toast = document.getElementById('toast');
+  let toastTimer;
+
+  function showToast(msg) {
+    clearTimeout(toastTimer);
+    toast.textContent = msg;
+    toast.classList.add('show');
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('show');
+    }, 4000);
+  }
+
+  document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('⚠️ Please enter a valid email address.');
+      return;
+    }
+
+    document.getElementById('email-input').value = '';
+    showToast('✅ You\'re subscribed! First issue arrives tomorrow.');
+  });
+
+  /* ----------------------------------------------------------
+     SMOOTH NAV ACTIVE STATE ON SCROLL
+  ---------------------------------------------------------- */
+  const navLinks = document.querySelectorAll('.header-nav a, #mobile-nav a');
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.forEach(function (l) { l.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+
+  /* ----------------------------------------------------------
+     ARTICLE CARD CLICK (open link)
+  ---------------------------------------------------------- */
+  cards.forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      // Only trigger if not clicking the read more link directly
+      if (e.target.closest('.card-read-link')) return;
+      const link = card.querySelector('.card-read-link');
+      if (link) link.click();
+    });
+  });
+
+  /* ----------------------------------------------------------
+     INIT
+  ---------------------------------------------------------- */
+  updateScroll();
+
+})();
+</script>
+
+</body>
+</html>

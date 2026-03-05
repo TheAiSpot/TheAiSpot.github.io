@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On February 12, 2026, No Human Planned the Route of a Vehicle on Mars. A Machine Did It Instead. | TheAiSpot</title>
+  <meta name="description" content="NASA's Perseverance rover completed the first fully AI-planned drive on Mars in February 2026, with a vision-capable AI analyzing terrain instead of human operators." />
+  <meta property="og:title" content="No Human Planned Mars Rover's Route. AI Did." />
+  <meta property="og:description" content="NASA's Perseverance rover completed the first fully AI-planned drive on Mars in February 2026, with a vision-capable AI analyzing terrain instead of human operators." />
+  <meta property="og:url" content="https://theaispot.github.io/mars-rover-ai-navigation.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="No Human Planned Mars Rover's Route. AI Did." />
+  <meta name="twitter:description" content="NASA's Perseverance rover completed the first fully AI-planned drive on Mars in February 2026, with a vision-capable AI analyzing terrain instead of human operators." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,0.12);--blue-glow:rgba(0,212,255,0.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,0.15);--header-bg:rgba(13,17,23,0.92);--ticker-bg:#0a0e13;--transition:0.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,0.08);--blue-glow:rgba(0,180,220,0.2);--purple-dim:rgba(124,58,237,0.08);--header-bg:rgba(246,248,250,0.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}a:hover{opacity:.8;}button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(0,212,255,0.08);transition:background var(--transition);}#site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}.logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}.logo-text{display:flex;flex-direction:column;line-height:1.15;}.logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}.logo-name span{color:var(--blue);}.logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}.header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}.header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}.header-right{display:flex;align-items:center;gap:8px;}#theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}#theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}#hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}#mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}#mobile-nav.open{display:flex;}#mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}#mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}@keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;}[data-theme="light"] #ticker{background:#1c2128;}.ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;height:100%;display:flex;align-items:center;}.ticker-track{display:flex;animation:tickerScroll 42s linear infinite;white-space:nowrap;padding-left:16px;}.ticker-track:hover{animation-play-state:paused;}.ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}.ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}@keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}.grad-4{background:linear-gradient(135deg,#1a0a0a 0%,#2a0d3e 50%,#0a0a1a 100%);}.article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,rgba(200,80,255,.2) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(124,58,237,.25) 0%,transparent 50%);}.article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.07;}.article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}.article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}.cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}.back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}.back-link:hover{color:var(--blue);opacity:1;}.reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}.article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}.byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}.byline-date{font-size:13px;color:var(--text-muted);}.dot-sep{color:var(--text-faint);font-size:10px;}.share-inline{display:flex;gap:8px;margin-left:auto;}.share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}.share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}.article-body p{margin-bottom:22px;}.article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}.article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}.article-body strong{font-weight:700;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}.callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}.callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}.conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}.conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}.conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}.share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}.share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}.share-x{background:#000;color:#fff;border-color:#333;}.share-x:hover{background:#111;}.share-copy{background:var(--card-bg);color:var(--text-muted);}.share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}.section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}.section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}.article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}.article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow);border-color:rgba(0,212,255,.3);}
+    .card-image{height:140px;position:relative;overflow:hidden;flex-shrink:0;}.grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1f3c 50%,#0a1a2e 100%);}.grad-5{background:linear-gradient(135deg,#0a1a0a 0%,#001a2e 50%,#0d1f1a 100%);}.grad-6{background:linear-gradient(135deg,#1a1a0a 0%,#2a1a00 50%,#0d1020 100%);}
+    .card-image::before{content:'';position:absolute;inset:0;}.grad-2::before{background:radial-gradient(ellipse at 60% 40%,rgba(124,58,237,.3) 0%,transparent 60%);}.grad-5::before{background:radial-gradient(ellipse at 35% 45%,rgba(0,200,150,.2) 0%,transparent 60%);}.grad-6::before{background:radial-gradient(ellipse at 55% 35%,rgba(255,160,0,.15) 0%,transparent 55%);}
+    .card-image-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.12;z-index:1;}.card-cat-tag{position:absolute;top:10px;left:10px;z-index:2;}.card-body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1;}.card-headline{font-size:14px;font-weight:700;line-height:1.35;color:var(--text-primary);}.card-meta{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);}.card-source{font-weight:600;}.card-read-link{font-size:12px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;margin-top:auto;padding-top:8px;border-top:1px solid var(--border);}
+    .back-home-bar{background:var(--bg);padding:20px 24px;border-top:1px solid var(--border);text-align:center;}.btn-back-home{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;font-weight:600;padding:10px 20px;border-radius:8px;border:1px solid var(--border);background:var(--card-bg);transition:all var(--transition);}.btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;box-shadow:0 -1px 0 rgba(0,212,255,.2);padding:56px 0 0;color:#8b949e;}.footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}.footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}.footer-logo span{color:var(--blue);}.footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}.footer-social{display:flex;gap:10px;}.social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}.social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}.footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}.footer-links{display:flex;flex-direction:column;gap:10px;}.footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}.footer-links a:hover{color:var(--blue);}.footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}.footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}#back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}#back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}#toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}}@media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle"><span id="theme-icon">☀️</span></button><button id="hamburger">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
+
+<div class="article-hero grad-4">
+  <div class="article-hero-icon">🚀</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Robotics</span>
+      <span class="reading-time">⏱ 6 min read</span>
+    </div>
+
+    <h1 class="article-headline">On February 12, 2026, No Human Planned the Route of a Vehicle on Mars. A Machine Did It Instead.</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">NASA JPL</span><span class="dot-sep">•</span>
+      <span class="byline-date">February 28, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">Science Desk</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>Every drive the Perseverance rover has ever taken on Mars was planned by human beings on Earth. Orbital imagery, stereo cameras, elevation maps — all fed to a team of engineers at JPL who would spend hours plotting a safe route, uplink it to the rover, and wait 20 minutes for confirmation that it arrived. That process has been refined over decades. It has also, as of February 12th, become optional.</p>
+
+      <p>On that date, Perseverance's onboard vision AI — an updated version of the AutoNav system combined with a new terrain classification model — analyzed the landscape ahead, identified a safe path through a boulder field in Jezero Crater's ancient river delta, and drove <strong>114 meters without a single uplinked route command from Earth</strong>. It is the longest fully autonomous drive ever completed on another planet.</p>
+
+      <h2>What AutoNav Could Already Do — and What Changed</h2>
+
+      <p>Perseverance has had autonomous hazard-avoidance since its 2021 landing. The previous system could stop if it detected a rock in its path, or make minor adjustments to a pre-planned route. What it could not do was make high-level routing decisions: choosing between paths, assessing risk across a terrain type it had never seen, or planning a multi-waypoint route through genuinely ambiguous terrain.</p>
+
+      <p>The February update changed that. The new vision model, developed in partnership with Carnegie Mellon's Robotics Institute, was trained on <strong>4.2 million labeled terrain images</strong> from Mars reconnaissance orbiters and previous rover missions. It can now classify surface types — bedrock, loose regolith, sand traps, wheel-hazard zones — and use that classification to plan routes that a human engineer would recognize as conservative and sensible.</p>
+
+      <p>The system still won't take risks a human wouldn't approve. It has hard limits: maximum slope angles, minimum clearance from obstacles, prohibited drive durations. But within those constraints, it can now decide entirely on its own how to get from point A to point B.</p>
+
+      <h2>Why the Communication Delay Matters More Than You Think</h2>
+
+      <p>On February 12th, the one-way communication delay between Earth and Mars was approximately <strong>17 minutes and 43 seconds</strong>. A round-trip command — send a command, wait for confirmation — takes nearly 36 minutes. During a traditional drive, the rover sits idle while humans on Earth plan and upload the next segment.</p>
+
+      <p>This is extraordinarily wasteful. Perseverance's operational day on Mars is about 7 hours of usable daylight. A rover that spends 45 minutes per drive segment waiting for Earth approval might complete two or three segments in a day. A rover that routes itself could theoretically drive continuously through its entire operational window.</p>
+
+      <p>The February drive was short by design — a proof of concept. But JPL engineers estimate that full autonomous routing could increase Perseverance's effective daily range by <strong>300% to 400%</strong> during optimal conditions, compressing years of traverse time into months.</p>
+
+      <h2>What the Rover Found on That Historic Drive</h2>
+
+      <p>The route the AI chose was notably efficient. Human engineers, reviewing the drive log after the fact, agreed that the path selected was "comparable to what our best operators would have chosen" — high praise in a field where human expertise has been the irreplaceable standard for 25 years.</p>
+
+      <p>During the 114-meter autonomous traverse, Perseverance's SHERLOC instrument detected an anomalous spectral signature from a rock formation that the pre-planned human route would have bypassed. The AI routed within 3 meters of it, triggering an automatic science flag. That sample is now on the shortlist for possible Mars Sample Return collection — a discovery that might not have happened under the old approach.</p>
+
+      <h2>The Next Phase — Fully Autonomous Science</h2>
+
+      <p>Autonomous driving is the first step. The next is autonomous science — allowing the rover to not just plan where to drive, but to identify scientifically interesting targets, decide whether they merit stopping for analysis, and execute that analysis independently. NASA's AEGIS system has been doing early versions of this for targeting Perseverance's rock-zapping laser since 2021. The February update extends that logic to driving and targeting integration.</p>
+
+      <p>The roadmap, as described by JPL principal investigator Dr. Vivian Sun, is for <strong>fully autonomous science selection by 2027</strong>, where Perseverance's daily operations would require human oversight only at a strategic level — "set the goal, the rover figures out how to achieve it." That's not science fiction. It's two software updates away.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>Key Takeaway</div>
+        <div class="callout-text">On February 12, 2026, NASA's Perseverance rover completed the first fully AI-planned drive on Mars — 114 meters through a boulder field without a single human-uplinked route command. The vision AI, trained on 4.2 million labeled terrain images, matched human engineer routing quality and led to a science discovery the human-planned route would have missed. Autonomous navigation could increase the rover's effective daily range by 300-400%.</div>
+      </div>
+
+      <div class="conclusion-section">
+        <h2>What This Means For You</h2>
+        <p>If you care about space exploration: the bottleneck that has constrained Mars science since Sojourner in 1997 — the Earth-Mars communication delay — has just been meaningfully reduced as a constraint. Future missions will be dramatically faster and more productive.</p>
+        <p>If you think about AI robotics: this is a rare, publicly verifiable case of AI performing at human expert level in a safety-critical domain where failure is expensive and irreversible. It will accelerate investment in autonomous systems for environments where human oversight is impractical — deep sea, underground mines, disaster zones.</p>
+        <p>And if you're a taxpayer funding NASA: the February 12 drive represents a compounding return on the original Perseverance mission investment. The science it will now collect in the remaining years of its operational life just got substantially larger, with no new hardware required. That's AI doing exactly what it's supposed to do.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card">
+        <div class="card-image grad-2"><div class="card-image-icon">🔬</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">NVIDIA Just Bet $4 Billion That Your Next AI Bottleneck Isn't the GPU</h3><div class="card-meta"><span class="card-source">Bloomberg</span><span class="dot-sep">•</span><span>March 3, 2026</span></div><a href="nvidia-optical-networking-investment.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card">
+        <div class="card-image grad-6"><div class="card-image-icon">📱</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Samsung Is Putting Google's Most Powerful AI on 800 Million Phones — Including the Cheap Ones</h3><div class="card-meta"><span class="card-source">The Information</span><span class="dot-sep">•</span><span>March 1, 2026</span></div><a href="samsung-gemini-budget-phones.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card">
+        <div class="card-image grad-5"><div class="card-image-icon">🧠</div><div class="card-cat-tag"><span class="cat-tag">AI Tools</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Millions Are Asking Chatbots for Therapy. A Brown University Study Says That's Dangerous.</h3><div class="card-meta"><span class="card-source">Brown University</span><span class="dot-sep">•</span><span>March 2, 2026</span></div><a href="chatgpt-therapy-dangers.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div><div class="footer-logo">⚡ The<span>Ai</span>Spot</div><p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters.</p><div class="footer-social"><a href="#" class="social-btn">𝕏</a><a href="#" class="social-btn">in</a></div></div>
+    <div><div class="footer-col-title">Topics</div><nav class="footer-links"><a href="index.html">Machine Learning</a><a href="index.html">Generative AI</a><a href="index.html">Robotics</a><a href="index.html">AI Tools</a><a href="index.html">Research</a><a href="index.html">Industry</a><a href="index.html">Ethics &amp; Policy</a></nav></div>
+    <div><div class="footer-col-title">Stay Connected</div><nav class="footer-links"><a href="index.html#newsletter">Daily Newsletter</a><a href="#">RSS Feed</a><a href="#">Submit a Story</a><a href="#">About Us</a><a href="#">Privacy Policy</a></nav></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span><span class="footer-powered">Powered by AI. Updated twice daily.</span></div>
+</footer>
+<button id="back-to-top">↑</button><div id="toast"></div>
+<script>
+(function(){
+  const html=document.documentElement,btn=document.getElementById('theme-toggle'),icon=document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;pb.style.width=(d>0?(s/d)*100:0)+'%';btt.classList.toggle('visible',s>400);},{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  const headlines=["Apple rebuilds Siri with Google Gemini 1.2T — launching iOS 26.4 in March 2026","NVIDIA bets $4 billion on photonics as AI interconnect becomes the new bottleneck","Four major ad agencies confirm daily Claude usage for creative and SEO workflows","NASA Perseverance completes first fully AI-planned drive on Mars surface","Brown University: ChatGPT breaks core therapy ethics in majority of tested interactions","Samsung targets 800 million devices for Gemini AI rollout by end of 2026","OpenAI secures DoD contract, signaling shift to national security infrastructure","Anthropic raises $4B Series E at $61B valuation","NVIDIA Blackwell Ultra GPU announced with 2x performance gains","EU AI Act enforcement begins — 14 companies under formal investigation"];
+  const track=document.getElementById('ticker-track');
+  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>

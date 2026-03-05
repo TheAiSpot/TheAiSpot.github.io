@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="50%" style="stop-color:#0a0e18"/>
+      <stop offset="100%" style="stop-color:#060a10"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="25%" cy="40%" r="45%">
+      <stop offset="0%" style="stop-color:rgba(0,212,255,0.18)"/>
+      <stop offset="100%" style="stop-color:rgba(0,212,255,0)"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="75%" cy="65%" r="40%">
+      <stop offset="0%" style="stop-color:rgba(124,58,237,0.22)"/>
+      <stop offset="100%" style="stop-color:rgba(124,58,237,0)"/>
+    </radialGradient>
+    <radialGradient id="glow3" cx="60%" cy="20%" r="30%">
+      <stop offset="0%" style="stop-color:rgba(0,212,255,0.1)"/>
+      <stop offset="100%" style="stop-color:rgba(0,212,255,0)"/>
+    </radialGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgba(0,212,255,0)"/>
+      <stop offset="30%" style="stop-color:rgba(0,212,255,0.8)"/>
+      <stop offset="70%" style="stop-color:rgba(0,212,255,0.8)"/>
+      <stop offset="100%" style="stop-color:rgba(0,212,255,0)"/>
+    </linearGradient>
+    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00e5ff"/>
+      <stop offset="100%" style="stop-color:#0099cc"/>
+    </linearGradient>
+    <filter id="boltGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="textGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Ambient glows -->
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <rect width="1200" height="630" fill="url(#glow3)"/>
+
+  <!-- Grid lines (subtle) -->
+  <g opacity="0.04" stroke="#00d4ff" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="150" y1="0" x2="150" y2="630"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="450" y1="0" x2="450" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="750" y1="0" x2="750" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1050" y1="0" x2="1050" y2="630"/>
+  </g>
+
+  <!-- Top border glow line -->
+  <rect x="0" y="0" width="1200" height="3" fill="url(#lineGrad)" opacity="0.8"/>
+
+  <!-- Bottom border glow line -->
+  <rect x="0" y="627" width="1200" height="3" fill="url(#lineGrad)" opacity="0.5"/>
+
+  <!-- Lightning bolt icon -->
+  <g transform="translate(340, 200)" filter="url(#boltGlow)">
+    <!-- Glow circle behind bolt -->
+    <circle cx="55" cy="55" r="62" fill="rgba(0,212,255,0.08)"/>
+    <circle cx="55" cy="55" r="48" fill="rgba(0,212,255,0.06)"/>
+    <!-- Bolt shape -->
+    <polygon points="65,0 30,58 55,58 45,115 85,48 58,48" fill="url(#boltGrad)" opacity="0.95"/>
+  </g>
+
+  <!-- Main logo text -->
+  <text x="480" y="282" font-family="Arial Black, Arial, sans-serif" font-size="96" font-weight="900" letter-spacing="-3" fill="#e6edf3" filter="url(#textGlow)">The<tspan fill="#00d4ff">Ai</tspan>Spot</text>
+
+  <!-- Separator line -->
+  <rect x="340" y="308" width="520" height="2" rx="1" fill="url(#lineGrad)" opacity="0.6"/>
+
+  <!-- Tagline -->
+  <text x="600" y="358" font-family="Arial, sans-serif" font-size="24" font-weight="500" letter-spacing="5" fill="#8b949e" text-anchor="middle" text-transform="uppercase">YOUR DAILY AI INTELLIGENCE FEED</text>
+
+  <!-- Decorative dots -->
+  <circle cx="280" cy="430" r="3" fill="#00d4ff" opacity="0.4"/>
+  <circle cx="300" cy="430" r="3" fill="#00d4ff" opacity="0.25"/>
+  <circle cx="320" cy="430" r="3" fill="#00d4ff" opacity="0.15"/>
+
+  <circle cx="920" cy="430" r="3" fill="#7c3aed" opacity="0.4"/>
+  <circle cx="900" cy="430" r="3" fill="#7c3aed" opacity="0.25"/>
+  <circle cx="880" cy="430" r="3" fill="#7c3aed" opacity="0.15"/>
+
+  <!-- Domain badge -->
+  <rect x="468" y="448" width="264" height="42" rx="21" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+  <text x="600" y="475" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#00d4ff" text-anchor="middle" letter-spacing="1">theaispot.netlify.app</text>
+
+  <!-- Corner accents -->
+  <path d="M0,0 L60,0 L60,3 L3,3 L3,60 L0,60 Z" fill="#00d4ff" opacity="0.3"/>
+  <path d="M1200,0 L1140,0 L1140,3 L1197,3 L1197,60 L1200,60 Z" fill="#00d4ff" opacity="0.3"/>
+  <path d="M0,630 L60,630 L60,627 L3,627 L3,570 L0,570 Z" fill="#7c3aed" opacity="0.3"/>
+  <path d="M1200,630 L1140,630 L1140,627 L1197,627 L1197,570 L1200,570 Z" fill="#7c3aed" opacity="0.3"/>
+</svg>
