@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryptographers Reviewed It for Two Years and Found Nothing. An AI Found the Flaw in 60 Hours. | TheAiSpot</title>
+  <meta name="description" content="Anthropic's unreleased Claude Mythos model found a genuine mathematical weakness in HAWK, a NIST post-quantum candidate, and invented a new attack technique against reduced-round AES. Neither breaks anything you use today. Both took about $100,000 and less than a week." />
+  <meta property="og:title" content="An AI Just Did Original Cryptanalysis — And It Was Right" />
+  <meta property="og:description" content="Claude Mythos halved the effective key strength of a post-quantum signature scheme that survived two years of expert review, then invented the 'Möbius Bridge' to speed up attacks on 7-round AES by up to 800×." />
+  <meta property="og:url" content="https://theaispot.github.io/claude-mythos-cryptography-hawk-aes.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="An AI Just Did Original Cryptanalysis — And It Was Right" />
+  <meta name="twitter:description" content="Two years of expert review missed it. Anthropic's Claude Mythos found it in 60 hours for about $100,000. Nothing you use is broken — that's not the point." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
+    [data-theme="light"] #ticker{background:#1c2128;}
+    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
+    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
+    .ticker-track:hover{animation-play-state:paused;}
+    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
+    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
+    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-crypto{background:linear-gradient(135deg,#00121f 0%,#0a0a2e 40%,#14003a 72%,#04010c 100%);}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 26% 38%,rgba(0,212,255,.24) 0%,transparent 58%),radial-gradient(ellipse at 76% 56%,rgba(124,58,237,.22) 0%,transparent 55%),radial-gradient(ellipse at 50% 90%,rgba(0,140,200,.16) 0%,transparent 52%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;white-space:nowrap;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
+
+<div class="article-hero grad-crypto">
+  <div class="article-hero-icon">🔐</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Research</span>
+      <span class="reading-time">⏱ 10 min read</span>
+    </div>
+
+    <h1 class="article-headline">Cryptographers Reviewed It for Two Years and Found Nothing. An AI Found the Flaw in 60 Hours.</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">•</span>
+      <span class="byline-date">July 31, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>Cryptanalysis is the least forgiving discipline in computer science. You cannot bluff it, you cannot hand-wave it, and you cannot ship a plausible-sounding result and hope the reviewers are tired. Either the attack works against the mathematics or it doesn't, and everybody can check.</p>
+
+      <p>Which is what makes the past week awkward for anyone still describing large language models as sophisticated autocomplete.</p>
+
+      <p>On July 29, Anthropic published results from an unreleased model it calls <strong>Claude Mythos Preview</strong>. Given a research harness and pointed at real cryptographic algorithms, the model found a previously unknown mathematical weakness in <strong>HAWK</strong> — a post-quantum signature scheme that had survived two rounds of formal expert review across roughly two years of NIST scrutiny — and cut its effective key strength in half. Separately, and almost entirely on its own, it invented a new attack technique against a reduced version of <strong>AES</strong>, the cipher sitting underneath most encrypted traffic on Earth.</p>
+
+      <p>Now the part that matters, stated plainly and early, because a great many summaries of this story have not been careful about it: <strong>nothing you use is broken.</strong> No software needs patching. No key needs rotating. Both results are theoretical, and Anthropic says so repeatedly and without hedging.</p>
+
+      <p>The significance isn't the damage. It's that the damage was found at all — by a machine, in a field where the humans are exceptionally good and the review process is exceptionally thorough.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>What's Actually New Here</div>
+        <div class="callout-text">Models have written exploit code, found memory-safety bugs, and fuzzed their way into software vulnerabilities for a while now. Those are flaws in <em>implementations</em> — someone's code was wrong. These are flaws in the <em>mathematics of the designs themselves</em>, in schemes that expert cryptographers had already reviewed and cleared. That is a different category of result, and it is the first time a language model has produced one.</div>
+      </div>
+
+      <h2>The HAWK Result</h2>
+
+      <p>HAWK is a candidate digital signature scheme in NIST's post-quantum cryptography process — the multi-year effort to replace the encryption that a sufficiently large quantum computer would eventually dismantle. Candidates in that process get pulled apart by the best lattice cryptographers alive, publicly, for years. That is the entire point of the process.</p>
+
+      <p>Mythos found something they hadn't: a previously unrecognised <strong>nontrivial automorphism</strong> in HAWK's underlying lattice structure — a hidden symmetry in the mathematical object the scheme's security rests on. Exploiting it improves the best known key-recovery attack against the scheme.</p>
+
+      <p>The numbers are stark. For HAWK-256, the computational cost of a key-recovery attack drops from roughly <strong>2<sup>64</sup> to 2<sup>38</sup></strong>. In practical terms the scheme's effective security is halved, which means HAWK would need to roughly double its key sizes to offer the protection it was advertised as offering — and a post-quantum candidate that needs bigger keys is a less attractive post-quantum candidate.</p>
+
+      <p>Two caveats keep this from being a catastrophe. The attack remains exponential-time, not polynomial, so larger parameters stay out of reach — the scheme bends rather than collapses. And HAWK is a candidate, not a deployment: no production system anywhere is currently relying on it.</p>
+
+      <p>The timeline is the part cryptographers keep re-reading. One Anthropic researcher, working semi-autonomously with the model in an agentic harness with access to Python, the Sage mathematics system and the cryptographic literature, got from a standing start to a verified attack in about <strong>one week</strong>. Total discovery time: roughly <strong>60 hours</strong>. Human contribution: mostly project management.</p>
+
+      <h2>The AES Result — And the Refusal</h2>
+
+      <p>The second finding is technically narrower and rhetorically louder, because AES is a name people recognise. Standardised by NIST in 2001, it protects a staggering fraction of the world's stored and transmitted data.</p>
+
+      <p>Full AES-128 runs ten rounds. Cryptanalysts routinely attack <em>reduced-round</em> versions — seven rounds, say — as a way of measuring how much safety margin the real cipher has left. Progress against seven-round AES tells you nothing about whether your VPN is safe; it tells you how the field is trending.</p>
+
+      <p>Against seven-round AES-128, Mythos invented a fingerprinting technique it named the <strong>"Möbius Bridge,"</strong> slotted into the standard meet-in-the-middle attack framework. The technique eliminates one required 2<sup>56</sup> guessing step, cutting the attack's work by a factor of 256 and producing an overall speedup of <strong>200× to 800×</strong> depending on how you measure it.</p>
+
+      <p>It is also entirely unusable. The attack requires around 2<sup>105</sup> chosen plaintexts — north of 400 octillion messages, all encrypted under the key you're trying to recover. Nobody has that. Nobody will ever have that. It is a result about mathematics, not about anyone's data.</p>
+
+      <p>What lifts it out of the footnotes is how it was produced. The researcher built a scaffold that let Claude pose its own hypotheses, run its own experiments and design its own attacks, then largely stepped back. Three days of autonomous work and roughly <strong>one billion output tokens</strong> later, the technique existed.</p>
+
+      <p>And the model's first instinct had been to decline. Asked to improve on seven-round AES, it initially argued the improvement was impossible — a defensible read of a problem the field has been grinding on for two decades. It took three prompts nudging it toward genuine novelty rather than, in the researchers' framing, the low-hanging fruit, before it committed to the search.</p>
+
+      <div class="pull-quote">
+        In just one year, language models have gone from being unable to perform cryptanalysis of even the most basic ciphers to being capable of finding flaws in cryptographic designs that have escaped discovery despite years of human expert review.
+        <cite>— Anthropic, research disclosure</cite>
+      </div>
+
+      <h2>The Full Scoreboard</h2>
+
+      <p>HAWK and AES drew the headlines, but they weren't the only targets. The broader run produced a spread of results, and one of them is genuinely practical.</p>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>Target</th><th>What Mythos produced</th><th>Real-world impact today</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pw">HAWK</td>
+              <td>New lattice automorphism; improved key recovery. HAWK-256 cost falls from 2<sup>64</sup> to 2<sup>38</sup>.</td>
+              <td>None — candidate scheme, not deployed. But its case for standardisation is weaker.</td>
+            </tr>
+            <tr>
+              <td class="pw">AES (7 of 10 rounds)</td>
+              <td>"Möbius Bridge" fingerprinting; 200–800× faster meet-in-the-middle attack.</td>
+              <td>None. Needs 2<sup>105</sup> chosen plaintexts. Full AES is untouched.</td>
+            </tr>
+            <tr>
+              <td class="pw">LEA (13 rounds)</td>
+              <td>Practical key recovery in under 2<sup>30</sup> plaintexts — runs in hours on ordinary hardware.</td>
+              <td>The one result that actually works. Reduced-round, but no longer theoretical.</td>
+            </tr>
+            <tr>
+              <td class="pw">Serpent-128 (6 rounds)</td>
+              <td>Improved attack on a heavily reduced version.</td>
+              <td>None — Serpent's full 32 rounds leave enormous margin.</td>
+            </tr>
+            <tr>
+              <td class="pw">Salsa20, Poseidon, SHA-1</td>
+              <td>Limited incremental improvements.</td>
+              <td>None. Modest gains on already-studied targets.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Anthropic disclosed the findings to NIST, to HAWK's authors, and to government and industry partners before going public — the ordinary responsible-disclosure path, followed in a situation the norms were not written for.</p>
+
+      <h2>What It Cost</h2>
+
+      <p>Each of the two headline results ran to roughly <strong>$100,000 in API compute</strong>.</p>
+
+      <p>Sit with that number, because it cuts two ways at once.</p>
+
+      <p>Against a university cryptography group — a professor, a couple of PhD students, several years — $100,000 for a novel published result is not obviously expensive. It is, arguably, cheap. That is the optimistic reading, and it is the one Anthropic leans into: cryptographic designers equipped with capable models could stress-test their own schemes continuously rather than waiting years to find out what review missed.</p>
+
+      <p>The pessimistic reading is the identical sentence with a different subject. $100,000 is trivially within reach of any national intelligence service, any well-funded criminal organisation, and a fair number of individuals. If original cryptanalysis is now a purchasable commodity, it is purchasable by everyone, and the people who buy it first are not obliged to publish.</p>
+
+      <p>Both readings are correct. That is the uncomfortable part.</p>
+
+      <h2>The Verification Bottleneck</h2>
+
+      <p>There's a quieter finding buried in the methodology that may outlast both headline results.</p>
+
+      <p>The AES work took the model three days. Validating that the model's attack was actually correct took human researchers <strong>several hundred hours</strong>.</p>
+
+      <p>That ratio is the whole story of AI-assisted science compressed into two numbers. Generation has become cheap and fast. Verification has not, and verification is the part that cannot be skipped — a cryptanalytic result that hasn't been checked is worth precisely nothing, and models remain fully capable of producing confident, elegant, wrong mathematics.</p>
+
+      <p>Anthropic's own framing is that language models are able to discover so many candidate bugs that human verification becomes the bottleneck. Every field that adopts this pattern inherits the same problem: an inexhaustible generator of plausible results attached to a finite supply of people qualified to tell which ones are real.</p>
+
+      <p>The company is at least building infrastructure for the question rather than just posing it. Alongside the research, it worked with ETH Zurich, Tel Aviv University and TU Berlin on <strong>CryptanalysisBench</strong>, a benchmark for measuring how good models actually are at this — so the next claim of an AI cryptanalytic breakthrough can be evaluated against something other than a press release.</p>
+
+      <h2>The Reaction, and the Question Underneath It</h2>
+
+      <p>Outside response has been measured, which is the correct temperature for a result with no deployed impact.</p>
+
+      <p>Ellen Boehm, senior vice president at certificate-management firm Keyfactor, read the HAWK finding as a system working rather than a system failing — validation, she said, that the NIST post-quantum evaluation process is doing its job. A candidate got attacked before standardisation, which is exactly what the candidacy period exists for. She also drew the practical lesson for enterprises:</p>
+
+      <div class="pull-quote">
+        AI is becoming a powerful tool for many things, including software quality assurance, code development, and in this case cryptographic analysis.
+        <cite>— Ellen Boehm, SVP, Keyfactor</cite>
+      </div>
+
+      <p>Her follow-on point is the actionable one for anyone running infrastructure: this elevates the importance of organisations knowing where cryptography actually sits inside their enterprise. If the pace of cryptanalysis is about to increase, the ability to find and swap out an algorithm quickly stops being a compliance checkbox and becomes an operational capability.</p>
+
+      <p>What almost nobody has answered — including Anthropic, which raised it — is the obvious next question. This time the model broke a candidate scheme and a reduced cipher, and disclosure was straightforward because nothing was at stake.</p>
+
+      <p>What happens the first time a model finds a genuine flaw in something already protecting production systems? There is no established playbook for that disclosure. Who gets told, in what order, and how long does the world get to migrate before the finding leaks? Those questions used to be hypothetical because the discovery rate was slow enough that the process could be improvised each time. If the rate goes up, improvisation stops being viable.</p>
+
+      <h2>What to Actually Take From This</h2>
+
+      <ul>
+        <li><strong>Your encryption is fine.</strong> Full AES is untouched. HAWK isn't deployed anywhere. If you take one fact from this story, take that one — and be suspicious of any coverage that implies otherwise.</li>
+        <li><strong>Post-quantum standardisation just got harder, and better.</strong> Candidate schemes now face a reviewer that works around the clock for six figures. More will break during evaluation. That is the process succeeding, not failing — but it may slow the timeline, and the quantum migration was already behind schedule.</li>
+        <li><strong>Crypto-agility moved up the priority list.</strong> If algorithms start falling faster, the organisations that can identify and replace one in weeks will be in a very different position from those that need years.</li>
+        <li><strong>The capability curve is the actual headline.</strong> A year ago these models could not attack a toy cipher. The specific results matter less than the slope of the line they sit on.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>An AI system was pointed at some of the most heavily scrutinised mathematics in computer science and found things that expert humans, working publicly and for years, had missed. It did so in days, for about the cost of a graduate student's funding, and in one case only after being talked out of its own conclusion that the problem was unsolvable.</p>
+        <p>None of it breaks anything. That deserves saying twice, because "AI cracks encryption" is a headline that writes itself and would be wrong. HAWK isn't deployed, the AES attack needs more data than will ever exist, and the deployed cryptography protecting the internet this morning is exactly as sound as it was last week.</p>
+        <p>What changed is the class of problem a language model can now contribute to. Cryptanalysis is about as adversarial as intellectual work gets — no partial credit, no persuasive-sounding escape hatch, an answer that is checkable by anyone who cares to check. A model produced original, correct results in it. The question that follows isn't whether AI can do real science. It's whether we can verify the output fast enough to keep up with it.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='openai-models-escaped-sandbox-hugging-face.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">🔓</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">An AI Was Given a Hacking Test. It Broke Out of the Lab and Hacked the Company Holding the Answer Key.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>July 27, 2026</span></div><a href="openai-models-escaped-sandbox-hugging-face.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='claude-anthropic-pentagon-dispute.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">🛡️</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Pentagon Flags Anthropic as Supply-Chain Risk After Claude Refuses Autonomous Weapons Access</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>March 6, 2026</span></div><a href="claude-anthropic-pentagon-dispute.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='nvidia-optical-networking-investment.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">💡</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">NVIDIA Bets $4 Billion on Photonics — Because the GPU Is No Longer Your AI Bottleneck</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>March 3, 2026</span></div><a href="nvidia-optical-networking-investment.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  const headlines=["Anthropic's unreleased Claude Mythos Preview found novel mathematical weaknesses in two cryptographic algorithms","HAWK: a previously unknown lattice automorphism cuts the post-quantum candidate's effective key strength in half","HAWK-256 key-recovery cost falls from 2^64 to 2^38 — the attack stays exponential, so larger parameters hold","HAWK had already survived two rounds of expert review over roughly two years of NIST scrutiny","Mythos went from standing start to verified HAWK attack in about 60 hours of discovery time","AES: the model invented a 'Möbius Bridge' fingerprinting technique for 7-round AES-128","The AES attack is 200-800x faster but needs 2^105 chosen plaintexts — full 10-round AES is untouched","Claude initially refused the AES task, arguing improvement was impossible, before three prompts changed its approach","Three days of autonomous work and roughly one billion output tokens produced the AES result","Each headline result cost about $100,000 in API compute","Human researchers spent several hundred hours verifying what the model produced in three days","Practical result: 13-round LEA key recovery in under 2^30 plaintexts, running in hours","Findings disclosed to NIST, HAWK's authors, and government and industry partners before publication","Anthropic partnered with ETH Zurich, Tel Aviv University and TU Berlin on CryptanalysisBench","No deployed cryptography is affected and no production software needs to change"];
+  const track=document.getElementById('ticker-track');
+  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
