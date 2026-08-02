@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>China Open-Sourced a 2.8-Trillion-Parameter Model — And It Lands Three Points Behind the Best AI on Earth | TheAiSpot</title>
+  <meta name="description" content="Moonshot AI's Kimi K3 is the largest open-weight model ever released: 2.8 trillion parameters, 104 billion active per token, a 1-million-token context window, and more than a terabyte of weights on Hugging Face. It scores 57 on the Artificial Analysis Intelligence Index against Claude Fable 5's 60 — and the licence has a $20 million catch." />
+  <meta property="og:title" content="Kimi K3: The Largest Open Model Ever Built, and the Fine Print Nobody Read" />
+  <meta property="og:description" content="2.8T parameters, 1M-token context, $3/$15 per million tokens, and weights anyone can download. Moonshot AI closed most of the gap to the American frontier — then Congress started asking who is running it." />
+  <meta property="og:url" content="https://theaispot.github.io/kimi-k3-moonshot-largest-open-model.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kimi K3: The Largest Open Model Ever Built, and the Fine Print Nobody Read" />
+  <meta name="twitter:description" content="Moonshot AI shipped 2.8 trillion parameters to Hugging Face. It scores 57 to Claude Fable 5's 60 — and beats it outright on frontend code." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
+    [data-theme="light"] #ticker{background:#1c2128;}
+    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
+    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
+    .ticker-track:hover{animation-play-state:paused;}
+    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
+    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
+    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-kimi{background:linear-gradient(135deg,#04060f 0%,#0b1230 36%,#1b0f34 70%,#04060c 100%);}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 22% 30%,rgba(124,58,237,.22) 0%,transparent 56%),radial-gradient(ellipse at 76% 54%,rgba(0,212,255,.20) 0%,transparent 55%),radial-gradient(ellipse at 48% 94%,rgba(227,0,11,.14) 0%,transparent 52%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;white-space:nowrap;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
+
+<div class="article-hero grad-kimi">
+  <div class="article-hero-icon">🌘</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Industry</span>
+      <span class="reading-time">⏱ 8 min read</span>
+    </div>
+
+    <h1 class="article-headline">China Open-Sourced a 2.8-Trillion-Parameter Model — And It Lands Three Points Behind the Best AI on Earth</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">•</span>
+      <span class="byline-date">August 2, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>The largest AI model anyone has ever released to the public is not from OpenAI, Anthropic, Google or Meta. It is 2.8 trillion parameters, it weighs more than a terabyte, it was built in Beijing, and as of late July you can download the whole thing.</p>
+
+      <p>Moonshot AI unveiled <strong>Kimi K3</strong> in mid-July and put the weights on Hugging Face days later, just ahead of the July 27 date it had promised. The files run to 96 shards and well over a terabyte. Nobody is running this on a gaming PC.</p>
+
+      <p>The specification is the headline, but it is not the story. The story is where K3 lands on the scoreboard, and what the licence attached to it actually says.</p>
+
+      <h2>What Moonshot Actually Shipped</h2>
+
+      <p>K3 is a mixture-of-experts model: <strong>2.8 trillion total parameters</strong> with <strong>104 billion activated per token</strong>. Mixture-of-experts is why that first number is less alarming than it sounds — the model holds an enormous pool of specialised sub-networks and routes each token to a small fraction of them, so the compute cost per token tracks the 104 billion, not the 2.8 trillion.</p>
+
+      <p>It takes a <strong>1,048,576-token context window</strong> — a hair over a million tokens, enough to hold a large codebase or a shelf of documents in a single conversation. It is natively multimodal, accepting text, images and video rather than bolting vision on afterwards. And it always reasons, with the reasoning budget now exposed as low, high or max rather than the single maximum setting its predecessor offered.</p>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>Specification</th><th>Kimi K3</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pw">Total parameters</td><td>2.8 trillion (mixture-of-experts)</td></tr>
+            <tr><td class="pw">Active per token</td><td>104 billion</td></tr>
+            <tr><td class="pw">Context window</td><td>1,048,576 tokens</td></tr>
+            <tr><td class="pw">Input types</td><td>Text, images, video</td></tr>
+            <tr><td class="pw">Reasoning effort</td><td>Low / high / max</td></tr>
+            <tr><td class="pw">Weights</td><td>Public on Hugging Face, 96 shards, 1TB+</td></tr>
+            <tr><td class="pw">Licence</td><td>Custom "Kimi K3" — not MIT, not Apache</td></tr>
+            <tr><td class="pw">API price</td><td>$3 / $15 per million tokens in / out ($0.30 cached input)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>That API price is worth sitting with. Three dollars in, fifteen out, is exactly Claude Sonnet 5's standard rate. A Chinese lab has stopped pricing to undercut and started pricing to match.</p>
+
+      <h2>Three Points From the Top</h2>
+
+      <p>On the Artificial Analysis Intelligence Index, K3 scores <strong>57</strong>. That is the highest result any open-weight model has posted — the next one down, GLM-5.2, sits at 51. Claude Fable 5 scores 60.</p>
+
+      <p>Three points. That is the entire gap between the best model on Earth that you have to rent, and the best model on Earth that you can download.</p>
+
+      <p>On some things the gap has already closed the wrong way. K3 beats Fable 5 outright on the Frontend Code Arena leaderboard with <strong>1,679 Elo</strong>. On the BenchLM composite it ranks 5th of 214 models at 79.9 out of 100, and its strongest category is multimodal and grounded work — screenshots, documents, charts — where it places 2nd of 33.</p>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>Category</th><th>Rank</th><th>Score</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pw">Multimodal &amp; grounded</td><td>#2 of 33</td><td class="pw">89.6</td></tr>
+            <tr><td class="pw">Knowledge</td><td>#5 of 55</td><td class="pw">84.8</td></tr>
+            <tr><td class="pw">Coding</td><td>#5 of 129</td><td class="pw">77.4</td></tr>
+            <tr><td class="pw">Agentic</td><td>#5 of 128</td><td class="pw">66.6</td></tr>
+            <tr><td class="pw">Overall</td><td>#5 of 214</td><td class="pw">79.9</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Fifth overall is not first, and Moonshot has not claimed otherwise. K3 still trails Anthropic's Claude and OpenAI's GPT on aggregate performance. But fifth is a different conversation from the one the industry was having a year ago, when the honest summary of Chinese open models was "impressive for the price."</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>Open Weights ≠ Open Source</div>
+        <div class="callout-text">You can download K3's parameters, run them on your own hardware, fine-tune them and quantise them. You cannot see the training data, the training code, or the recipe that produced them. "Open-weight" describes the finished artefact, not the process. It is the difference between being handed a working engine and being handed the factory.</div>
+      </div>
+
+      <h2>The $20 Million Clause</h2>
+
+      <p>Kimi K2 shipped in July 2025 under a modified MIT licence. K3 did not. It ships under a custom document called the Kimi K3 Licence, and the difference matters commercially.</p>
+
+      <p>The licence permits downloading, self-hosting, fine-tuning and quantisation. But operators running the model as a service must sign a separate agreement with Moonshot before commercial use if their group revenue exceeds <strong>$20 million over any consecutive twelve months</strong>.</p>
+
+      <p>For a solo developer, a research lab or a mid-sized company running K3 internally, that threshold is invisible. For a cloud provider that wants to resell K3 inference, it is a negotiation with a Beijing company you cannot avoid. Which is, presumably, the point.</p>
+
+      <p>Compare it to Google's Gemma 4, released in April under Apache 2.0 with no revenue ceiling at all. Both are "open." Only one of them is open in the sense that a lawyer would sign off on without a phone call.</p>
+
+      <h2>Then Congress Called DoorDash</h2>
+
+      <p>The predictable thing happened. A model this good, this cheap, and this downloadable gets used — and on July 31 that collided with Washington.</p>
+
+      <p>DoorDash had disclosed that it routes harder engineering tasks to a US-developed frontier model while assigning lower-level work to <strong>Kimi K2.6</strong>, K3's predecessor. The company said the split configuration outperformed its earlier setup while costing less. That is a straightforward engineering decision, and a lot of companies are quietly making it.</p>
+
+      <p>John Moolenaar, chairman of the House Select Committee on China, and Andrew Garbarino, chairman of the House Committee on Homeland Security, wrote to DoorDash chief executive Tony Xu asking for a full accounting of every Chinese model the company uses and every security test run against them. Documents are due <strong>August 14</strong>. In-person briefings from the staff responsible for AI infrastructure, software security, model evaluation, procurement and compliance are due <strong>August 21</strong>.</p>
+
+      <p>The lawmakers pointed to public statements from the White House Office of Science and Technology Policy alleging that Moonshot operated a covert platform to conduct large-scale distillation against American AI models, and trained on advanced computing systems it was not authorised to obtain. Moonshot has not publicly answered those specific claims.</p>
+
+      <div class="pull-quote">
+        US companies… may evaluate and deploy PRC-developed open-weight models because they can provide competitive capabilities, lower costs, greater customisation…
+        <cite>— From the Moolenaar–Garbarino letter to DoorDash</cite>
+      </div>
+
+      <p>That sentence is the whole problem in one clause. The lawmakers are not arguing that the engineering logic is wrong. They are conceding it is right, and asking what happens next.</p>
+
+      <h2>The Money Behind It</h2>
+
+      <p>Moonshot is not a scrappy outsider any more. The company reportedly hit a <strong>$20 billion</strong> valuation in May on a $2 billion raise, and is said to be raising another $1 billion to $2 billion at a valuation of up to <strong>$31.5 billion</strong> — roughly 50% higher, in about three months. Bloomberg reported on July 22 that Moonshot is planning a final pre-IPO round at a pre-money valuation of up to $50 billion, with talks starting this month and a Hong Kong listing possible within six months.</p>
+
+      <p>Those numbers describe a company that intends to be permanent. And the release cadence backs it up: K2 in July 2025, K2.5 in January, K2.6 in April with a vision encoder and the ability to fan a complex task out across as many as 300 parallel agents, K3 in July. The original K2 series was formally discontinued on May 25 — Moonshot is now deprecating its own models fast enough that keeping up is a job.</p>
+
+      <h2>What to Take From This</h2>
+
+      <ul>
+        <li><strong>The open-weight gap is now three points, not three generations.</strong> Whatever premium you are paying for a closed frontier model, you should be able to say what it buys you. A year ago that was an easy question.</li>
+        <li><strong>Read the licence before you build on it.</strong> "Open weights" is a marketing category, not a legal one. The $20 million service-provider threshold in the K3 licence is invisible until suddenly it isn't.</li>
+        <li><strong>Nobody can un-release this.</strong> Export controls govern chips. They do not govern a torrent of weights that thousands of people have already downloaded. Once the files are public, the policy question stops being whether to allow it and becomes how to live with it.</li>
+        <li><strong>Mixed-model routing is now a compliance question.</strong> DoorDash made a defensible cost decision and got two committee chairmen and a deadline. If you are routing any workload to a Chinese open-weight model, the time to document your security testing is before somebody asks.</li>
+        <li><strong>Watch pricing, not benchmarks.</strong> K3 matching Sonnet 5's headline rate instead of undercutting it is the single most confident thing Moonshot did this month.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>Moonshot AI released 2.8 trillion parameters into the public domain and priced the hosted version at parity with Anthropic. The model scores 57 against Claude Fable 5's 60, tops every open-weight competitor by six points, and beats the American frontier outright on frontend code.</p>
+        <p>It is not the best model in the world. It is comfortably the best one you can download, and the distance to the top is now small enough that the honest answer to "should we use it?" is a real analysis rather than a reflex.</p>
+        <p>Which is why the interesting question stopped being technical. Congress is not asking whether Kimi is good — that was settled by the benchmarks. It is asking American companies to explain, in person and by August 21, why they decided the answer was yes.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='google-gemma-4-open-source.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">🧩</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Google Drops Gemma 4 Under Apache 2.0 — The Most Significant Open-Source AI Release of 2026</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>April 2, 2026</span></div><a href="google-gemma-4-open-source.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='deepseek-v4-china-ai.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">🐋</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">China's DeepSeek Launches 1-Trillion-Parameter V4 — Matching GPT-5 at 8% of the Cost</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>March 5, 2026</span></div><a href="deepseek-v4-china-ai.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='ai-price-war-july-2026.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">💸</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Frontier AI Just Got 80% Cheaper in 48 Hours — And There's No Going Back</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>July 22, 2026</span></div><a href="ai-price-war-july-2026.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  const headlines=["Moonshot AI releases Kimi K3 — 2.8 trillion parameters, the largest open-weight model ever published","K3 activates 104 billion parameters per token via a mixture-of-experts design","The context window is 1,048,576 tokens — roughly a million, enough for a full codebase","Weights shipped to Hugging Face ahead of the promised July 27 date: 96 shards, over a terabyte","K3 scores 57 on the Artificial Analysis Intelligence Index — the top open-weight result","Claude Fable 5 scores 60; the next open-weight model, GLM-5.2, scores 51","K3 beats Claude Fable 5 outright on the Frontend Code Arena leaderboard with 1,679 Elo","On the BenchLM composite K3 ranks 5th of 214 models at 79.9 out of 100","Its strongest category is multimodal and grounded work — 2nd of 33, scoring 89.6","API pricing is $3 per million input tokens and $15 output, matching Claude Sonnet 5\'s standard rate","The Kimi K3 licence is custom, not MIT — model-as-a-service operators over $20 million revenue must sign a separate agreement","K3 is natively multimodal, accepting text, images and video, with low, high and max reasoning effort","DoorDash routed lower-level engineering work to Kimi K2.6 and harder tasks to a US frontier model","House chairmen Moolenaar and Garbarino gave DoorDash until August 14 for documents and August 21 for briefings","Moonshot AI is reportedly raising at up to a $31.5 billion valuation, up from $20 billion in May"];
+  const track=document.getElementById('ticker-track');
+  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
