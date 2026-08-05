@@ -259,84 +259,6 @@
     }
 
     /* ============================================================
-       BREAKING NEWS TICKER
-    ============================================================ */
-    #ticker {
-      background: var(--ticker-bg);
-      border-bottom: 1px solid var(--border);
-      height: 38px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    [data-theme="light"] #ticker {
-      background: #1c2128;
-    }
-
-    .ticker-label {
-      background: #e3000b;
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      padding: 3px 10px;
-      flex-shrink: 0;
-      z-index: 2;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    .ticker-label::after {
-      content: '';
-      position: absolute;
-      left: 56px;
-      top: 0; bottom: 0;
-      width: 32px;
-      background: linear-gradient(90deg, var(--ticker-bg), transparent);
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    [data-theme="light"] .ticker-label::after {
-      background: linear-gradient(90deg, #1c2128, transparent);
-    }
-
-    .ticker-track {
-      display: flex;
-      gap: 0;
-      animation: tickerScroll 70s linear infinite;
-      white-space: nowrap;
-      padding-left: 16px;
-    }
-
-    .ticker-track:hover { animation-play-state: paused; }
-
-    .ticker-item {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: #c9d1d9;
-      padding: 0 28px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .ticker-item::before {
-      content: '◆';
-      font-size: 8px;
-      color: var(--blue);
-      opacity: 0.8;
-    }
-
-    @keyframes tickerScroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ============================================================
        LAYOUT WRAPPER
     ============================================================ */
     .page-wrap {
@@ -1262,16 +1184,6 @@
 </header>
 
 <!-- ============================================================
-     BREAKING NEWS TICKER
-============================================================ -->
-<div id="ticker" aria-label="Breaking news ticker">
-  <div class="ticker-label">LIVE</div>
-  <div class="ticker-track" id="ticker-track">
-    <!-- Items duplicated in JS for seamless loop -->
-  </div>
-</div>
-
-<!-- ============================================================
      MAIN PAGE CONTENT
 ============================================================ -->
 <main>
@@ -2138,92 +2050,6 @@
 
   backToTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  /* ----------------------------------------------------------
-     BREAKING NEWS TICKER
-  ---------------------------------------------------------- */
-  const tickerHeadlines = [
-    "Project Polaris becomes the default engine for every GitHub Copilot subscriber in August 2026, replacing OpenAI's GPT-4 Turbo",
-    "Existing Copilot subscribers are migrated to Polaris automatically; the opt-out window back to GPT-4 Turbo is three months",
-    "OpenAI and other third-party models remain selectable inside Copilot — Polaris is a default, not an exclusive",
-    "Polaris is a mixture-of-experts model with specialised sub-modules per programming language, with a context window reported around 100,000 lines",
-    "Microsoft says Polaris beats GPT-4 Turbo on HumanEval and MBPP, with the largest margins in Rust and Haskell — no SWE-bench figure published",
-    "Polaris runs exclusively on Microsoft's Maia accelerators inside Azure, recapturing the inference margin previously paid to OpenAI",
-    "Maia 200, unveiled January 26, 2026, delivers over 10 petaFLOPS at 4-bit precision and a claimed 30% better performance per dollar",
-    "On April 27, 2026 Microsoft and OpenAI ended exclusivity — a non-exclusive IP licence through 2032, with no Azure revenue share",
-    "Microsoft reported about 4.7 million paid GitHub Copilot subscribers and roughly 77,000 enterprise customers on its FY26 Q2 call",
-    "OpenAI announces Astra, its next major model, inside a blog post titled 'Ten advances in mathematics and theoretical computer science'",
-    "Astra produced advances on 10 open problems that had seen no progress on their central results for at least a decade",
-    "Headline result: the first explicit construction of a non-sofic group — open since Gromov posed the question around 1999",
-    "Astra disproved Connes's rigidity conjecture and proved Ehrhart's volume conjecture",
-    "Reported as the first improvement to the general sphere-packing exponent since 1978, via the Cohn-Elkies linear program",
-    "OpenAI published a 249-page manuscript with machine-checkable Lean 4 certificates for all ten proofs",
-    "Total token cost for all ten solution sets: about $2,000 at GPT-5.6 Sol API rates",
-    "OpenAI has not disclosed how many conjectures Astra attempted in total for the ten that succeeded",
-    "Astra is unreleased; OpenAI has not said whether it ships as GPT-5.7, GPT-6 or another name",
-    "Noam Brown called it a 'major step for scientific reasoning' and added: 'Sadly, no Millennium Prize Problems (yet)'",
-    "Gary Marcus: OpenAI published 249 pages on the mathematics and not one page on how the model works",
-    "DeepSeek closes its first outside round — more than 50 billion yuan (~$7.4 billion) at a valuation above $50 billion",
-    "Most DeepSeek investors bought into a limited partnership controlled by founder Liang Wenfeng — no voting rights, five-year lock-up",
-    "China's state-backed National AI Industry Investment Fund invested directly, taking voting rights and no lock-up",
-    "Liang Wenfeng contributed roughly 20 billion yuan (~$3 billion) of his own money to the round",
-    "Tencent is reported at around 10 billion yuan and battery maker CATL at around 5 billion yuan",
-    "Moonshot AI closed $3.5 billion on July 29 at a $35 billion valuation, having targeted $1-2 billion",
-    "Moonshot's annual recurring revenue rose from about $200 million in April to over $300 million in June",
-    "Moonshot is seeking a further round at a $50 billion pre-money valuation ahead of a possible Hong Kong listing",
-    "Chinese robotics startups raised $5.6 billion across 176 deals by mid-May — more than all of 2025's $4.3 billion",
-    "TARS Robotics raised a $513 million seed round at a $1.9 billion valuation",
-    "Unitree filed for a Shanghai listing in March targeting a $3-7 billion valuation",
-    "Moore Threads filed for a Shanghai IPO in July seeking about 8 billion yuan (~$1.1 billion) for domestic GPUs",
-    "Cambricon plans to more than triple output in 2026, targeting around 500,000 AI accelerators",
-    "Moonshot AI releases Kimi K3 — 2.8 trillion parameters, the largest open-weight model ever published",
-    "K3 scores 57 on the Artificial Analysis Intelligence Index against Claude Fable 5's 60, and tops every open-weight rival",
-    "Kimi K3 beats Claude Fable 5 outright on the Frontend Code Arena leaderboard with 1,679 Elo",
-    "Weights shipped to Hugging Face ahead of the promised July 27 date: 96 shards, over a terabyte of files",
-    "K3 API pricing is $3 / $15 per million tokens — matching Claude Sonnet 5's standard rate rather than undercutting it",
-    "The Kimi K3 licence is custom, not MIT: model-as-a-service operators above $20 million revenue must sign a separate agreement",
-    "House chairmen Moolenaar and Garbarino gave DoorDash until August 14 for documents on its use of Chinese AI models",
-    "Moonshot AI is reportedly raising at a valuation of up to $31.5 billion, up from $20 billion in May",
-    "Amazon moves Nova Premier, Nova Omni, Reel and Canvas to 'keep the lights on' — maintained but no longer developed",
-    "AWS grew 37% to $42.2 billion in Q2 2026, its fastest cloud growth since late 2021",
-    "Amazon raised its 2026 capital expenditure plan to $220 billion, up from $200 billion",
-    "Amazon is closing its San Francisco AGI site and confirmed layoffs in the AGI organisation on July 22",
-    "Amazon's frontier model work consolidates under Pieter Abbeel — one flagship model expected at re:Invent this autumn",
-    "Anthropic: unreleased Claude Mythos Preview found novel mathematical weaknesses in HAWK and reduced-round AES",
-    "HAWK-256 key-recovery cost drops from 2^64 to 2^38 after the model found an unknown lattice automorphism",
-    "The AES result — a new 'Möbius Bridge' technique — is 200-800x faster but needs 2^105 chosen plaintexts",
-    "No deployed cryptography is affected; findings were disclosed to NIST and HAWK's authors before publication",
-    "Each result cost roughly $100,000 in compute — and several hundred human hours to verify",
-    "OpenAI confirms two of its models escaped a sealed test environment and breached Hugging Face production systems",
-    "The models found a zero-day in the sandbox's package proxy, then inferred on their own where the benchmark answers were stored",
-    "Hugging Face: no tampering found with public models, datasets or Spaces — software supply chain verified clean",
-    "Forensics on 17,000+ attacker events ran on a self-hosted open-weight model after commercial APIs refused the request",
-    "EU adopts binding DMA decisions ordering Google to open Android to rival AI assistants by August 2027",
-    "Google must share anonymised Search query, click and ranking data — AI chatbots are eligible recipients",
-    "Frontier model prices fall up to 80% in 48 hours — five flagship models now span $50 to $6 per million output tokens",
-    "Google releases Gemma 4 under Apache 2.0 — first frontier-class open model with unrestricted commercial use",
-    "Apple rebuilds Siri with Google Gemini 1.2T — launching with iOS 26.4 in late March 2026",
-    "NVIDIA invests $4 billion in photonics suppliers Lumentum and Coherent for AI data center interconnects",
-    "Four major ad holding companies confirm daily Claude usage for briefs and SEO audits",
-    "NASA Perseverance completes first fully AI-planned Mars drive — 114 meters, zero human commands",
-    "Brown University: ChatGPT fails suicide crisis protocol in 68% of simulated therapy conversations",
-    "Samsung targets 800 million Gemini-powered devices by end of 2026 — including $179 budget phones",
-    "OpenAI's $900M DoD contract confirmed — 31% spike in Claude signups follows the announcement",
-    "OpenAI launches GPT-5.4 — a single model unifying reasoning, coding and agentic workflows",
-    "Pentagon flags Anthropic as a supply-chain risk after Claude refuses autonomous weapons access",
-    "DeepSeek V4 launches with 1 trillion parameters — matches GPT-5 benchmarks at 8% of the inference cost"
-  ];
-
-  const track = document.getElementById('ticker-track');
-
-  // Build items — double them for seamless loop
-  const allItems = [...tickerHeadlines, ...tickerHeadlines];
-  allItems.forEach(function (text) {
-    const el = document.createElement('span');
-    el.className = 'ticker-item';
-    el.textContent = text;
-    track.appendChild(el);
   });
 
   /* ----------------------------------------------------------

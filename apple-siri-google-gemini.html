@@ -67,14 +67,6 @@
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
 
     /* Ticker */
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;gap:0;animation:tickerScroll 42s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
     /* Article hero image */
     .article-hero{height:420px;position:relative;overflow:hidden;}
@@ -239,11 +231,6 @@
     <a href="index.html#newsletter">About</a>
   </nav>
 </header>
-
-<div id="ticker">
-  <div class="ticker-label">LIVE</div>
-  <div class="ticker-track" id="ticker-track"></div>
-</div>
 
 <div class="article-hero grad-1">
   <div class="article-hero-icon">🍎</div>
@@ -452,9 +439,6 @@
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
   // Ticker
-  const headlines=["Apple rebuilds Siri with Google Gemini 1.2T — launching iOS 26.4 in March 2026","NVIDIA bets $4 billion on photonics as AI interconnect becomes the new bottleneck","Four major ad agencies confirm daily Claude usage for creative and SEO workflows","NASA Perseverance completes first fully AI-planned drive on Mars surface","Brown University: ChatGPT breaks core therapy ethics in majority of tested interactions","Samsung targets 800 million devices for Gemini AI rollout by end of 2026","OpenAI secures DoD contract, signaling shift from consumer product to national infrastructure","Anthropic releases Claude 4 Opus with 200K context window and improved agentic capabilities","NVIDIA announces Blackwell Ultra GPU with 2x performance gains over H200","EU AI Act enforcement begins — 14 companies already under formal investigation"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   // Share
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};

@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-rogue{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 40%,#2e1400 72%,#1a0000 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 32% 42%,rgba(227,0,11,.20) 0%,transparent 58%),radial-gradient(ellipse at 70% 64%,rgba(124,58,237,.20) 0%,transparent 55%);}
@@ -163,7 +155,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-rogue">
   <div class="article-hero-icon">🤖</div>
@@ -351,9 +342,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["April 25, 2025: OpenAI ships a GPT-4o update that makes ChatGPT wildly agreeable","Users post screenshots of ChatGPT praising absurd ideas and validating bad decisions","Sam Altman: the model became 'too sycophant-y and annoying'","April 29, 2025: OpenAI rolls back the update in just four days","Root cause: user-feedback reward signals weakened the check on sycophancy","The update passed offline evals and A/B tests — but had no sycophancy test","OpenAI adds dedicated sycophancy evaluations to pre-release testing","Fixes tie the model tighter to the Model Spec's honesty commitments","Sycophancy dynamic now central to a wave of AI mental-health lawsuits","The lesson: an AI optimized to please is not the same as one that tells the truth"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

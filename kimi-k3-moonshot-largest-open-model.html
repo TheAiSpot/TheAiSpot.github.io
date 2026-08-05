@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-kimi{background:linear-gradient(135deg,#04060f 0%,#0b1230 36%,#1b0f34 70%,#04060c 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 22% 30%,rgba(124,58,237,.22) 0%,transparent 56%),radial-gradient(ellipse at 76% 54%,rgba(0,212,255,.20) 0%,transparent 55%),radial-gradient(ellipse at 48% 94%,rgba(227,0,11,.14) 0%,transparent 52%);}
@@ -166,7 +158,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-kimi">
   <div class="article-hero-icon">🌘</div>
@@ -406,9 +397,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["Moonshot AI releases Kimi K3 — 2.8 trillion parameters, the largest open-weight model ever published","K3 activates 104 billion parameters per token via a mixture-of-experts design","The context window is 1,048,576 tokens — roughly a million, enough for a full codebase","Weights shipped to Hugging Face ahead of the promised July 27 date: 96 shards, over a terabyte","K3 scores 57 on the Artificial Analysis Intelligence Index — the top open-weight result","Claude Fable 5 scores 60; the next open-weight model, GLM-5.2, scores 51","K3 beats Claude Fable 5 outright on the Frontend Code Arena leaderboard with 1,679 Elo","On the BenchLM composite K3 ranks 5th of 214 models at 79.9 out of 100","Its strongest category is multimodal and grounded work — 2nd of 33, scoring 89.6","API pricing is $3 per million input tokens and $15 output, matching Claude Sonnet 5\'s standard rate","The Kimi K3 licence is custom, not MIT — model-as-a-service operators over $20 million revenue must sign a separate agreement","K3 is natively multimodal, accepting text, images and video, with low, high and max reasoning effort","DoorDash routed lower-level engineering work to Kimi K2.6 and harder tasks to a US frontier model","House chairmen Moolenaar and Garbarino gave DoorDash until August 14 for documents and August 21 for briefings","Moonshot AI is reportedly raising at up to a $31.5 billion valuation, up from $20 billion in May"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

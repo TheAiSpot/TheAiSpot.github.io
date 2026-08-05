@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-amazon{background:linear-gradient(135deg,#1f1200 0%,#2a1405 38%,#0a1226 72%,#04060c 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 24% 36%,rgba(255,153,0,.20) 0%,transparent 56%),radial-gradient(ellipse at 74% 58%,rgba(0,212,255,.18) 0%,transparent 55%),radial-gradient(ellipse at 52% 92%,rgba(124,58,237,.16) 0%,transparent 52%);}
@@ -166,7 +158,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-amazon">
   <div class="article-hero-icon">📦</div>
@@ -392,9 +383,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["Amazon moves Nova Premier, Nova Omni, Reel and Canvas into 'keep the lights on' mode — maintained but no longer developed","AWS grew 37% to $42.2 billion in Q2 2026 — its fastest cloud growth since late 2021","Amazon raised its 2026 capital expenditure plan to $220 billion, up from $200 billion","Amazon confirmed layoffs in its AGI organisation on July 22 without disclosing a number","Amazon is closing the San Francisco site that housed its artificial-general-intelligence research","The AGI Lab was founded in December 2024 around several dozen employees from the startup Adept","Adept co-founder and CEO David Luan left Amazon in February; more than a dozen Adept hires have also departed","Rohit Prasad, head of Amazon's AGI organisation and the executive behind Alexa, left late last year","Frontier Model Research is now led by Pieter Abbeel, who joined Amazon via the 2024 Covariant deal","A single flagship foundation model is expected to debut at Amazon's re:Invent conference this autumn","Nova 2 Lite, Nova 2 Sonic, Nova Forge and Nova Act all continue — this is not an exit from the model business","Amazon has committed roughly $8 billion to Anthropic and signed a reported $38 billion compute deal with OpenAI","Trailing-twelve-month property and equipment purchases hit $169 billion, up 64% year over year","Total net sales reached $200.6 billion in the quarter, with operating income up 43% to $27.5 billion","Amazon: 'We're sharpening our focus on the initiatives that matter most for customers'"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

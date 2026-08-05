@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-capital{background:linear-gradient(135deg,#06040a 0%,#280a12 38%,#1d1405 72%,#04050c 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 26% 28%,rgba(227,0,11,.24) 0%,transparent 56%),radial-gradient(ellipse at 74% 58%,rgba(212,160,23,.20) 0%,transparent 55%),radial-gradient(ellipse at 50% 96%,rgba(0,212,255,.13) 0%,transparent 52%);}
@@ -166,7 +158,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-capital">
   <div class="article-hero-icon">💴</div>
@@ -409,9 +400,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["DeepSeek closes its first outside round — over 50 billion yuan, roughly $7.4 billion","The raise values DeepSeek above $50 billion, making it China\'s most valuable AI startup","Most investors bought into a limited partnership controlled by founder Liang Wenfeng — no voting rights","Investors in that vehicle also accepted a five-year lock-up before they can sell","China\'s state-backed National AI Industry Investment Fund invested directly — with voting rights and no lock-up","Liang Wenfeng put in roughly 20 billion yuan of his own money, about $3 billion","Tencent is reported at around 10 billion yuan (~$1.4 billion); battery maker CATL at around 5 billion yuan","DeepSeek had been self-financed since July 2023 by Liang\'s quant hedge fund High-Flyer","Liang in 2023: \'Money has never been the problem for us; bans on shipments of advanced chips are the problem\'","Moonshot AI closed $3.5 billion on July 29 at a $35 billion valuation — it had targeted $1-2 billion","Moonshot ARR rose from about $200 million in April to more than $300 million in June","Moonshot is now seeking a further round at a $50 billion pre-money valuation ahead of a Hong Kong listing","Chinese robotics startups raised $5.6 billion across 176 deals by mid-May — beating all of 2025\'s $4.3 billion","Embodied-AI funding in China reached roughly 93.5 billion yuan (~$13 billion) across 322 deals in the first half","TARS Robotics raised a $513 million seed round at a $1.9 billion valuation","Unitree filed for a Shanghai listing in March targeting a $3-7 billion valuation","Robotphoenix listed in Hong Kong on May 18, raised about $86 million, and closed its first day up 80%","Moore Threads filed for a Shanghai IPO in July seeking about 8 billion yuan (~$1.1 billion)","Cambricon plans to more than triple output in 2026 — around 500,000 AI accelerators","SMIC remains capacity-constrained by restrictions on importing critical equipment and spare parts"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

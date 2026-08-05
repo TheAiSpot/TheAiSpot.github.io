@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-proof{background:linear-gradient(135deg,#04050c 0%,#0a1236 36%,#1c0a3a 70%,#03040b 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 22% 26%,rgba(124,58,237,.28) 0%,transparent 56%),radial-gradient(ellipse at 76% 56%,rgba(0,212,255,.20) 0%,transparent 55%),radial-gradient(ellipse at 52% 98%,rgba(212,160,23,.12) 0%,transparent 52%);}
@@ -166,7 +158,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-proof">
   <div class="article-hero-icon">∑</div>
@@ -391,9 +382,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["OpenAI announces Astra, its next major model, inside a blog post titled \'Ten advances in mathematics and theoretical computer science\'","Astra produced advances on 10 open problems that had seen no progress on their central results for at least a decade","The results span group theory, operator algebras, quantum complexity, circuit complexity, coding theory, lattice cryptography and extremal combinatorics","Headline result: the first explicit construction of a non-sofic group — open since Gromov posed the question around 1999","Astra disproved Connes\'s rigidity conjecture with infinitely many non-isomorphic property (T) groups sharing one von Neumann algebra","Ehrhart\'s volume conjecture proved; parallel repetition proved for general two-player entangled quantum games","Reported as the first improvement to the general sphere-packing exponent since 1978, via the Cohn-Elkies linear program","Three problems from the Erdos catalog resolved, including multicolored Ramsey numbers (problem 183)","OpenAI published a 249-page manuscript with machine-checkable Lean 4 certificates for all ten proofs","The Lean certificates are published in the openai/ten-proofs repository","Total token cost for all ten solution sets: about $2,000 at GPT-5.6 Sol API rates","GPT-5.6 Sol reached general availability on July 9 at $5 per million input tokens and $30 per million output tokens","OpenAI has not disclosed how many conjectures Astra attempted in total for the ten that succeeded","OpenAI says researchers helped prepare the papers and formalize the proofs, but that the mathematical arguments came from Astra","Astra is unreleased; OpenAI has not said whether it ships as GPT-5.7, GPT-6 or another name","Astra is described as a model family built for long-running tasks, coordinating multiple agents on one problem","Sebastien Bubeck, OpenAI head of mathematics research, called the results \'beautiful\'","Thomas Bloom, who curates the Erdos problems database, called the results \'big news\'","Noam Brown called it a \'major step for scientific reasoning\' and added: \'Sadly, no Millennium Prize Problems (yet)\'","Brown noted the compute was not a ceiling: \'It\'s possible to push test-time compute much further\'","Gary Marcus called Astra \'amazing\' but argued the reaction commits a fallacy of composition","Marcus: OpenAI published 249 pages on the mathematics and not one page on how the model works or how proofs were verified","Ernie Davis questioned how many conjectures were attempted, and called the \'most significant day in mathematics\' claim absurd","Henry Yuen observed Astra\'s proofs carry ChatGPT-style boilerplate while \'nonchalantly introducing\' the key steps","OpenAI has not clarified whether Astra is related to the unreleased models that breached Hugging Face in July"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

@@ -50,14 +50,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 42s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;background:linear-gradient(135deg,#001a20 0%,#0d2a1f 50%,#001030 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 60%,rgba(0,212,255,.18) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(0,180,120,.2) 0%,transparent 50%);}
     .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.07;}
@@ -155,7 +147,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero">
   <div class="article-hero-icon">🔓</div>
@@ -294,9 +285,6 @@
   const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
   window.addEventListener('scroll',function(){const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;pb.style.width=(d>0?(s/d)*100:0)+'%';btt.classList.toggle('visible',s>400);},{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-  const headlines=["Google releases Gemma 4 under Apache 2.0 — open-source AI's biggest release of 2026","OpenAI launches GPT-5.4 with 1M token context and unified reasoning capabilities","Pentagon flags Anthropic as supply-chain risk after Claude refuses autonomous weapons access","Apple rebuilds Siri with Google Gemini 1.2T — launching iOS 26.4 in March 2026","NVIDIA bets $4 billion on photonics as AI interconnect becomes the new bottleneck","DeepSeek V4 matches GPT-5 benchmarks at 8% of the inference cost","Samsung targets 800 million devices for Gemini AI rollout by end of 2026"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');let tt;
   window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};

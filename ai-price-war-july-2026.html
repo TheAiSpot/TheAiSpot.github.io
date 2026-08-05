@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-price{background:linear-gradient(135deg,#0a1a2e 0%,#1a0d3e 35%,#2e1a0a 70%,#1a1000 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 35% 45%,rgba(0,212,255,.22) 0%,transparent 60%),radial-gradient(ellipse at 68% 62%,rgba(245,180,60,.18) 0%,transparent 55%);}
@@ -161,7 +153,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-price">
   <div class="article-hero-icon">💸</div>
@@ -346,9 +337,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["July 9, 2026: five frontier AI models land on one pricing board in 48 hours","Grok 4.5 goes public at $2/$6 — Musk pitches 'Opus-class, faster, cheaper'","OpenAI splits GPT-5.6 into Sol, Terra and Luna to cover the whole price curve","Meta enters the API market with Muse Spark 1.1 at $1.25/$4.25 per million tokens","Same agentic task: $11.80 on Fable 5 vs $2.49 on Grok 4.5","Anthropic in early talks with Samsung for custom Claude inference chips","DeepSeek confirms custom inference silicon to break chip dependence","Google's Gemini 3.5 Pro still in preview — expected to join the price war next","Fable 5 free access extended a third time as competition intensifies","The $20-per-million-token frontier model era is officially over"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

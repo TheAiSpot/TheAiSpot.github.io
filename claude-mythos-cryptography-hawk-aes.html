@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-crypto{background:linear-gradient(135deg,#00121f 0%,#0a0a2e 40%,#14003a 72%,#04010c 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 26% 38%,rgba(0,212,255,.24) 0%,transparent 58%),radial-gradient(ellipse at 76% 56%,rgba(124,58,237,.22) 0%,transparent 55%),radial-gradient(ellipse at 50% 90%,rgba(0,140,200,.16) 0%,transparent 52%);}
@@ -166,7 +158,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-crypto">
   <div class="article-hero-icon">🔐</div>
@@ -438,9 +429,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["Anthropic's unreleased Claude Mythos Preview found novel mathematical weaknesses in two cryptographic algorithms","HAWK: a previously unknown lattice automorphism cuts the post-quantum candidate's effective key strength in half","HAWK-256 key-recovery cost falls from 2^64 to 2^38 — the attack stays exponential, so larger parameters hold","HAWK had already survived two rounds of expert review over roughly two years of NIST scrutiny","Mythos went from standing start to verified HAWK attack in about 60 hours of discovery time","AES: the model invented a 'Möbius Bridge' fingerprinting technique for 7-round AES-128","The AES attack is 200-800x faster but needs 2^105 chosen plaintexts — full 10-round AES is untouched","Claude initially refused the AES task, arguing improvement was impossible, before three prompts changed its approach","Three days of autonomous work and roughly one billion output tokens produced the AES result","Each headline result cost about $100,000 in API compute","Human researchers spent several hundred hours verifying what the model produced in three days","Practical result: 13-round LEA key recovery in under 2^30 plaintexts, running in hours","Findings disclosed to NIST, HAWK's authors, and government and industry partners before publication","Anthropic partnered with ETH Zurich, Tel Aviv University and TU Berlin on CryptanalysisBench","No deployed cryptography is affected and no production software needs to change"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');

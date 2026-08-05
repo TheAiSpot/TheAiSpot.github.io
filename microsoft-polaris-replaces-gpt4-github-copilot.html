@@ -51,14 +51,6 @@
     #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
     #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
     @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    #ticker{background:var(--ticker-bg);border-bottom:1px solid var(--border);height:38px;display:flex;align-items:center;overflow:hidden;position:relative;}
-    [data-theme="light"] #ticker{background:#1c2128;}
-    .ticker-label{background:#e3000b;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;padding:3px 10px;flex-shrink:0;z-index:2;height:100%;display:flex;align-items:center;}
-    .ticker-track{display:flex;animation:tickerScroll 60s linear infinite;white-space:nowrap;padding-left:16px;}
-    .ticker-track:hover{animation-play-state:paused;}
-    .ticker-item{font-size:12.5px;font-weight:500;color:#c9d1d9;padding:0 28px;display:flex;align-items:center;gap:8px;}
-    .ticker-item::before{content:'◆';font-size:8px;color:var(--blue);opacity:.8;}
-    @keyframes tickerScroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
     .article-hero{height:420px;position:relative;overflow:hidden;}
     .grad-north{background:linear-gradient(135deg,#01030b 0%,#06173a 38%,#0a2742 68%,#01030a 100%);}
     .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 22%,rgba(0,212,255,.26) 0%,transparent 56%),radial-gradient(ellipse at 74% 60%,rgba(124,58,237,.18) 0%,transparent 55%),radial-gradient(ellipse at 50% 96%,rgba(0,160,190,.12) 0%,transparent 52%);}
@@ -166,7 +158,6 @@
   <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
 </header>
 
-<div id="ticker"><div class="ticker-label">LIVE</div><div class="ticker-track" id="ticker-track"></div></div>
 
 <div class="article-hero grad-north">
   <div class="article-hero-icon">★</div>
@@ -377,9 +368,6 @@
   },{passive:true});
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  const headlines=["Project Polaris becomes the default engine for every GitHub Copilot subscriber in August 2026, replacing OpenAI\'s GPT-4 Turbo","Existing GitHub Copilot subscribers are migrated to Polaris automatically","Teams that want to stay on GPT-4 Turbo have a three-month fallback window to opt out","OpenAI and other third-party models remain selectable inside Copilot — Polaris is a default, not an exclusive","Microsoft unveiled Project Polaris at Build 2026 on June 2","Polaris is a mixture-of-experts model with specialised sub-modules for different programming languages, frameworks and paradigms","Polaris carries a context window reported at around 100,000 lines of code","Microsoft says Polaris outperforms GPT-4 Turbo on HumanEval and MBPP across most languages","The largest reported margins are in lower-resource languages such as Rust and Haskell","Microsoft has not published a SWE-bench figure for Polaris","GPT-4 Turbo, the benchmark baseline, shipped in late 2023","Polaris runs exclusively on Microsoft\'s Maia AI accelerators inside Azure","Microsoft unveiled the Maia 200 inference accelerator on January 26, 2026","Maia 200 delivers over 10 petaFLOPS at 4-bit precision and more than 5 petaFLOPS at 8-bit","Microsoft claims Maia 200 offers 30% better performance per dollar than its previous generation of AI silicon","Maia 200 is deployed in Microsoft data centres in Des Moines, Iowa and Phoenix, Arizona","Microsoft has been paying OpenAI for model access since its 2019 investment","On April 27, 2026 Microsoft and OpenAI ended exclusivity — the IP licence is now non-exclusive through 2032","Under the amended deal OpenAI can sell its products on any cloud, and Microsoft stops paying revenue share on OpenAI products resold via Azure","Microsoft remains OpenAI\'s primary cloud partner, with OpenAI products shipping first on Azure in most cases","OpenAI joined the $500 billion Stargate data centre project with Oracle and SoftBank","OpenAI announced a strategic partnership with Amazon worth up to $50 billion in February 2026","Microsoft reported about 4.7 million paid GitHub Copilot subscribers on its FY26 Q2 earnings call in January 2026","Copilot paid subscriptions rose roughly 75% year over year","GitHub Copilot has around 77,000 enterprise customers, with about 90% of the Fortune 100 using it in some form","GitHub Copilot holds an estimated 42% share of the paid AI coding tool market","Copilot annual recurring revenue is estimated between $850 million and $1.1 billion","Build 2026 also shipped parallel multi-agent subagent sessions in VS Code"];
-  const track=document.getElementById('ticker-track');
-  [...headlines,...headlines].forEach(function(t){const el=document.createElement('span');el.className='ticker-item';el.textContent=t;track.appendChild(el);});
 
   window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
   const toast=document.getElementById('toast');
