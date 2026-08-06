@@ -846,10 +846,16 @@
       box-shadow: 0 0 16px var(--blue-glow);
     }
 
-    .btn-subscribe:hover {
+    .btn-subscribe:hover:not(:disabled) {
       filter: brightness(1.1);
       box-shadow: 0 0 24px var(--blue-glow);
       transform: translateY(-1px);
+    }
+
+    .btn-subscribe:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      box-shadow: none;
     }
 
     .newsletter-note {
@@ -1897,7 +1903,7 @@
         />
         <button type="submit" class="btn-subscribe">Subscribe →</button>
       </form>
-      <p class="newsletter-note">No spam. Unsubscribe anytime. Join 84,000+ readers.</p>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
@@ -2097,17 +2103,54 @@
     }, 4000);
   }
 
-  document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+  /* Kit form ID — landing page theaispot.kit.com/8373f22f34 (uid 8373f22f34).
+     Public form endpoint, safe to expose; it only accepts subscriptions. */
+  const KIT_FORM_ID = '9770163';
+
+  const newsletterForm = document.getElementById('newsletter-form');
+  const emailInput = document.getElementById('email-input');
+  const subscribeBtn = newsletterForm.querySelector('.btn-subscribe');
+  const subscribeLabel = subscribeBtn.textContent;
+
+  newsletterForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const email = document.getElementById('email-input').value.trim();
+    const email = emailInput.value.trim();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showToast('⚠️ Please enter a valid email address.');
       return;
     }
 
-    document.getElementById('email-input').value = '';
-    showToast('✅ You\'re subscribed! First issue arrives tomorrow.');
+    subscribeBtn.disabled = true;
+    subscribeBtn.textContent = 'Subscribing…';
+
+    try {
+      /* FormData keeps this a CORS-simple request — no preflight, which
+         Kit's public form endpoint does not answer. */
+      const body = new FormData();
+      body.append('email_address', email);
+
+      const res = await fetch('https://app.kit.com/forms/' + KIT_FORM_ID + '/subscriptions', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: body
+      });
+
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      if (data.status !== 'success' && data.status !== 'quarantined') {
+        throw new Error('Unexpected status: ' + data.status);
+      }
+
+      emailInput.value = '';
+      showToast('✅ You\'re subscribed! Watch for the next issue.');
+    } catch (err) {
+      console.error('Newsletter signup failed:', err);
+      showToast('⚠️ Something went wrong. Please try again in a moment.');
+    } finally {
+      subscribeBtn.disabled = false;
+      subscribeBtn.textContent = subscribeLabel;
+    }
   });
 
   /* ----------------------------------------------------------
