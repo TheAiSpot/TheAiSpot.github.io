@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Just Reorganized the People Building Gemini — While Gemini Is Months Late | TheAiSpot</title>
+  <meta name="description" content="On August 5, Alphabet retired the Google DeepMind CEO title, moved Demis Hassabis upstairs, and lost Jeff Dean after 27 years — along with three more of its most senior researchers, who left together to found a startup Alphabet is funding. Gemini 3.5 Pro is still months behind its June target. Alphabet shares fell more than 4%." />
+  <meta property="og:title" content="Google Reorganized the People Building Gemini — While Gemini Is Months Late" />
+  <meta property="og:description" content="Hassabis gives up day-to-day control of DeepMind. Jeff Dean leaves after 27 years with three colleagues to found Discovery Loop. The flagship Gemini model that was due in June still has not shipped." />
+  <meta property="og:url" content="https://theaispot.github.io/google-deepmind-leadership-shakeup-jeff-dean.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Google Reorganized the People Building Gemini — While Gemini Is Months Late" />
+  <meta name="twitter:description" content="&ldquo;After an incredible 27-year run, Jeff Dean is at a moment where he wants to try something new.&rdquo; Four senior researchers left Google on the same day the DeepMind CEO title was retired." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-exodus{background:linear-gradient(135deg,#04070f 0%,#0a1830 42%,#141034 70%,#05060d 100%);}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 22%,rgba(0,212,255,.26) 0%,transparent 56%),radial-gradient(ellipse at 74% 60%,rgba(124,58,237,.18) 0%,transparent 55%),radial-gradient(ellipse at 50% 96%,rgba(0,160,190,.12) 0%,transparent 52%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;white-space:nowrap;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+
+<div class="article-hero grad-exodus">
+  <div class="article-hero-icon">🧠</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Industry</span>
+      <span class="reading-time">⏱ 7 min read</span>
+    </div>
+
+    <h1 class="article-headline">Google Just Reorganized the People Building Gemini — While Gemini Itself Is Months Late</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">•</span>
+      <span class="byline-date">August 7, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>On Wednesday, August 5, Alphabet announced two things at once. The first was a reorganization: <strong>Demis Hassabis</strong>, who has run Google DeepMind since its founding, is handing over day-to-day control of the lab. The second was a departure: <strong>Jeff Dean</strong>, Google&rsquo;s chief scientist and a 27-year veteran, is leaving the company — and taking three of its most senior researchers with him.</p>
+
+      <p>Either item alone would have been a significant day for Google. Together, on the same day, they landed on a company whose flagship model is already overdue. <strong>Gemini 3.5 Pro was targeted for June. It is still not out.</strong> Alphabet shares fell more than 4% on the news.</p>
+
+      <p>The company&rsquo;s framing is that both moves are voluntary, amicable, and forward-looking. That framing is probably accurate. It is also incomplete, because it does not address the question investors were actually asking.</p>
+
+      <h2>What Changed at the Top</h2>
+
+      <p>Hassabis is not leaving Alphabet. He is moving up and sideways: he becomes <strong>chairman of Google DeepMind</strong> and takes a newly created role as <strong>chief scientist of Alphabet</strong>. In his own words, the change is deliberate rather than forced.</p>
+
+      <div class="pull-quote">
+        I&rsquo;ve decided that now is the right time for me to hand over my day-to-day operational responsibilities at GDM.
+        <cite>— Demis Hassabis, in a memo to staff</cite>
+      </div>
+
+      <p>His stated focus going forward is strategic and global issues in AI, the science applications of the technology, and <strong>Isomorphic Labs</strong> — the drug discovery company he founded out of DeepMind and still leads as CEO, and which he has called the top application of AI for improving human health. Sundar Pichai&rsquo;s public comment was unreserved: &ldquo;It&rsquo;s work that is vitally important to Alphabet and humanity, and I can&rsquo;t imagine a better person than Demis to do it.&rdquo;</p>
+
+      <p>Operational control passes to <strong>Koray Kavukcuoglu</strong>, previously DeepMind&rsquo;s chief technology officer and Alphabet&rsquo;s chief AI architect. He now runs the lab day-to-day and oversees Gemini model development, including the unreleased Gemini 4.</p>
+
+      <p>The detail worth pausing on is his title. Kavukcuoglu takes over as <strong>senior vice president of Google DeepMind</strong> — not as CEO — and reports directly to Pichai. The CEO title, and the semi-independent posture that came with it, has effectively been retired. DeepMind spent a decade as a lab with its own identity inside Google. It is now a division of Google reporting to the CEO of Google, run by a senior vice president.</p>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>Person</th><th>Was</th><th>Now</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pw">Demis Hassabis</td><td>CEO, Google DeepMind</td><td>Chairman, Google DeepMind; chief scientist, Alphabet</td></tr>
+            <tr><td class="pw">Koray Kavukcuoglu</td><td>CTO, DeepMind; chief AI architect, Alphabet</td><td>SVP, Google DeepMind — reports to Pichai, owns Gemini</td></tr>
+            <tr><td class="pw">Jeff Dean</td><td>Chief scientist, Google (joined 1999)</td><td>CEO, Discovery Loop</td></tr>
+            <tr><td class="pw">Sanjay Ghemawat</td><td>Google senior fellow</td><td>Co-founder, Discovery Loop</td></tr>
+            <tr><td class="pw">Oriol Vinyals</td><td>Senior research scientist, Google DeepMind</td><td>Co-founder, Discovery Loop</td></tr>
+            <tr><td class="pw">Quoc Le</td><td>Founding member, Google Brain</td><td>Co-founder, Discovery Loop</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Four Who Left Together</h2>
+
+      <p>Jeff Dean joined Google in 1999, roughly its 30th employee. He is not a manager who happened to accumulate seniority; he is a person whose engineering work is embedded in the foundations of the company and, by extension, much of the modern internet. Twenty-seven years later he is leaving to become CEO of a startup called <strong>Discovery Loop</strong>.</p>
+
+      <p>He is not going alone. <strong>Sanjay Ghemawat</strong>, a Google senior fellow and Dean&rsquo;s collaborator across decades of the company&rsquo;s core infrastructure, is a co-founder. So is <strong>Oriol Vinyals</strong>, a senior research scientist at Google DeepMind who worked at the center of the Gemini effort. So is <strong>Quoc Le</strong>, a founding member of Google Brain. Reporting on the shakeup described the departures as including leaders of the Gemini program itself.</p>
+
+      <p>Discovery Loop is structured as a public benefit corporation, and its premise is that AI should be pointed at the scientific process rather than at chat. Dean described the goal as automating the experimental loop end to end:</p>
+
+      <div class="pull-quote">
+        We think there is opportunity for AI to more fully automate what has traditionally been a very human-intensive experimental loop. You will get both a higher quantity and a higher quality of experiments, and that will lead to scientific breakthroughs and advances.
+        <cite>— Jeff Dean, on Discovery Loop</cite>
+      </div>
+
+      <p>The funding tells you how the split is being handled. The initial round is co-led by <strong>Radical Ventures</strong> and <strong>Khosla Ventures</strong>, with Kleiner Perkins, Lightspeed and Doerr Capital participating. <strong>Alphabet is a founding investor and the startup&rsquo;s cloud compute provider.</strong> Pichai&rsquo;s statement matched: &ldquo;After an incredible 27-year run, Jeff Dean is at a moment where he wants to try something new, and we&rsquo;re excited to support him in that.&rdquo;</p>
+
+      <p>That is not the posture of a company losing people in a fight. Google funded the exit and sold it compute. But an amicable departure and a costly departure are not opposites — the four people leaving are still gone from the Gemini org, and Google now owns equity in their attention instead of their time.</p>
+
+      <h2>This Is the Second Wave, Not the First</h2>
+
+      <p>The August 5 announcement did not come out of nowhere. In late June, within days of each other, two more senior figures left:</p>
+
+      <ul>
+        <li><strong>Noam Shazeer</strong>, who co-led the Gemini models — and who Google had paid a widely reported fortune to bring back in the first place — left for <strong>OpenAI</strong>.</li>
+        <li><strong>John Jumper</strong>, who shared the 2024 Nobel Prize in Chemistry with Hassabis for AlphaFold, left Google DeepMind for <strong>Anthropic</strong>.</li>
+      </ul>
+
+      <p>Add the four Discovery Loop founders and that is six senior researchers out in roughly six weeks, from the single most scrutinized model program in the industry. Two went straight to Google&rsquo;s two closest competitors.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>How to Read a 4% Drop</div>
+        <div class="callout-text">Markets do not usually punish a company for promoting a competent CTO. What moved the stock is the conjunction: a flagship model that missed its June date, no new date announced, and the simultaneous exit of the people most associated with building it. Investors were not pricing in the reorg. They were pricing in the possibility that the reorg is a response to the delay rather than a coincidence alongside it.</div>
+      </div>
+
+      <h2>The Delay Underneath All of It</h2>
+
+      <p>Gemini 3.5 Pro was planned for June. It is months past that and has not shipped. Google has not published a revised date. In his memo, Hassabis pointed past it, citing great progress on <strong>Gemini 4</strong> — a model that also does not exist publicly.</p>
+
+      <p>That is the awkward shape of this announcement. A company that is shipping on schedule can restructure leadership and be read as confident. A company that is late reorganizes and gets read as reacting. Google is in the second position, and the reading is not unfair: the competitive gap it is being measured against — OpenAI and Anthropic, both shipping frontier models on a visible cadence — is the exact gap the missing model was supposed to close.</p>
+
+      <p>It is worth being precise about what is not known. Nobody outside Google has said the delay caused the reorg, and the two events are consistent with a much duller explanation: Hassabis has been drifting toward AGI strategy and Isomorphic for a while, Dean is 27 years in and wanted to build something, and the calendar collided. Alphabet funding Discovery Loop is evidence for the dull explanation, not against it.</p>
+
+      <h2>What to Take From This</h2>
+
+      <ul>
+        <li><strong>The CEO title is gone, and that is the structural change.</strong> Google DeepMind is now run by an SVP reporting to Pichai. Whatever independence the lab retained from the 2023 merger, it retains less of it today.</li>
+        <li><strong>Kavukcuoglu is not an outside pick.</strong> He was DeepMind&rsquo;s CTO and Alphabet&rsquo;s chief AI architect. Continuity on the technical side is the one thing this reorg clearly preserves.</li>
+        <li><strong>Six senior researchers in six weeks is the number that matters.</strong> Shazeer to OpenAI, Jumper to Anthropic, and four to a startup of their own. Any single one is a story about a person. Six is a story about a place.</li>
+        <li><strong>Google chose to fund its own brain drain.</strong> Alphabet is a founding investor in Discovery Loop and provides its compute — a hedge that keeps a strand of the relationship alive, and an admission it could not keep them inside.</li>
+        <li><strong>None of it ships a model.</strong> Gemini 3.5 Pro is still late, Gemini 4 is still unannounced, and no reorganization changes either fact this quarter.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>Google restructured the team building Gemini on a day when Gemini was already months late, and lost its chief scientist of 27 years in the same announcement. The company&rsquo;s version — Hassabis moving toward the science he cares most about, Dean leaving on good terms to build something new, an experienced CTO stepping up — is coherent and may be entirely true.</p>
+        <p>The market&rsquo;s version is shorter. The flagship model has not shipped, six senior researchers have left in six weeks, and two of them now work for the competitors Google is trying to catch. Alphabet shares fell more than 4%, which is roughly what it looks like when investors decide continuity was the thing they were paying for.</p>
+        <p>The test is not the org chart. It is whether the model arrives, and how good it is when it does. Everything announced on August 5 will be read backwards through that release — as a company clearing the decks before a strong launch, or as the moment the people who knew how to build it decided to build something else.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='microsoft-polaris-replaces-gpt4-github-copilot.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">★</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Microsoft Just Replaced OpenAI Inside GitHub Copilot — and 4.7 Million Developers Get Migrated Automatically</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 5, 2026</span></div><a href="microsoft-polaris-replaces-gpt4-github-copilot.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='eu-google-android-ai-interoperability.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">🇪🇺</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Brussels Just Pried Android Open — Rival AI Assistants Are Getting the Keys Google Kept for Gemini</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>July 25, 2026</span></div><a href="eu-google-android-ai-interoperability.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='amazon-nova-wind-down-frontier-reset.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">◆</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Amazon Just Had Its Best Cloud Quarter in Five Years — and Quietly Put Its Own AI Models on Life Support</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 1, 2026</span></div><a href="amazon-nova-wind-down-frontier-reset.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
