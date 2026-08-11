@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Built the Door Out of AI Search. It Won&rsquo;t Show Publishers What&rsquo;s on the Other Side. | TheAiSpot</title>
+  <meta name="description" content="A UK regulator forced Google to build an opt-out from AI Overviews and AI Mode. The toggle is live in Search Console. But Google withholds the AI-specific click data publishers would need to decide, bundles three very different surfaces behind one switch, and leaves the default set to include." />
+  <meta property="og:title" content="Google Built the Door Out of AI Search. It Won&rsquo;t Show Publishers What&rsquo;s on the Other Side." />
+  <meta property="og:description" content="Ahrefs measured a 58% click-through collapse for top-ranked pages. Pew found readers click a link inside an AI Overview 1% of the time. Google now offers an exit — with no data to price the decision and no way to leave one AI surface without leaving all three." />
+  <meta property="og:url" content="https://theaispot.github.io/google-ai-search-opt-out-publisher-controls.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Off Switch Google Was Forced to Build &mdash; and Why Almost Nobody Will Flip It" />
+  <meta name="twitter:description" content="58% of clicks gone from top-ranked pages. 1% of readers click a source inside an AI Overview. Google&rsquo;s new opt-out is one switch for three surfaces, defaulted to on, with the deciding data withheld." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-exit{background:linear-gradient(135deg,#04060e 0%,#0b1636 34%,#2a0a2c 70%,#05080f 100%);}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 26% 34%,rgba(0,212,255,.2) 0%,transparent 55%),radial-gradient(ellipse at 74% 44%,rgba(167,139,250,.2) 0%,transparent 55%),radial-gradient(ellipse at 50% 92%,rgba(0,212,255,.12) 0%,transparent 52%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+
+<div class="article-hero grad-exit">
+  <div class="article-hero-icon">🚪</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Ethics &amp; Policy</span>
+      <span class="reading-time">⏱ 9 min read</span>
+    </div>
+
+    <h1 class="article-headline">Google Built the Door Out of AI Search. It Won&rsquo;t Show Publishers What&rsquo;s on the Other Side.</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">•</span>
+      <span class="byline-date">August 11, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>There is now a setting in Google Search Console called <strong>Search generative AI</strong>. It lives under Settings. It has two positions, Include and Exclude, and it takes one to two days to take effect.</p>
+
+      <p>Set it to Exclude and your site stops appearing in AI Overviews, in AI Mode, and in the generative features of Discover. Your pages keep ranking in regular blue-link Search exactly as before. Google&rsquo;s documentation is explicit that the control &ldquo;affects only whether content can appear in certain Search generative AI features,&rdquo; and that it &ldquo;is not used as a ranking or inclusion signal that affects other parts of Search.&rdquo;</p>
+
+      <p>For twenty-five years there was no such switch, because there was nothing to switch off. This is the first time a website can decline to feed Google&rsquo;s answers while remaining inside Google&rsquo;s index.</p>
+
+      <p>Almost nobody is going to touch it. Understanding why requires looking at three things Google did not build.</p>
+
+      <h2>Google Did Not Choose to Build This</h2>
+
+      <p>The toggle is a compliance artifact. In October 2025 the UK&rsquo;s Competition and Markets Authority designated Google as holding <strong>Strategic Market Status</strong> in general search — a finding that the company handles more than 90% of UK searches, and one that lets the regulator impose binding conduct requirements without first proving anticompetitive behaviour. The CMA was careful to note that designation &ldquo;does not imply that it has acted anti-competitively.&rdquo;</p>
+
+      <p>On <strong>3 June 2026</strong>, the CMA published its final decision. Google must let publishers stop their content powering AI features. It must attribute publisher content with clear links. And — separately, which matters — it must let publishers opt out of having their content used to <em>fine-tune</em> AI models.</p>
+
+      <div class="pull-quote">
+        Today, we have introduced a world-first requirement on Google&rsquo;s search services in the UK, enabling fair treatment, greater transparency and meaningful choice.
+        <cite>— Sarah Cardell, Chief Executive, Competition and Markets Authority, 3 June 2026</cite>
+      </div>
+
+      <p>Google was given a phased calendar rather than a single date: the main publisher controls by <strong>3 December 2026</strong>, page-level controls by <strong>3 March 2027</strong> — the outer nine-month deadline. The company must file compliance reports every six months for the first year, with data supporting whatever it claims. Testing began the same day the decision landed. Google published the Search Console documentation around 20 July 2026 and started rolling the control out to a subset of site owners.</p>
+
+      <p>The obligation is UK law and binds Google&rsquo;s UK search services. The implementation is a Search Console setting, described in Google&rsquo;s own documentation in general terms rather than as a UK-only feature — one of several details publishers elsewhere are still working out for themselves.</p>
+
+      <p>The reaction from the trade body representing American news publishers was pointed about the causation.</p>
+
+      <div class="pull-quote">
+        Google&rsquo;s announcement today is a welcome sign that the company is finally starting to listen to publishers, although only in response to sustained regulatory pressure.
+        <cite>— Danielle Coffey, President and CEO, News/Media Alliance</cite>
+      </div>
+
+      <h2>The Number That Makes the Exit Tempting</h2>
+
+      <p>Ahrefs pulled Google Search Console data across <strong>300,000 keywords</strong> and compared click-through rates from December 2023, before AI Overviews, to December 2025. Top-ranking pages showed a <strong>58% lower average click-through rate</strong> when an AI Overview was present. Eight months earlier the same measurement had come in at 34.5%, so the effect is not merely large, it is accelerating. Position two lost roughly half its clicks. Even position ten dropped by nearly 20%.</p>
+
+      <p>Pew Research went at it behaviourally, tracking <strong>68,879 real Google searches</strong>. With an AI Overview on the page, users clicked a traditional result 8% of the time. Without one, 15%. And the number that publishers keep repeating to each other: readers clicked a source link <em>inside</em> the AI Overview <strong>1% of the time</strong>.</p>
+
+      <p>Those are lab-clean measurements. The business numbers are messier and worse. Press Gazette&rsquo;s analysis of major publishers found global Google referral traffic down roughly <strong>33%</strong> in the year to November 2025, with traditional news outlets in the 26–55% range. Digital Content Next reported most member publishers losing between 1% and 25%, and some more than 75%. People Inc. counted <strong>800 million lost visits</strong> from Google between the first quarter of 2024 and the first quarter of 2026.</p>
+
+      <p>Set against that, an Exclude button looks like leverage. It is not, and the reasons are structural.</p>
+
+      <h2>Three Things Google Did Not Build</h2>
+
+      <p><strong>First: the data to make the decision.</strong> A publisher weighing this needs to know how many clicks currently arrive because of an AI Overview citation versus in spite of one. Google reports impressions. It does not break out AI-specific click-through data. Phil Andraos, general manager of Reuters Digital, put it flatly: &ldquo;There&rsquo;s not enough data.&rdquo; If the reporting existed, he said, decisions could happen quickly. The CMA has separately required Google to publish disaggregated engagement metrics — impressions, click-throughs and CTR — through Search Console, which is arguably the more consequential half of the remedy and has not landed yet.</p>
+
+      <p><strong>Second: separate switches.</strong> AI Overviews, AI Mode and Discover&rsquo;s generative features are three very different bets sharing one control. AI Overviews reach more than 2.5 billion users a month and demonstrably cannibalise clicks. AI Mode reaches over a billion. Discover, for a great many publishers, is now a primary traffic source that they cannot afford to lose under any circumstances. Chris Dicker, CEO of Candr Media Group, named the fear precisely: that Google &ldquo;could eventually bundle Discover into the same framework, knowing full well that many publishers now rely on Discover as a major source of traffic and therefore cannot realistically opt out.&rdquo;</p>
+
+      <p><strong>Third: an opt-in.</strong> The default is Include. Every site on the web is already feeding AI answers and will continue to unless it acts. Stuart Forrest, formerly global audience development director at Bauer Media Group, identified what that inversion costs publishers at the negotiating table: &ldquo;If this were opt-in, Google would have to prove to us why we should let them use our content.&rdquo;</p>
+
+      <div class="pull-quote">
+        Giving publishers a front-end toggle&hellip; is Google offering publishers a light switch while keeping the power plant running.
+        <cite>— Paul Bannister, Chief Strategy Officer, Raptive</cite>
+      </div>
+
+      <p>Bannister called the opt-out &ldquo;nonsensical&rdquo; for publishers. Jason Kint, CEO of Digital Content Next, raised the objection that no toggle can address: the remedy governs future use only, and does nothing about the volume of protected content already ingested.</p>
+
+      <h2>What the Switch Does and Does Not Do</h2>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>If you set it to Exclude</th><th>What actually happens</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>AI Overviews</td><td>Your content stops appearing. Other sites still do, and Google can still answer the same question from them</td></tr>
+            <tr><td>AI Mode</td><td>Same exclusion — no separate control</td></tr>
+            <tr><td>Discover generative features</td><td>Same exclusion — no separate control</td></tr>
+            <tr><td>Regular Google Search</td><td>Unaffected. Google states the setting is not a ranking or inclusion signal</td></tr>
+            <tr><td>Crawling</td><td>Continues. This is a display control, not an access control — robots.txt remains the tool for that</td></tr>
+            <tr><td>Query interpretation</td><td>Google can still use your pages to understand language and queries</td></tr>
+            <tr><td>Merchant Center and Google Ads</td><td>Unaffected</td></tr>
+            <tr><td>Individual URLs</td><td>Not yet. Property-wide only until page-level controls arrive, due <span class="pw">3 March 2027</span></td></tr>
+            <tr><td>Propagation</td><td><span class="pw">1&ndash;2 days</span></td></tr>
+            <tr><td>Other AI companies</td><td>Nothing. This is a Google setting and binds only Google</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>The Substitution Problem</div>
+        <div class="callout-text">Opting out removes your pages from the answer. It does not remove the answer. Google can ground the same response in Reddit threads, Wikipedia, forums and SEO-optimised aggregators — many of which are summarising your reporting anyway. A single publisher walking out subtracts one source from a pool of millions. This is why coordinated leverage, not individual settings, is what publishers have actually been asking for.</div>
+      </div>
+
+      <h2>Google&rsquo;s Account of It</h2>
+
+      <p>Google has consistently framed the delay as technical rather than commercial. Speaking at the FT Strategies News in the Digital Age conference in London on 11 February 2026, Sulina Connal, the company&rsquo;s managing director for news and books partnerships in Europe, described the build this way: &ldquo;Because AI is integral to how search works, implementing the new controls is a complex engineering, huge engineering project, and we have been highly intentional in our approach.&rdquo; The stated design goal was &ldquo;simple, scalable tools that you can use to manage your content.&rdquo;</p>
+
+      <p>The claim is defensible on its face. If generative answers are woven through ranking and retrieval rather than sitting on top of them, then excluding a domain from the answer while preserving its ranking really is architectural surgery. The rejoinder, which surfaced immediately, is that a company committing tens of thousands of engineers and hundreds of billions of dollars to AI infrastructure is making a choice when it describes a per-domain exclusion flag as hard.</p>
+
+      <p>Note also what &ldquo;simple and scalable&rdquo; produced: one switch, three surfaces, property-wide, defaulted on. Every simplification in that list happens to favour inclusion.</p>
+
+      <h2>What to Take From This</h2>
+
+      <ul>
+        <li><strong>The control is real and it is worth having.</strong> Six months ago the honest answer to &ldquo;can I keep my journalism out of AI Overviews without leaving Google?&rdquo; was no. It is now yes. That is a genuine change, and it happened because one regulator with a designation power asked for it.</li>
+        <li><strong>The missing click data is the actual story.</strong> An option you cannot price is not a choice. Whether Google ships disaggregated AI click-through reporting before the December milestone determines whether this remedy has teeth or is decoration.</li>
+        <li><strong>Bundling is the mechanism that neutralises it.</strong> Attaching a surface publishers depend on to surfaces that are cannibalising them makes the switch unusable without ever refusing anything. Watch what else gets attached to it.</li>
+        <li><strong>March 2027 is the date that matters more than this one.</strong> Page-level control is what turns an all-or-nothing lever into an editorial policy — hold back investigations and exclusives, let commodity coverage feed the machine.</li>
+        <li><strong>One national regulator now sets defaults for the web.</strong> The CMA acted; every publisher watching a Search Console setting appear is downstream of a UK decision. Neither Washington nor Brussels has produced an equivalent lever on this specific question.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>The publishing industry spent two years asking Google for a way out of AI search. It has one now. The response from the people who asked for it has ranged from &ldquo;cautiously optimistic&rdquo; to &ldquo;nonsensical,&rdquo; which is what happens when a demand is met in its narrowest possible form.</p>
+        <p>The arithmetic facing an editor is brutal and incomplete in the same breath. Staying in costs 58% of clicks on your best-ranked pages, and a 1-in-100 chance that a reader who sees your work cited actually visits you. Walking out costs an unknown number, because the one party who can measure it has not published it — and the walk-out is all-or-nothing across three products, one of which many publishers cannot survive losing.</p>
+        <p>So the toggle sits there, set to Include, on nearly every property on the web. That is not a market outcome. It is a default, engineered to survive a remedy, and it will hold until either the click data appears or someone forces a price on the content itself.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='data-center-backlash-zoning-boards-130-billion.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">🏛</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">The AI Backlash Moved to Your County Zoning Board. In Three Months It Stalled $130 Billion.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 10, 2026</span></div><a href="data-center-backlash-zoning-boards-130-billion.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='ninth-circuit-perplexity-amazon-ai-agent-cfaa.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">⚖</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Amazon Spent Nine Months Trying to Ban an AI Shopper From Its Store. A Federal Court Just Ruled the Shopper Was You.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 9, 2026</span></div><a href="ninth-circuit-perplexity-amazon-ai-agent-cfaa.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='google-deepmind-leadership-shakeup-jeff-dean.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">🧠</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Google Just Reorganized the People Building Gemini — While Gemini Itself Is Months Late</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 7, 2026</span></div><a href="google-deepmind-leadership-shakeup-jeff-dean.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
