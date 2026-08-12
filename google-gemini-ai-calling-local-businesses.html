@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google Just Shipped a Phone That Calls Stores for You. Nobody Asked the Stores. | TheAiSpot</title>
+  <meta name="description" content="At Made by Google 2026, Gemini gained the ability to dial businesses to complete tasks. It lands on top of Let Google Call, agentic checkout and a retail protocol backed by Walmart and Target. Every party in that chain agreed to it except the person who answers the phone." />
+  <meta property="og:title" content="Google Just Shipped a Phone That Calls Stores for You. Nobody Asked the Stores." />
+  <meta property="og:description" content="Google&rsquo;s AI now calls local businesses to check stock, book appointments and confirm prices. The calls are recorded. The default is on. And Google won&rsquo;t place them at all in five states." />
+  <meta property="og:url" content="https://theaispot.github.io/google-gemini-ai-calling-local-businesses.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Google&rsquo;s AI Is Calling Your Local Store. The Store Has to Ask It to Stop." />
+  <meta name="twitter:description" content="Gemini can now dial businesses to complete tasks. Calls are monitored and recorded, opting out requires a verified Business Profile or a voicemail, and five states are excluded entirely." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-dial{background:linear-gradient(135deg,#03080d 0%,#062033 32%,#1d0a30 68%,#050810 100%);}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 22% 40%,rgba(0,212,255,.24) 0%,transparent 55%),radial-gradient(ellipse at 78% 36%,rgba(124,58,237,.22) 0%,transparent 55%),radial-gradient(ellipse at 52% 94%,rgba(0,200,180,.12) 0%,transparent 50%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+
+<div class="article-hero grad-dial">
+  <div class="article-hero-icon">📞</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Ethics &amp; Policy</span>
+      <span class="reading-time">⏱ 8 min read</span>
+    </div>
+
+    <h1 class="article-headline">Google Just Shipped a Phone That Calls Stores for You. Nobody Asked the Stores.</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">•</span>
+      <span class="byline-date">August 12, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>Buried in a keynote otherwise devoted to camera bars and a $29 Bluetooth tracker, Google described the Pixel 11&rsquo;s task automation in one short sentence: Gemini &ldquo;can also dial businesses to complete tasks.&rdquo;</p>
+
+      <p>That is the whole announcement. It is also the most consequential thing said on stage in New York today, and it is the part that will not appear in a single hands-on review, because you cannot photograph it.</p>
+
+      <p>The rest of Made by Google 2026 was a normal hardware refresh. The <strong>Pixel 11</strong> starts at <strong>$899</strong>, a hundred dollars up from last year, with 256GB as the new baseline. The <strong>Pixel 11 Pro Fold</strong> lands at <strong>$1,899</strong> in October. The <strong>Pixel Tag</strong>, Google&rsquo;s long-delayed answer to the AirTag, is <strong>$29</strong> and arrives 11 November. The <strong>Tensor G6</strong> is the first major Android chip built on TSMC&rsquo;s 2nm process, and Google claims Gemini Nano 4 runs on-device tasks up to <strong>3.5&times; faster using 3.5&times; less energy</strong>, on a TPU with 50% more compute and double the memory bandwidth.</p>
+
+      <p>All of which is table stakes. The dialing is not.</p>
+
+      <h2>What Is Actually New, and What Was Already There</h2>
+
+      <p>Gemini dialing businesses from a handset is not a feature invented this morning. It is the last mile of a stack Google has been assembling for roughly three years, and it is worth separating what shipped today from what it plugs into — because the parts have been arriving quietly enough that most people missed them.</p>
+
+      <p>On the Search side there is <strong>&ldquo;Let Google Call.&rdquo;</strong> Search for a product with &ldquo;near me&rdquo; and a button appears. You specify the item, a price range, brands, whatever else matters. Google&rsquo;s voice agent — Duplex, now driven by Gemini — then telephones nearby stores, asks about stock, pricing and promotions, and sends you a summary by text or email. It launched for electronics, toys, and health and beauty.</p>
+
+      <p>On the transaction side there is <strong>agentic checkout</strong>. You tell Google to track a product and buy it if the price drops inside a budget you set. When it does, Google surfaces the purchase, confirms shipping and payment, and — with your explicit approval — completes the transaction through Google Pay. It is live with <strong>Wayfair, Chewy, Quince</strong> and a set of Shopify merchants in the US.</p>
+
+      <p>Underneath both sits the standard nobody outside retail noticed. In January, at the National Retail Federation conference, Google announced the <strong>Universal Commerce Protocol</strong>, built with Shopify, Etsy, Wayfair, Target and Walmart, and interoperable with the Agent Payments Protocol, Agent2Agent and MCP. Its purpose is to let an agent handle discovery, checkout and post-purchase support without a bespoke integration per retailer.</p>
+
+      <div class="pull-quote">
+        This kind of serendipity is where the best of commerce happens.
+        <cite>— Tobi L&uuml;tke, CEO, Shopify, on agent-mediated shopping</cite>
+      </div>
+
+      <p>Read that list of participants again. Shopify, Etsy, Wayfair, Target, Walmart. Every one of them signed a protocol. Lowe&rsquo;s, Michaels, Poshmark and Reebok run Google&rsquo;s Business Agent inside Search. These are consenting parties who negotiated terms.</p>
+
+      <p>The independent hardware store that has the part you need is not on that list. It will find out it is participating when the phone rings.</p>
+
+      <h2>The Rules Google Wrote for the Other End of the Call</h2>
+
+      <p>To Google&rsquo;s credit, the receiving end is not undocumented. There is a Business Profile help page covering automated calls placed on behalf of customers, and it is more specific than most people would expect.</p>
+
+      <p>The calls are free to both sides. The AI identifies itself as an automated caller. Google says it &ldquo;limits the number of calls for the same info&rdquo; and avoids late-night and early-morning hours. Triggers are bounded: appointment bookings, restaurant wait times, price and availability confirmation, business hours, and in-demand inventory checks. Stores can opt out.</p>
+
+      <p>And then there is the line that changes the texture of the whole thing.</p>
+
+      <div class="pull-quote">
+        These calls are monitored and recorded for quality assurance.
+        <cite>— Google Business Profile Help, &ldquo;About automated calls from Google on behalf of customers&rdquo;</cite>
+      </div>
+
+      <p>A machine telephones a small business, on behalf of a customer the business has never met, to extract commercially useful information, and the exchange is recorded. Every element of that is disclosed. None of it was agreed to in advance.</p>
+
+      <h2>Opting Out Is Four Different Procedures</h2>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>To stop the calls</th><th>What it takes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>During a call</td><td>Say &ldquo;Please remove my business from your list&rdquo; or &ldquo;Please stop calling my business.&rdquo; Google says it honours this going forward</td></tr>
+            <tr><td>In settings</td><td>Business Profile &rarr; More &rarr; Business Profile settings &rarr; Advanced settings &rarr; toggle &ldquo;Google automated calls and text messages.&rdquo; <span class="pw">Requires a verified business</span></td></tr>
+            <tr><td>Phone-tree mapping calls</td><td>A separate opt-out. Call <span class="pw">+1-650-206-5555</span> and leave a voicemail with your business name, number and request</td></tr>
+            <tr><td>Texts and WhatsApp</td><td>Reply with the language-specific stop word</td></tr>
+            <tr><td>Excluded states</td><td>No action needed. Google does not place these calls in <span class="pw">5</span> US states</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Four mechanisms, one of which requires you to already know that a distinct category of call exists, and to opt out of it by voicemail. The settings route requires a verified Business Profile — which many small operators have never claimed, because until recently the cost of not claiming it was showing up with slightly stale hours.</p>
+
+      <p>Note also what is not on that list: a way to find out how many times you were called before you noticed.</p>
+
+      <h2>Five States Where Google Will Not Do This</h2>
+
+      <p>The feature is live in every US state except <strong>Indiana, Louisiana, Minnesota, Montana and Nebraska</strong>, plus select international regions.</p>
+
+      <p>Google does not explain the exclusions, and the sensible thing is not to invent a reason. What can be said factually is that all five carry their own automated-calling statutes rather than relying on federal rules alone. Indiana&rsquo;s Automated Dialing Machine Act — Indiana Code 24-5-14 — requires prior express consent from the resident being called and carries penalties reaching <strong>$25,000 per call</strong>; it has survived constitutional challenge. Montana bars automated calls under MCA 45-8-216. Nebraska&rsquo;s autodialer provision sits at Neb. Rev. Stat. &sect; 86-236, Louisiana&rsquo;s at La. Stat. &sect; 45:810, and Minnesota&rsquo;s restrictions on automated dialing and announcing devices are broad enough to have caught political campaigns.</p>
+
+      <p>Draw the obvious inference or don&rsquo;t. Either way, the map tells you something the product page does not: the parts of America where an AI agent may not call a business on your behalf are the parts that legislated about robots on the phone before anyone thought to build this.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>The Asymmetry</div>
+        <div class="callout-text">When a human customer calls and gets a full voicemail box, the business loses one sale and usually never learns about it. When an <em>agent</em> calls and gets a full voicemail box, it moves to the next result in milliseconds and reports back that the item was found elsewhere. The lead does not bounce — it silently reroutes to a competitor who answered. The business does not get a missed call. It gets nothing, and no signal that anything happened at all.</div>
+      </div>
+
+      <h2>The Perverse Incentive Nobody Designed</h2>
+
+      <p>Follow the opt-out to its conclusion. An employee at a busy shop picks up, hears a synthetic voice, and says what a lot of people say: we don&rsquo;t talk to robots, take us off your list.</p>
+
+      <p>Google honours it. That is the documented behaviour and it is the correct behaviour. But the practical effect, as practitioners in local search have begun pointing out, is that the business has now removed itself from the mechanism by which a growing share of &ldquo;is this in stock near me&rdquo; questions get answered. It did not decline an advertisement. It declined to be an answer.</p>
+
+      <p>Google has not published data on how often that happens, how many businesses have opted out, or what share of &ldquo;near me&rdquo; retail queries now resolve through a call rather than an inventory feed. Those numbers exist somewhere. They are the numbers that would let a shop owner make an informed decision, and they are the ones nobody outside Google can see — the same structural gap that showed up in <a href="google-ai-search-opt-out-publisher-controls.html">the publisher opt-out Google shipped last week</a>, where the switch arrived and the data needed to price it did not.</p>
+
+      <p>The pattern is consistent enough to name. Google builds an agentic surface, defaults it on, provides a genuine opt-out, and withholds the measurement that would tell the counterparty whether using it costs them anything.</p>
+
+      <h2>What to Take From This</h2>
+
+      <ul>
+        <li><strong>The agent left the browser.</strong> Every previous version of this argument was about scraping, crawling and screen-reading — activity confined to Google&rsquo;s own infrastructure. A phone call is a real-world action with a person on the other end who has to stop what they are doing. That is a different category of thing, and it shipped on a consumer handset today.</li>
+        <li><strong>Consent is now structurally lopsided.</strong> The buyer opted in by tapping a button. The merchant platforms opted in by signing a protocol. The local business is the only participant whose involvement is presumed, and the only one who has to take action to escape it.</li>
+        <li><strong>Not answering an AI well is becoming a business risk.</strong> Phone trees, hold music, voicemail and staff who hang up on synthetic voices were all rational until this year. Each is now a way to lose customers you will never know existed.</li>
+        <li><strong>Five states are running the control experiment.</strong> Indiana, Louisiana, Minnesota, Montana and Nebraska will spend the next year as the only places where local commerce is not agent-mediated by default. Whether their businesses do better or worse is an answerable question.</li>
+        <li><strong>Watch the categories expand.</strong> It started with electronics, toys, health and beauty. Restaurant wait times and appointment bookings are already in the documentation. There is no technical reason the list stops there.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>Calling four hardware stores to ask whether a part is in stock is a genuinely tedious errand, and handing it to software is a genuinely good idea. That is not in dispute, and the version Google shipped is more careful than it had to be: the AI says what it is, the calls are rate-limited, nobody gets rung at 3am, and there are four separate ways to make it stop.</p>
+        <p>What is missing is the step where anyone asked. The customer consented. Walmart, Target, Shopify, Etsy and Wayfair consented in writing. The shop with three employees and one phone line was enrolled by default into a system that records its calls, extracts its pricing, and quietly routes the sale elsewhere if it takes too long to pick up.</p>
+        <p>Opt-out is a defensible design when the cost of participating is a mildly annoying email. It is a different proposition when participating means answering the phone correctly or disappearing from the answer. Google has built the most useful version of this that anyone has built. It has also, for the second time in a week, shipped a switch to the party with the least information about whether flipping it will hurt.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='google-ai-search-opt-out-publisher-controls.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">🚪</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Google Built the Door Out of AI Search. It Won&rsquo;t Show Publishers What&rsquo;s on the Other Side.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 11, 2026</span></div><a href="google-ai-search-opt-out-publisher-controls.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='ninth-circuit-perplexity-amazon-ai-agent-cfaa.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">⚖</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Amazon Spent Nine Months Trying to Ban an AI Shopper From Its Store. A Federal Court Just Ruled the Shopper Was You.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 9, 2026</span></div><a href="ninth-circuit-perplexity-amazon-ai-agent-cfaa.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='google-deepmind-leadership-shakeup-jeff-dean.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">🧠</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Google Just Reorganized the People Building Gemini — While Gemini Itself Is Months Late</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 7, 2026</span></div><a href="google-deepmind-leadership-shakeup-jeff-dean.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
