@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Backlash Is Real and It Is Winning. A 15-Country Poll Shows It Barely Exists Outside the West. | TheAiSpot</title>
+  <meta name="description" content="Thirteen students were arrested at OpenAI's lobbying office on August 10. American support for AI has collapsed by three quarters in two years. But a survey of 18,000 people across 15 countries found the anger stops at the Western border — and in 11 of those countries, people now think China is ahead." />
+  <meta property="og:title" content="The AI Backlash Is Real and It Is Winning. A 15-Country Poll Shows It Barely Exists Outside the West." />
+  <meta property="og:description" content="US net sentiment on AI fell from +0.73 to +0.18 in two years. In India, Nigeria, Indonesia and Singapore it barely moved. The backlash isn't slowing AI down — it's deciding who ends up owning it." />
+  <meta property="og:url" content="https://theaispot.github.io/ai-backlash-west-global-divide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The AI Backlash Has a Map. It Stops at the Western Border." />
+  <meta name="twitter:description" content="American AI sentiment collapsed 75% in two years. In India, Nigeria and Singapore it held. In 11 of 15 countries polled, people now say China is ahead of the US." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-atlas{background:linear-gradient(135deg,#050a08 0%,#0b2420 28%,#1d1233 60%,#2a0f14 82%,#05070c 100%);}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 18% 44%,rgba(255,72,88,.20) 0%,transparent 52%),radial-gradient(ellipse at 74% 38%,rgba(0,212,255,.24) 0%,transparent 55%),radial-gradient(ellipse at 50% 96%,rgba(0,200,140,.14) 0%,transparent 50%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--blue-dim);border:1px solid rgba(0,212,255,.2);border-radius:4px;padding:1px 6px;color:var(--blue);}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .price-table .pd{color:#ff6b81;font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+
+<div class="article-hero grad-atlas">
+  <div class="article-hero-icon">🗺</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">← TheAiSpot</a>
+      <span class="cat-tag">Ethics &amp; Policy</span>
+      <span class="reading-time">⏱ 9 min read</span>
+    </div>
+
+    <h1 class="article-headline">The AI Backlash Is Real and It Is Winning. A 15-Country Poll Shows It Barely Exists Outside the West.</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">•</span>
+      <span class="byline-date">August 14, 2026</span><span class="dot-sep">•</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">𝕏 Share</button>
+        <button class="share-btn" onclick="copyLink()">🔗 Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>On Monday afternoon, thirteen people were arrested in the lobby of an office building a few blocks from the White House. They were students. They had been sitting there for about two hours, under a banner reading <strong>&ldquo;Stop Stealing Our Future,&rdquo;</strong> holding signs that said <strong>&ldquo;OpenAI Bought My Senator.&rdquo;</strong></p>
+
+      <p>The building houses OpenAI&rsquo;s Washington lobbying operation. More than thirty activists took part, organised by the Sunrise Movement, the boycott campaign QuitGPT, and the Young Democratic Socialists of America. Police made the arrests at 2:30 pm. Organisers say similar actions are running in more than twenty states.</p>
+
+      <p>Four years ago the idea of getting arrested over a chatbot company would have read as satire. It is now a Monday.</p>
+
+      <p>And if you have spent any time online this year, none of this surprises you. The mood has turned. What is genuinely surprising is what happens when you check whether the rest of the world turned with us.</p>
+
+      <p>It didn&rsquo;t.</p>
+
+      <h2>First, the Anger Is Not Imaginary</h2>
+
+      <p>Every number points the same direction, and they are not close numbers.</p>
+
+      <p>In a March NBC News poll, <strong>57%</strong> of American voters said the risks of AI outweigh the benefits, against 34% who said the opposite. Economist/YouGov polling found more than <strong>70%</strong> of Americans think AI is advancing too quickly &mdash; and this is the rarest thing in American politics, an issue with no partisan split. It was 68% of Republicans and 77% of Democrats. Pew found half of US adults are more concerned than excited about AI in daily life; only one in ten leans the other way.</p>
+
+      <p>The generational figure is the one that should worry the industry most. Gallup found just <strong>18%</strong> of people aged 14 to 29 feel hopeful about AI. That is the cohort the entire consumer AI market is built on.</p>
+
+      <div class="pull-quote">
+        Our generation doesn&rsquo;t have any guarantees about whether we&rsquo;ll have jobs after college, or whether there will be clean drinking water.
+        <cite>&mdash; Raya Gupta, student organiser, Washington DC, August 10</cite>
+      </div>
+
+      <p>And unlike most protest movements, this one is producing results you can count in dollars.</p>
+
+      <h2>What the Backlash Has Already Stopped</h2>
+
+      <p>In the first three months of 2026, community opposition blocked or delayed at least <strong>75 data centre projects worth roughly $130 billion</strong> &mdash; matching the total blocked across all of 2025 in a single quarter. Outright cancellations hit about 20, beating the previous record of 12. The number of organised local opposition groups more than doubled from 396 to 833, spanning 49 states.</p>
+
+      <p>The consumer front is moving too. QuitGPT launched in February after FEC filings showed OpenAI president Greg Brockman had personally given <strong>$25 million</strong> to a pro-Trump super PAC, and escalated when OpenAI signed a <strong>$200 million</strong> Pentagon contract. Over one weekend at the end of February, ChatGPT mobile uninstalls jumped <strong>295%</strong>. Anthropic&rsquo;s Claude saw free users rise 60% and briefly took the top free spot on the US App Store.</p>
+
+      <p>So the backlash is real, it is bipartisan, it is organised, and it is expensive. Every story you have read this year has been correct.</p>
+
+      <p>They have just all been reported from inside the same eight countries.</p>
+
+      <h2>The Backlash Has a Map</h2>
+
+      <p>In June, the research firm Public First published <em>AI Global 2026</em>, a survey of more than <strong>18,000 respondents across 15 countries</strong> &mdash; Canada, France, Germany, Japan, Poland, Singapore, the UK and the US alongside Brazil, India, Indonesia, Mexico, Nigeria, South Africa and Vietnam.</p>
+
+      <p>The American collapse it recorded is severe. Net sentiment toward AI fell from <strong>+0.73 to +0.18</strong> in two years &mdash; a drop of roughly three quarters. The UK tracked it closely.</p>
+
+      <p>Then you look at the other half of the sample, and the trend line simply isn&rsquo;t there. In emerging economies and across Asia, attitudes stayed substantially positive. Singapore came out the most optimistic market surveyed. India, Indonesia, Nigeria, Vietnam &mdash; the collapse everyone assumes is global turns out to be a regional weather system.</p>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead>
+            <tr><th>Measure</th><th>United States</th><th>Elsewhere</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Net sentiment toward AI, 2024 &rarr; 2026</td><td><span class="pd">+0.73 &rarr; +0.18</span></td><td>Held broadly positive across emerging markets and Asia</td></tr>
+            <tr><td>Public optimism about AI benefits</td><td>Falling; 57% say risks outweigh benefits</td><td><span class="pw">59%</span> globally optimistic, up from 52% the year before</td></tr>
+            <tr><td>Trust in own government to regulate AI</td><td><span class="pd">31%</span> &mdash; the lowest of any country surveyed</td><td><span class="pw">54%</span> global average</td></tr>
+            <tr><td>Willing to use AI for companionship</td><td>Below the global average</td><td>Singapore <span class="pw">81%</span>, Indonesia <span class="pw">76%</span>, global average 54%</td></tr>
+            <tr><td>Believe China now leads the US on AI capability</td><td colspan="2">A clear majority in <span class="pw">11 of the 15 countries</span> polled</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Stanford&rsquo;s 2026 AI Index, drawing on separate data, lands in the same place from the other side. Global optimism about AI actually <em>rose</em> over the past year, from 52% to 59%. Nervousness rose too, to 52% &mdash; people are getting more of both feelings at once. But the aggregate direction of travel worldwide is up, at the exact moment Western sentiment is falling through the floor.</p>
+
+      <p>Both things are true simultaneously. That only works if the averages are being pulled apart by geography.</p>
+
+      <h2>The Fifty-Point Canyon</h2>
+
+      <p>There is a second split, and inside the US it is even wider than the international one.</p>
+
+      <p>Stanford asked AI experts and the general public the same questions. On whether AI will have a positive effect on the job market, <strong>73% of US experts said yes. 23% of the public agreed.</strong> That is a fifty-point gap on a question of fact about the near future.</p>
+
+      <p>It repeats down the list. The economy: 69% of experts positive, 21% of the public. Medical care: 84% against 44%.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>Why This Gap Is Different</div>
+        <div class="callout-text">Experts being more bullish than the public is normal for any technology. What is not normal is the direction of the trust deficit underneath it. Americans reported the lowest confidence in their own government&rsquo;s ability to regulate AI of any country in the survey &mdash; 31%, against a global average of 54%. In most countries, people who distrust a technology can at least fall back on trusting the referee. In the US, both numbers have failed at once. That is the condition under which people stop lobbying and start occupying lobbies.</div>
+      </div>
+
+      <p>Sunrise&rsquo;s executive director Aru Shiney-Ajay made the same argument in plainer terms, accusing tech leaders of spending &ldquo;millions of dollars in legalized bribes to stop any regulations.&rdquo; Whether or not you accept the characterisation, the strategic reading is hard to dispute: when the regulatory channel looks closed, the street is what remains.</p>
+
+      <h2>What This Actually Changes</h2>
+
+      <p>Here is where the map matters, and where the comfortable version of the backlash story falls apart.</p>
+
+      <p>If AI were universally unpopular, the backlash would be a brake. Slow it down everywhere, and it slows down. That is the implicit theory behind a lot of the current activism, and it would be correct if the polling were global.</p>
+
+      <p>It isn&rsquo;t. What the data describes is not a brake. It is a <em>steering input</em>.</p>
+
+      <p>The countries where AI is least popular are, almost exactly, the countries where it is currently built. The countries where it remains most popular are where the next billion users live, where workplace adoption already runs above 80%, and where the political appetite to host the infrastructure has not yet been spent. A blocked data centre in Georgia is not an unbuilt data centre. It is a data centre with a different postcode.</p>
+
+      <p>Which brings us to the single most uncomfortable line in the Public First report. In <strong>11 of the 15 countries surveyed</strong>, people now believe China is ahead of the United States on AI capability. Not catching up. Ahead.</p>
+
+      <div class="pull-quote">
+        In the West there is a real AI backlash &mdash; but other countries remain highly optimistic.
+        <cite>&mdash; Public First, AI Global 2026, surveying 18,000 people across 15 countries</cite>
+      </div>
+
+      <p>Note what that does <em>not</em> say. It does not say the backlash is wrong. The grievances behind it are documented and specific: power bills, water tables, disappearing entry-level jobs, a lobbying budget aimed squarely at pre-empting state law. Those are real, and none of them are answered by pointing at a chart of Indonesian enthusiasm.</p>
+
+      <p>It says the backlash is <em>local</em>, and that a local movement against a global industry has a specific failure mode. It can win every fight it picks and still lose the thing it was fighting about, because the industry is not obliged to stay and lose with it.</p>
+
+      <h2>What To Watch</h2>
+
+      <ul>
+        <li><strong>Whether opposition internationalises.</strong> So far the organising is Anglosphere and European. Data centre protests have started appearing in Australia. Nothing comparable has emerged in the markets where sentiment is still positive.</li>
+        <li><strong>Where the next capacity gets announced.</strong> Blocked projects in the US are the visible number. The interesting one is what share of new build shifts to the Gulf, South and Southeast Asia over the next four quarters.</li>
+        <li><strong>Whether the expert gap narrows from either end.</strong> A fifty-point divide on jobs resolves in one of two ways: the public is wrong and gets reassured, or the experts are wrong and 2027 is unpleasant. Nobody splits the difference on a question like that.</li>
+        <li><strong>The under-30 number.</strong> 18% hopeful is not a sentiment reading, it is a market forecast. If it stays there, the industry has a customer base problem in its most important demographic that no amount of capability improvement fixes.</li>
+        <li><strong>The China perception.</strong> It is already the argument every lobbyist reaches for against regulation. With 11 of 15 countries now believing it, that argument gets considerably stronger &mdash; regardless of whether it is true.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>The AI backlash is not manufactured, not fringe, and not failing. It has bipartisan majorities behind it, it has stalled $130 billion of construction in a single quarter, it has moved consumer app rankings, and as of Monday it has arrests. Anyone in the industry still describing it as a communications problem is reading a different set of numbers than the ones that exist.</p>
+        <p>But it is also, right now, a Western movement operating against a global industry, and the polling says nobody outside its borders is joining. American sentiment fell by three quarters while global optimism rose. That is not a world turning against AI. That is one region turning, loudly, while the rest of the map goes the other way.</p>
+        <p>The students in that lobby were not wrong about what is being done to them. The open question is whether a movement that can stop a data centre in Georgia has any answer at all for the same data centre being built in Jakarta &mdash; and whether, four quarters from now, the achievement everyone is counting turns out to have been relocation rather than resistance.</p>
+      </div>
+    </div>
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='data-center-backlash-zoning-boards-130-billion.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">🏗</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">The AI Backlash Moved to Your County Zoning Board. In Three Months It Stalled $130 Billion.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 10, 2026</span></div><a href="data-center-backlash-zoning-boards-130-billion.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='anthropic-claude-text-watermark-no-opt-out.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">🔏</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Every Word Claude Writes Now Carries a Hidden Mark. Right Now, Only Anthropic Can Read It.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 13, 2026</span></div><a href="anthropic-claude-text-watermark-no-opt-out.html" class="card-read-link">Read more →</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='white-house-secret-frontier-ai-framework.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">🏛</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">The White House Finished Its Frontier AI Rules on Deadline. It Won&rsquo;t Say What They Are.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">•</span><span>August 6, 2026</span></div><a href="white-house-secret-frontier-ai-framework.html" class="card-read-link">Read more →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
