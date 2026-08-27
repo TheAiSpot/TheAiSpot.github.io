@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Is Closing the Human Workforce That Trained Modern AI. By the End, Up to 46% of Them Were Using AI. | TheAiSpot</title>
+  <meta name="description" content="Amazon will close Mechanical Turk on September 30, 2026 after 21 years, along with SageMaker Ground Truth and Augmented AI. The platform that crowdsourced ImageNet paid a median of about $2 an hour &mdash; and by 2023 researchers estimated 33&ndash;46% of its workers were using LLMs to complete the tasks meant to train LLMs." />
+  <meta property="og:title" content="Amazon Is Closing Mechanical Turk &mdash; the Human Workforce That Trained Modern AI" />
+  <meta property="og:description" content="Bezos called it &ldquo;artificial artificial intelligence.&rdquo; It built ImageNet, paid a median $2/hour, and by 2023 up to 46% of its workers were quietly using ChatGPT to do the work. It closes September 30, 2026." />
+  <meta property="og:url" content="https://theaispot.github.io/amazon-mechanical-turk-shutdown.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="TheAiSpot" />
+  <meta property="og:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:image" content="https://theaispot.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A Machine Inside the Human Inside the Machine: Mechanical Turk Closes September 30" />
+  <meta name="twitter:description" content="21 years, 500,000+ workers, a median wage of about $2/hour, and the labeling behind ImageNet. Then a third to a half of the workers started using AI to do it." />
+  <meta name="twitter:site" content="@TheAiSpot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#0d1117;--card-bg:#161b22;--border:#21262d;--text-primary:#e6edf3;--text-muted:#8b949e;--text-faint:#484f58;--blue:#00d4ff;--blue-dim:rgba(0,212,255,.12);--blue-glow:rgba(0,212,255,.25);--purple:#7c3aed;--purple-dim:rgba(124,58,237,.15);--header-bg:rgba(13,17,23,.92);--ticker-bg:#0a0e13;--footer-bg:#0a0e13;--transition:.25s ease;}
+    [data-theme="light"]{--bg:#f6f8fa;--card-bg:#ffffff;--border:#d0d7de;--text-primary:#1c2128;--text-muted:#57606a;--text-faint:#afb8c1;--blue-dim:rgba(0,180,220,.08);--blue-glow:rgba(0,180,220,.2);--purple-dim:rgba(124,58,237,.08);--header-bg:rgba(246,248,250,.95);}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden;}
+    a{color:var(--blue);text-decoration:none;transition:opacity var(--transition);}
+    a:hover{opacity:.8;}
+    img{display:block;max-width:100%;}
+    button{cursor:pointer;font-family:inherit;}
+    #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--blue),var(--purple));z-index:9999;transition:width .1s linear;box-shadow:0 0 8px var(--blue);}
+    #site-header{position:sticky;top:0;z-index:900;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;box-shadow:0 1px 0 var(--border),0 2px 16px rgba(0,212,255,.08);transition:background var(--transition);}
+    #site-header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:.6;}
+    .header-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+    .logo-icon{font-size:22px;filter:drop-shadow(0 0 6px var(--blue));}
+    .logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .logo-name{font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.02em;}
+    .logo-name span{color:var(--blue);}
+    .logo-tagline{font-size:10px;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;}
+    .header-nav{display:flex;align-items:center;gap:4px;}
+    .header-nav a{color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    .header-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    .header-right{display:flex;align-items:center;gap:8px;}
+    #theme-toggle{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:background var(--transition),border-color var(--transition),transform .2s;}
+    #theme-toggle:hover{background:var(--blue-dim);border-color:var(--blue);transform:rotate(15deg);}
+    #hamburger{display:none;background:none;border:none;color:var(--text-primary);font-size:22px;padding:4px;line-height:1;}
+    #mobile-nav{display:none;position:absolute;top:64px;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border);padding:12px 16px;flex-direction:column;gap:4px;animation:slideDown .2s ease;}
+    #mobile-nav.open{display:flex;}
+    #mobile-nav a{color:var(--text-muted);font-size:15px;font-weight:500;padding:10px 12px;border-radius:6px;transition:color var(--transition),background var(--transition);}
+    #mobile-nav a:hover{color:var(--text-primary);background:var(--blue-dim);}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    .article-hero{height:420px;position:relative;overflow:hidden;}
+    .grad-turk{background:linear-gradient(135deg,#0a0705 0%,#2b1a08 22%,#4a2f10 44%,#123240 72%,#05090d 100%);}
+    .table-note{font-size:12.5px;line-height:1.55;color:var(--text-faint);margin-top:10px;font-style:italic;}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 34%,rgba(0,212,255,.24) 0%,transparent 55%),radial-gradient(ellipse at 80% 46%,rgba(255,176,60,.2) 0%,transparent 52%),radial-gradient(ellipse at 50% 98%,rgba(124,58,237,.16) 0%,transparent 50%);}
+    .article-hero-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;opacity:.08;}
+    .article-hero-overlay{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--bg),transparent);}
+    .page-wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+    .article-wrap{max-width:760px;margin:0 auto;padding:48px 24px 64px;}
+    .article-top-meta{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+    .cat-tag{background:var(--purple-dim);color:#a78bfa;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px;border:1px solid rgba(124,58,237,.3);}
+    .back-link{color:var(--text-muted);font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color var(--transition);}
+    .back-link:hover{color:var(--blue);opacity:1;}
+    .reading-time{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-dim);padding:3px 10px;border-radius:20px;border:1px solid rgba(0,212,255,.2);}
+    .article-headline{font-size:clamp(26px,4vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:20px;}
+    .article-byline{display:flex;align-items:center;gap:12px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:36px;flex-wrap:wrap;}
+    .byline-source{font-size:13px;font-weight:700;color:var(--text-primary);}
+    .byline-date{font-size:13px;color:var(--text-muted);}
+    .dot-sep{color:var(--text-faint);font-size:10px;}
+    .share-inline{display:flex;gap:8px;margin-left:auto;}
+    .share-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all var(--transition);}
+    .share-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    .article-body{font-size:17px;line-height:1.75;color:var(--text-primary);}
+    .article-body p{margin-bottom:22px;}
+    .article-body h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--border);position:relative;}
+    .article-body h2::after{content:'';position:absolute;bottom:-2px;left:0;width:48px;height:2px;background:var(--blue);box-shadow:0 0 8px var(--blue);}
+    .article-body strong{font-weight:700;}
+    .article-body code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--blue-dim);border:1px solid rgba(0,212,255,.2);border-radius:4px;padding:1px 6px;color:var(--blue);}
+    .article-body ul{margin:0 0 22px 22px;}
+    .article-body li{margin-bottom:10px;}
+    .pull-quote{border-left:4px solid var(--purple);background:var(--purple-dim);border-radius:0 8px 8px 0;padding:18px 24px;margin:32px 0;font-size:18px;font-weight:600;line-height:1.55;color:var(--text-primary);font-style:italic;}
+    .pull-quote cite{display:block;margin-top:10px;font-size:13px;font-weight:600;font-style:normal;color:var(--text-muted);letter-spacing:.02em;}
+    .table-scroll{overflow-x:auto;margin:32px 0;}
+    .price-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .price-table thead th{background:var(--blue-dim);color:var(--text-primary);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+    .price-table td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;}
+    .price-table tbody tr:last-child td{border-bottom:none;}
+    .price-table td:first-child{color:var(--text-primary);font-weight:600;}
+    .price-table .pw{color:var(--blue);font-weight:700;font-variant-numeric:tabular-nums;}
+    .price-table .pd{color:#ff6b81;font-weight:700;font-variant-numeric:tabular-nums;}
+    .callout-box{background:var(--blue-dim);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--blue);border-radius:8px;padding:20px 24px;margin:36px 0;}
+    .callout-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+    .callout-text{font-size:15px;font-weight:600;line-height:1.6;color:var(--text-primary);}
+    .conclusion-section{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:40px 0;}
+    .conclusion-section h2{font-size:18px;font-weight:800;margin-bottom:14px;color:var(--blue);}
+    .conclusion-section p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:10px;}
+    .conclusion-section p:last-child{margin-bottom:0;}
+    .share-section{display:flex;align-items:center;gap:12px;padding:28px 0;border-top:1px solid var(--border);margin-top:8px;flex-wrap:wrap;}
+    .share-section-label{font-size:13px;font-weight:600;color:var(--text-muted);}
+    .share-big-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--transition);border:1px solid var(--border);}
+    .share-x{background:#000;color:#fff;border-color:#333;}
+    .share-x:hover{background:#111;}
+    .share-copy{background:var(--card-bg);color:var(--text-muted);}
+    .share-copy:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
+    #related{background:var(--card-bg);border-top:1px solid var(--border);padding:56px 0;}
+    .section-title{font-size:20px;font-weight:700;letter-spacing:-.02em;position:relative;padding-bottom:8px;margin-bottom:28px;}
+    .section-title::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--blue),transparent);}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .article-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition);}
+    .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px var(--blue-glow),0 4px 16px rgba(0,0,0,.3);border-color:rgba(0,212,255,.3);}
+    .card-image{height:150px;position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .grad-1{background:linear-gradient(135deg,#0d1f3c 0%,#1a0a3e 50%,#001a2e 100%);}
+    .grad-2{background:linear-gradient(135deg,#1a0d2e 0%,#0d1a3e 50%,#0a0a2e 100%);}
+    .grad-3{background:linear-gradient(135deg,#2e0a0a 0%,#1a0d2e 50%,#2e1400 100%);}
+    .card-image-icon{font-size:52px;opacity:.85;z-index:1;}
+    .card-cat-tag{position:absolute;top:12px;left:12px;z-index:2;}
+    .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;}
+    .card-headline{font-size:15px;font-weight:700;line-height:1.35;color:var(--text-primary);transition:color var(--transition);}
+    .article-card:hover .card-headline{color:var(--blue);}
+    .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);margin-top:auto;flex-wrap:wrap;}
+    .card-source{font-weight:600;}
+    .card-read-link{font-size:13px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:4px;transition:gap var(--transition);}
+    .article-card:hover .card-read-link{gap:8px;}
+    .back-home-bar{text-align:center;padding:40px 24px;}
+    .btn-back-home{display:inline-flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-muted);font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;transition:all var(--transition);}
+    .btn-back-home:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);opacity:1;}
+    #site-footer{background:#0a0e13;border-top:1px solid transparent;box-shadow:0 -1px 0 rgba(0,212,255,.2),0 -2px 16px rgba(0,212,255,.04);padding:56px 0 0;color:#8b949e;}
+    .footer-grid{max-width:1280px;margin:0 auto;padding:0 24px 48px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;}
+    .footer-logo{font-size:20px;font-weight:800;color:#e6edf3;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .footer-logo span{color:var(--blue);}
+    .footer-about{font-size:13px;line-height:1.65;color:#8b949e;margin-bottom:16px;}
+    .footer-social{display:flex;gap:10px;}
+    .social-btn{background:#161b22;border:1px solid #21262d;color:#8b949e;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all var(--transition);text-decoration:none;}
+    .social-btn:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue);}
+    .footer-col-title{font-size:13px;font-weight:700;color:#e6edf3;letter-spacing:.04em;text-transform:uppercase;margin-bottom:16px;}
+    .footer-links{display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{font-size:13px;color:#8b949e;transition:color var(--transition);}
+    .footer-links a:hover{color:var(--blue);}
+    .footer-bottom{border-top:1px solid #21262d;padding:20px 24px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy,.footer-powered{font-size:12px;color:#484f58;}
+    #back-to-top{position:fixed;bottom:28px;right:28px;background:var(--blue);color:#0d1117;border:none;width:44px;height:44px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;box-shadow:0 4px 16px var(--blue-glow);}
+    #back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+    #back-to-top:hover{transform:translateY(-2px);}
+    #toast{position:fixed;bottom:84px;right:28px;background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 16px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-primary);box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:1000;opacity:0;pointer-events:none;transform:translateX(12px);transition:opacity .3s,transform .3s;max-width:260px;}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateX(0);}
+    @media(max-width:768px){.header-nav{display:none;}#hamburger{display:flex;}.related-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr;gap:32px;}.share-inline{margin-left:0;width:100%;}.article-hero{height:240px;}.article-wrap{padding:32px 16px 48px;}.article-headline{font-size:26px;}.price-table{font-size:12.5px;}.price-table th,.price-table td{padding:9px 10px;}.pull-quote{font-size:16px;padding:16px 18px;}}
+    @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr);}.footer-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">⚡</span><div class="logo-text"><span class="logo-name">The<span>Ai</span>Spot</span><span class="logo-tagline">Your Daily AI Intelligence Feed</span></div></a>
+    <nav class="header-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+    <div class="header-right"><button id="theme-toggle" aria-label="Toggle theme"><span id="theme-icon">☀️</span></button><button id="hamburger" aria-label="Open menu">☰</button></div>
+  </div>
+  <nav id="mobile-nav"><a href="index.html">Home</a><a href="index.html#trending-section">Trending</a><a href="index.html#categories-bar">Topics</a><a href="index.html#newsletter">About</a></nav>
+</header>
+
+<div class="article-hero grad-turk">
+  <div class="article-hero-icon">&#9823;&#65039;</div>
+  <div class="article-hero-overlay"></div>
+</div>
+
+<main>
+  <div class="article-wrap">
+    <div class="article-top-meta">
+      <a href="index.html" class="back-link">&larr; TheAiSpot</a>
+      <span class="cat-tag">Ethics &amp; Policy</span>
+      <span class="reading-time">&#9201; 9 min read</span>
+    </div>
+
+    <h1 class="article-headline">Amazon Is Closing the Human Workforce That Trained Modern AI. By the End, Up to 46% of Them Were Using AI.</h1>
+
+    <div class="article-byline">
+      <span class="byline-source">Staff Reporter</span><span class="dot-sep">&bull;</span>
+      <span class="byline-date">August 27, 2026</span><span class="dot-sep">&bull;</span>
+      <span class="byline-source">TheAiSpot</span>
+      <div class="share-inline">
+        <button class="share-btn" onclick="shareX()">&#120143; Share</button>
+        <button class="share-btn" onclick="copyLink()">&#128279; Copy</button>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <p>In 1770 a Hungarian inventor named Wolfgang von Kempelen unveiled a machine that played chess. It was a wooden cabinet with a turbaned mannequin seated at a board, and it beat nearly everyone put in front of it &mdash; Benjamin Franklin, reportedly Napoleon. It toured Europe and America for decades as proof that a machine could think. It could not. There was a chess master folded into the cabinet, sliding along a rail to stay hidden as the doors were opened for inspection.</p>
+
+      <p>In 2005, Amazon named a product after that cabinet. The joke was deliberate and, at the time, charming. Amazon Mechanical Turk let a company post work that software could not yet do &mdash; label this photo, transcribe this clip, decide whether this listing is a duplicate &mdash; and route it to a human somewhere in the world for a few cents. Jeff Bezos described it publicly in 2006 as <strong>&ldquo;artificial artificial intelligence&rdquo;</strong>: software that reverses the roles of computers and humans, with a person hidden inside the API.</p>
+
+      <p>On <strong>August 25, 2026</strong>, a banner appeared on the Mechanical Turk homepage. It is the only public statement Amazon has made about the closure, and it reads in full:</p>
+
+      <div class="pull-quote">
+        We regularly evaluate our programs, tools, and services and make adjustments based on those assessments. Following an assessment, we&rsquo;ve made the decision to close AWS Mechanical Turk, effective September 30, 2026.
+        <cite>&mdash; AWS Mechanical Turk homepage notice</cite>
+      </div>
+
+      <p>Twenty-one years, more than half a million registered workers, and the training data underneath a meaningful slice of modern machine learning &mdash; retired in forty-one words, with &ldquo;assessment&rdquo; doing all the load-bearing work.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>The Part That Makes This More Than a Product Sunset</div>
+        <div class="callout-text">Amazon is not retiring one aging service. <strong>SageMaker Ground Truth</strong> and <strong>Amazon Augmented AI</strong> close on the same date. Those are the two products AWS sold to enterprises that needed humans in the labeling loop. Taken together, the September 30 deadline is Amazon exiting the human data-collection business entirely &mdash; in the middle of the largest AI buildout in the company&rsquo;s history.</div>
+      </div>
+
+      <h2>What Actually Got Built On It</h2>
+
+      <p>It is easy to file Mechanical Turk under &ldquo;odd 2000s web experiment&rdquo; and miss that the current era of AI has its fingerprints on it.</p>
+
+      <p>The clearest case is <strong>ImageNet</strong>. Fei-Fei Li&rsquo;s team needed millions of labeled photographs to test whether the bottleneck in computer vision was algorithms or data. Hand-labeling at that scale was impossible for a university lab, so the work went to Mechanical Turk, and ImageNet became the largest academic user the platform ever had. In July 2008 the dataset contained zero images. By December it held three million, sorted into more than 6,000 categories. By April 2010 it was past eleven million images and 15,000 categories.</p>
+
+      <p>In 2012, a neural network called AlexNet won the ImageNet competition by a margin wide enough to end the argument, and the deep learning era started. Every part of that story is a machine-learning story except the part that mattered most, which was tens of thousands of people clicking through photographs for pennies.</p>
+
+      <p>It kept going after that. Michael Schmitz, director of engineering at the Allen Institute for AI, has said his team used Mechanical Turk to build datasets that teach models common-sense knowledge &mdash; the sort of thing a model cannot derive from raw text and a researcher cannot write down at scale. For fifteen years, when an AI system needed to know something only a human could tell it, this is often where the telling happened.</p>
+
+      <h2>What It Paid</h2>
+
+      <p>The economics were never good, and they were measured carefully enough that nobody in the industry can claim surprise.</p>
+
+      <p>The definitive study is Hara et al., presented at the CHI conference in 2018, which instrumented <strong>2,676 workers</strong> across <strong>3.8 million tasks</strong> and computed what they actually earned per hour of work, including the unpaid time spent hunting for tasks worth doing.</p>
+
+      <div class="table-scroll">
+        <table class="price-table">
+          <thead><tr><th>Earnings on Mechanical Turk (CHI 2018 study)</th><th>Figure</th></tr></thead>
+          <tbody>
+            <tr><td>Workers measured</td><td class="pw">2,676</td></tr>
+            <tr><td>Tasks measured</td><td class="pw">3.8 million</td></tr>
+            <tr><td>Median effective hourly wage</td><td class="pd">~$2.00</td></tr>
+            <tr><td>Share earning above $7.25/hr (US federal minimum)</td><td class="pd">4%</td></tr>
+            <tr><td>What the average requester believed they were paying</td><td class="pw">&gt;$11.00/hr</td></tr>
+            <tr><td>Registered workers, per AWS documentation</td><td class="pw">500,000+ across 190 countries</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">Hara et al., &ldquo;A Data-Driven Analysis of Workers&rsquo; Earnings on Amazon Mechanical Turk,&rdquo; CHI 2018. The gap between the two wage figures is unpaid search time and rejected work, not requester generosity.</p>
+      </div>
+
+      <p>Read the last two rows together. Requesters were paying above minimum wage per task and workers were clearing two dollars an hour. The difference is the time spent scrolling for a task worth taking and the work submitted then rejected without pay. Nothing in the platform made that visible to the person posting the job, which is exactly what &ldquo;artificial artificial intelligence&rdquo; means in practice: an interface designed so the buyer never has to picture the person on the other end.</p>
+
+      <h2>Then the Workers Started Using AI</h2>
+
+      <p>Here is the turn that makes this a genuinely strange piece of technology history rather than a routine deprecation.</p>
+
+      <p>In June 2023, three researchers at EPFL &mdash; Veniamin Veselovsky, Manoel Horta Ribeiro and Robert West &mdash; posted an abstract-summarization task to Mechanical Turk and instrumented it to find out how the work was being done. They combined keystroke logging with a classifier trained to separate human prose from machine-generated prose, and ran it across sixteen research abstracts on vaccination, breast cancer, cardiovascular disease and nutrition.</p>
+
+      <p>Their estimate: between <strong>33% and 46%</strong> of the crowd workers had used a large language model to produce their answers.</p>
+
+      <p>They titled the paper <em>Artificial Artificial Artificial Intelligence</em>. The extra word is the whole finding. Bezos&rsquo;s original joke was that there was a human inside the machine. By 2023, there was a machine inside the human inside the machine &mdash; and the text coming out the other end was being used to train the next generation of the same models.</p>
+
+      <div class="pull-quote">
+        The platform was built so that buyers of data would never have to think about the humans producing it. That worked right up until the humans stopped producing it.
+      </div>
+
+      <p>This is not a moral failing on the part of the workers. Someone earning two dollars an hour on piecework, being paid for output rather than effort, will use the fastest available tool. That is what piecework does. It is a design failure, and the design was Amazon&rsquo;s: a marketplace with no way to verify that human work was human, at exactly the moment when the market&rsquo;s only remaining product was human-ness.</p>
+
+      <p>Once a third to a half of your responses may be model output, the data is worse than useless to a lab. It is <em>circular</em> &mdash; a model quietly training on its own reflection, at a price the buyer chose because it was cheap.</p>
+
+      <h2>Where the Work Went</h2>
+
+      <p>The demand for human data did not fall. It moved upmarket, and it got expensive.</p>
+
+      <p>Amazon&rsquo;s own migration notice points departing customers at <strong>Scale AI</strong>, <strong>Mercor</strong> and <strong>Prolific</strong>. For academic human-subjects research, the destinations are Prolific and CloudResearch, which offer vetted participant pools, demographic targeting and workflows an ethics board will approve.</p>
+
+      <p>The valuations tell you how much the work is now worth when it is sold as expertise rather than as clicks. Meta paid <strong>$14.3 billion</strong> for a 49% stake in Scale AI in June 2025, valuing it near $29 billion &mdash; after which Google and OpenAI reportedly pulled back over neutrality concerns about a competitor holding the keys. Mercor raised a $350 million round led by Felicis in October 2025 at a <strong>$10 billion</strong> valuation, built largely on recruiting doctors, lawyers and PhDs to produce expert data for frontier labs.</p>
+
+      <p>So the market did not decide that human data was obsolete. It decided that anonymous human data at a few cents a task was obsolete, and that identified, credentialed, verifiable human data was worth billions. Mechanical Turk was structurally unable to sell the second thing. It had spent two decades making the worker invisible, and invisibility turned out to be the part that stopped having value.</p>
+
+      <h2>The People Who Were Actually There</h2>
+
+      <p>AWS documentation put the platform at more than <strong>500,000 workers across 190 countries</strong>. Nobody outside Amazon knows how many were still active this year, and the community&rsquo;s own view is blunt: on the MTurk subreddit, the common assessment is that the platform effectively died years ago, hollowed out by bots, fraud and requesters who never came back.</p>
+
+      <p>But &ldquo;died years ago&rdquo; is a description of the marketplace, not of the people in it. Krista Pawloski, a data worker and organizer with the worker advocacy group Turkopticon, started turking in 2008 while on maternity leave and moved to it full time in 2012 after losing a job, because it fit around caring for a son with special needs. She has described the platform as providing meaningful income. That is the recurring shape of the thing: work that paid badly and was chosen anyway, because it could be done at 3 a.m. from a kitchen table by someone whose life did not fit a shift schedule.</p>
+
+      <p>Those workers get five weeks&rsquo; notice. There is no severance in a marketplace, because there was never an employment relationship &mdash; that was the point of the structure. And the timing has an awkward edge in Europe: the <strong>EU Platform Work Directive</strong>, which is designed to force exactly this kind of arrangement to clarify whether its workers are employees, has a transposition deadline in December 2026. Mechanical Turk closes three months before it lands.</p>
+
+      <div class="callout-box">
+        <div class="callout-label"><svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.6L6 8.4 2.8 10.4l1.1-3.6L1 4.6h3.8z"/></svg>What Is Confirmed, and What Is Inference</div>
+        <div class="callout-text">Confirmed: the closure date, the homepage notice text, the simultaneous shutdown of SageMaker Ground Truth and Augmented AI, the July 30 cutoff for new customers, and the published research on wages and LLM use. Not confirmed: Amazon&rsquo;s actual reasoning. The company has said only &ldquo;assessment&rdquo; &mdash; it has not cited data quality, the EPFL findings, competition, or cost, and the causal chain drawn here between contaminated data and the shutdown is a reading of the evidence, not an Amazon statement. Active worker counts are unknown; the 500,000 figure is AWS documentation, not a current headcount. It is also worth stating plainly that a platform with this much documented wage criticism was not shut down out of concern for wages.</div>
+      </div>
+
+      <h2>What To Watch</h2>
+
+      <ul>
+        <li><strong>Whether the research replicates elsewhere.</strong> The EPFL result was about Mechanical Turk, but nothing in it is specific to Amazon. Every crowd platform paying per output rather than per hour has the same incentive, and the successors are being paid far more to be sure their humans are human. How they prove it is the real product now.</li>
+        <li><strong>What happens to reproducibility in the social sciences.</strong> A very large body of published behavioral research ran its participants through Mechanical Turk. Those studies do not become wrong on September 30, but the ability to re-run them on the same population disappears, and the population itself was already contaminated by 2023.</li>
+        <li><strong>Where the workers land.</strong> Prolific and CloudResearch vet participants, which is another way of saying they admit fewer of them. Half a million registered accounts do not transfer into pools designed around scarcity and screening.</li>
+        <li><strong>Whether Amazon re-enters at the top of the market.</strong> Exiting cheap human labeling entirely, while AWS sells the models that need expert data, is either a considered concession to Scale and Mercor or a gap someone at Amazon is already writing a document about.</li>
+        <li><strong>The price of verified human text.</strong> It has only gone one direction since 2023, and the reason is on the record: a third to a half of the cheap supply turned out to be machines.</li>
+      </ul>
+
+      <div class="conclusion-section">
+        <h2>The Takeaway</h2>
+        <p>Amazon is closing Mechanical Turk on September 30, 2026, after 21 years, along with SageMaker Ground Truth and Augmented AI &mdash; a full exit from human data collection, explained publicly in one sentence containing the word &ldquo;assessment.&rdquo;</p>
+        <p>The platform helped build ImageNet, which produced AlexNet, which produced the deep learning era. It paid a median of about two dollars an hour to do it, with only 4% of workers clearing the US federal minimum wage. And by 2023 researchers estimated that up to 46% of its workers were using ChatGPT to complete the tasks meant to train systems like ChatGPT.</p>
+        <p>Von Kempelen&rsquo;s cabinet worked as long as nobody looked inside. Amazon built the same trick as an API and ran it for two decades. What finally closed it was not that people looked &mdash; it was that the machine got good enough to climb into the box itself.</p>
+      </div>
+    </div>
+
+    <div class="share-section">
+      <span class="share-section-label">Share this article:</span>
+      <button class="share-big-btn share-x" onclick="shareX()">𝕏 Share on X</button>
+      <button class="share-big-btn share-copy" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+</main>
+
+<section id="related">
+  <div class="page-wrap">
+    <h2 class="section-title">Related Articles</h2>
+    <div class="related-grid">
+      <article class="article-card" onclick="location.href='twitch-amazon-ai-training-lawsuit-opt-out.html'">
+        <div class="card-image grad-1"><div class="card-image-icon">&#127897;&#65039;</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Twitch Switched On AI Training for Every Channel, Then Rewrote Its Contract the Same Day. A Lawsuit Says the Scraping Started in 2024.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">&bull;</span><span>August 25, 2026</span></div><a href="twitch-amazon-ai-training-lawsuit-opt-out.html" class="card-read-link">Read more &rarr;</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='ai-offshoring-india-it-net-17-hires.html'">
+        <div class="card-image grad-2"><div class="card-image-icon">&#128200;</div><div class="card-cat-tag"><span class="cat-tag">Industry</span></div></div>
+        <div class="card-body"><h3 class="card-headline">India&rsquo;s Biggest IT Firms Added 17 People in Nine Months. Not 17,000 &mdash; 17.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">&bull;</span><span>August 15, 2026</span></div><a href="ai-offshoring-india-it-net-17-hires.html" class="card-read-link">Read more &rarr;</a></div>
+      </article>
+      <article class="article-card" onclick="location.href='anthropic-claude-text-watermark-no-opt-out.html'">
+        <div class="card-image grad-3"><div class="card-image-icon">&#128065;&#65039;</div><div class="card-cat-tag"><span class="cat-tag">Ethics &amp; Policy</span></div></div>
+        <div class="card-body"><h3 class="card-headline">Every Word Claude Writes Now Carries a Hidden Mark. Right Now, Only Anthropic Can Read It.</h3><div class="card-meta"><span class="card-source">TheAiSpot</span><span class="dot-sep">&bull;</span><span>August 13, 2026</span></div><a href="anthropic-claude-text-watermark-no-opt-out.html" class="card-read-link">Read more &rarr;</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="back-home-bar"><a href="index.html" class="btn-back-home">← Back to TheAiSpot</a></div>
+
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">⚡ The<span>Ai</span>Spot</div>
+      <p class="footer-about">TheAiSpot is the web's most trusted daily briefing on artificial intelligence. From research breakthroughs to industry shifts, we cover what matters — clearly, quickly, and without hype.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-btn" aria-label="RSS Feed">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><circle cx="2.5" cy="11.5" r="1.5"/><path d="M1 6.5A6.5 6.5 0 0 1 7.5 13M1 2A11 11 0 0 1 12 13"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Topics</div>
+      <nav class="footer-links" aria-label="Topics navigation">
+        <a href="#">Machine Learning</a>
+        <a href="#">Generative AI</a>
+        <a href="#">Robotics</a>
+        <a href="#">AI Tools</a>
+        <a href="#">Research</a>
+        <a href="#">Industry</a>
+        <a href="#">Ethics &amp; Policy</a>
+      </nav>
+    </div>
+    <div>
+      <div class="footer-col-title">Stay Connected</div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="#">Daily Newsletter</a>
+        <a href="#">RSS Feed</a>
+        <a href="#">Submit a Story</a>
+        <a href="#">Advertise</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 TheAiSpot. All rights reserved.</span>
+    <span class="footer-powered">Powered by AI. Updated twice daily.</span>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const icon = document.getElementById('theme-icon');
+  function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='dark'?'☀️':'🌙';}
+  applyTheme(localStorage.getItem('aispot-theme')||'dark');
+  btn.addEventListener('click',function(){const n=html.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(n);localStorage.setItem('aispot-theme',n);});
+
+  const hb=document.getElementById('hamburger'),mn=document.getElementById('mobile-nav');
+  hb.addEventListener('click',function(){const o=mn.classList.toggle('open');hb.setAttribute('aria-expanded',o);hb.textContent=o?'✕':'☰';});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open');hb.textContent='☰';});});
+
+  const pb=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){
+    const s=window.scrollY,d=document.documentElement.scrollHeight-window.innerHeight;
+    pb.style.width=(d>0?(s/d)*100:0)+'%';
+    btt.classList.toggle('visible',s>400);
+  },{passive:true});
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+
+  window.shareX=function(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank');};
+  const toast=document.getElementById('toast');
+  let tt;
+  window.copyLink=function(){navigator.clipboard.writeText(location.href).then(function(){clearTimeout(tt);toast.textContent='✅ Link copied to clipboard!';toast.classList.add('show');tt=setTimeout(function(){toast.classList.remove('show');},3500);});};
+})();
+</script>
+</body>
+</html>
