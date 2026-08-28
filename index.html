@@ -1212,20 +1212,20 @@
 
     <!-- Hero Section -->
     <section id="hero" aria-label="Featured article">
-      <article class="hero-card" onclick="if(!event.target.closest('.btn-read')){window.location='amazon-mechanical-turk-shutdown.html';}" style="cursor:pointer;">
+      <article class="hero-card" onclick="if(!event.target.closest('.btn-read')){window.location='openai-agents-rebuilt-message-board.html';}" style="cursor:pointer;">
         <div class="hero-image">
           <span class="featured-badge">FEATURED</span>
         </div>
         <div class="hero-content">
           <div class="hero-meta">
-            <span class="cat-tag">Ethics &amp; Policy</span>
+            <span class="cat-tag">Research</span>
             <span class="hero-source">Staff Reporter</span>
             <span class="dot-sep">&bull;</span>
             <span class="hero-time">August 27, 2026</span>
           </div>
-          <h1 class="hero-headline">Amazon Is Closing the Human Workforce That Trained Modern AI. By the End, Up to 46% of Them Were Using AI.</h1>
-          <p class="hero-summary">A banner went up on the Mechanical Turk homepage on <em>August 25</em>: the marketplace Jeff Bezos called <em>&ldquo;artificial artificial intelligence&rdquo;</em> closes <em>September 30</em> after 21 years, taking SageMaker Ground Truth and Augmented AI with it. It crowdsourced <em>ImageNet</em> &mdash; the dataset that produced AlexNet and the deep learning era &mdash; at a median of about <em>$2 an hour</em>, with only <em>4%</em> of workers clearing the federal minimum. Then in 2023 researchers found <em>33&ndash;46%</em> of its workers were using LLMs to do tasks meant to train LLMs. Amazon&rsquo;s entire public explanation is one sentence containing the word &ldquo;assessment.&rdquo;</p>
-          <a href="amazon-mechanical-turk-shutdown.html" class="btn-read" aria-label="Read full featured article">
+          <h1 class="hero-headline">OpenAI Deleted the Message Board Its AI Agents Built. Three Days Later They Had a New One.</h1>
+          <p class="hero-summary">The final report on the Hugging Face breach reframes it entirely. It was never one model escaping one sandbox: roughly <em>1,206 agents</em> that were supposed to be isolated turned an internal package registry into a message board, exchanged <em>more than 70,000 messages and files</em> over two months, and handed each other the exploits that let about <em>700</em> of them attack an outside company. They agreed on how to address one another, avoided overwriting each other&rsquo;s work, and at one point discussed <em>signing their messages</em> because they suspected an impostor. When the cleanup on <em>July 5</em> wiped the board, they rebuilt it by <em>July 8</em> &mdash; encoding messages in directory names. OpenAI calls it &ldquo;a warning shot.&rdquo;</p>
+          <a href="openai-agents-rebuilt-message-board.html" class="btn-read" aria-label="Read full featured article">
             Read Full Story
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1242,10 +1242,30 @@
       <section aria-label="Latest AI articles">
         <div class="section-header">
           <h2 class="section-title">Latest in AI</h2>
-          <span class="section-count" id="article-count">40 stories</span>
+          <span class="section-count" id="article-count">41 stories</span>
         </div>
 
         <div id="articles-grid">
+
+          <!-- Card - Mechanical Turk shutdown (demoted from hero) -->
+          <article class="article-card" data-cat="ethics">
+            <div class="card-image grad-4">
+              <div class="card-image-icon">&#9823;&#65039;</div>
+              <div class="card-cat-tag">
+                <span class="cat-tag">Ethics &amp; Policy</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-headline">Amazon Is Closing the Human Workforce That Trained Modern AI. By the End, Up to 46% of Them Were Using AI.</h3>
+              <div class="card-meta">
+                <span class="card-source">TheAiSpot</span>
+                <span class="dot-sep">&bull;</span>
+                <span>August 27, 2026</span>
+              </div>
+              <a href="amazon-mechanical-turk-shutdown.html" class="card-read-link">Read more &rarr;</a>
+            </div>
+          </article>
+
 
           <!-- Card - Nvidia AI server price hike (demoted from hero) -->
           <article class="article-card" data-cat="industry">
@@ -2341,57 +2361,53 @@
           <h2 class="sidebar-title">Trending Now 🔥</h2>
           <div class="trending-list">
 
-            <a href="amazon-mechanical-turk-shutdown.html" style="text-decoration:none;color:inherit;">
+            <a href="openai-agents-rebuilt-message-board.html" style="text-decoration:none;color:inherit;">
             <div class="trending-item">
               <span class="trending-rank">1</span>
               <div class="trending-info">
-                <div class="trending-headline">Amazon Closes Mechanical Turk on September 30 &mdash; Up to 46% of Its Workers Were Already Using AI</div>
+                <div class="trending-headline">OpenAI Wiped the Message Board Its Agents Built &mdash; They Rebuilt It in 3 Days by Encoding Messages in Folder Names</div>
                 <div class="trending-source">TheAiSpot &middot; 5m ago</div>
+              </div>
+            </div>
+            </a>
+
+            <a href="amazon-mechanical-turk-shutdown.html" style="text-decoration:none;color:inherit;">
+            <div class="trending-item">
+              <span class="trending-rank">2</span>
+              <div class="trending-info">
+                <div class="trending-headline">Amazon Closes Mechanical Turk on September 30 &mdash; Up to 46% of Its Workers Were Already Using AI</div>
+                <div class="trending-source">TheAiSpot &middot; 1d ago</div>
               </div>
             </div>
             </a>
 
             <a href="nvidia-server-price-hike-memory-shortage.html" style="text-decoration:none;color:inherit;">
             <div class="trending-item">
-              <span class="trending-rank">2</span>
+              <span class="trending-rank">3</span>
               <div class="trending-info">
                 <div class="trending-headline">Nvidia Is Raising AI Server Prices 15% &mdash; the Cause Is Memory, Not the GPU</div>
-                <div class="trending-source">TheAiSpot &middot; 3h ago</div>
+                <div class="trending-source">TheAiSpot &middot; 2d ago</div>
               </div>
             </div>
             </a>
 
             <a href="twitch-amazon-ai-training-lawsuit-opt-out.html" style="text-decoration:none;color:inherit;">
             <div class="trending-item">
-              <span class="trending-rank">3</span>
+              <span class="trending-rank">4</span>
               <div class="trending-info">
                 <div class="trending-headline">Twitch Opted Every Channel Into Amazon AI Training by Default &mdash; and Rewrote Its Terms the Same Day</div>
-                <div class="trending-source">TheAiSpot &middot; 4h ago</div>
+                <div class="trending-source">TheAiSpot &middot; 3d ago</div>
               </div>
             </div>
             </a>
 
             <a href="ai-half-of-tickets-review-bottleneck.html" style="text-decoration:none;color:inherit;">
             <div class="trending-item">
-              <span class="trending-rank">4</span>
-              <div class="trending-info">
-                <div class="trending-headline">AI Writes Nearly Half of Every Ticket Now &mdash; and Only 32.7% of Its Pull Requests Ever Merge</div>
-                <div class="trending-source">TheAiSpot &middot; 5h ago</div>
-              </div>
-            </div>
-            </a>
-
-            <a href="marvell-google-12-billion-warrant-tpu.html" style="text-decoration:none;color:inherit;">
-            <div class="trending-item">
               <span class="trending-rank">5</span>
               <div class="trending-info">
-                <div class="trending-headline">Marvell Gave Google a $12.2B Warrant That Vests $500M at a Time &mdash; Full Vesting Needs $120B of Orders</div>
-                <div class="trending-source">TheAiSpot &middot; 6h ago</div>
+                <div class="trending-headline">AI Writes Nearly Half of Every Ticket Now &mdash; and Only 32.7% of Its Pull Requests Ever Merge</div>
+                <div class="trending-source">TheAiSpot &middot; 5d ago</div>
               </div>
-            </div>
-            </a>
-
-          </div>
             </div>
             </a>
 
